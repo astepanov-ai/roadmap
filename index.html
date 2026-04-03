@@ -3,388 +3,418 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Дорожная карта - Bausoft Tech Support</title>
+<title>Обоснование — Дорожная карта ТП</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --bg2: #f7f6f3;
+    --bg3: #eeece9;
+    --text: #37352f;
+    --text2: #6b6969;
+    --text3: #9b9a97;
+    --border: #e9e7e3;
+    --accent: #2f80ed;
+    --accent-bg: #e8f0fc;
+    --green: #0f7b6c;
+    --green-bg: #e3f5f1;
+    --orange: #d9730d;
+    --orange-bg: #fdebd0;
+    --red: #e03e3e;
+    --red-bg: #fde8e8;
+    --purple: #6940a5;
+    --purple-bg: #eee8f8;
+  }
+
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: #f7f7f5;
-    color: #1a1a18;
-    min-height: 100vh;
-    padding: 24px 16px 48px;
-  }
-  /* ── Page header ── */
-  .pg-title { font-size: 18px; font-weight: 600; color: #1a1a18; margin-bottom: 3px; }
-  .pg-sub { font-size: 13px; color: #6b6b67; margin-bottom: 16px; }
-
-  /* ── Filter tabs ── */
-  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
-  .tab {
-    padding: 5px 12px; font-size: 12px;
-    border: 1px solid #d4d2ca; border-radius: 20px;
-    background: #fff; color: #6b6b67; cursor: pointer; transition: all .15s;
-  }
-  .tab:hover { background: #f0ede8; }
-  .tab.active { border-color: transparent; color: #fff; }
-
-  /* ── Gantt wrapper ── */
-  .gantt-scroll { overflow-x: auto; }
-  .gantt-inner { min-width: 860px; }
-
-  /* Month header */
-  .months-row { display: flex; margin-bottom: 6px; }
-  .month-spacer { width: 168px; flex-shrink: 0; }
-  .months { flex: 1; display: flex; }
-  .month-cell {
-    font-size: 10px; color: #9b9992; text-align: center;
-    border-left: 1px solid #e0ded6; flex-shrink: 0; padding: 2px 0;
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 0 0 80px;
   }
 
-  /* Track block */
-  .track-block + .track-block { border-top: 1px solid #e0ded6; margin-top: 6px; padding-top: 6px; }
-  .track-block { display: flex; align-items: stretch; }
+  .cover {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    padding: 80px 0 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(47,128,237,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 30%, rgba(105,64,165,0.12) 0%, transparent 50%);
+  }
+  .cover-emoji { font-size: 56px; display: block; margin-bottom: 20px; position: relative; }
+  .cover-title {
+    font-size: 36px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .cover-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    position: relative;
+    font-family: 'IBM Plex Mono', monospace;
+  }
 
-  /* Track label */
-  .track-label {
-    width: 130px; min-width: 130px; flex-shrink: 0;
-    display: flex; align-items: center; padding-right: 10px;
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 64px 0;
   }
-  .track-label-inner { display: flex; align-items: flex-start; gap: 6px; width: 100%; }
-  .track-bar { width: 2.5px; min-width: 2.5px; border-radius: 2px; margin-top: 2px; flex-shrink: 0; }
-  .track-name { font-size: 11px; font-weight: 600; line-height: 1.35; padding-top: 2px; }
 
-  /* Stage rows */
-  .stages-col { flex: 1; display: flex; flex-direction: column; gap: 3px; }
-  .stage-row { display: flex; align-items: center; cursor: pointer; }
-  .stage-row:hover .row-id { color: #1a1a18; }
-  .row-id {
-    width: 38px; min-width: 38px; text-align: right;
-    padding-right: 6px; font-size: 10px; font-weight: 600; color: #b0ada4; flex-shrink: 0;
+  @media (max-width: 700px) {
+    .page { padding: 32px 24px 0; }
+    .cover-title { font-size: 26px; }
   }
-  .bar-wrap { flex: 1; position: relative; height: 26px; }
-  .bar-bg {
-    position: absolute; top: 2px; height: 22px; border-radius: 4px;
-    cursor: pointer; transition: filter .15s; opacity: .9;
-  }
-  .bar-bg:hover { filter: brightness(1.1); }
-  .bar-lbl-row {
-    position: absolute; top: 2px; height: 22px;
-    display: flex; align-items: center; pointer-events: none; overflow: hidden;
-  }
-  .bar-lbl { font-size: 10px; font-weight: 600; color: #fff; white-space: nowrap; padding: 0 6px; }
 
-  /* ── Modal ── */
-  .modal-bg {
-    position: fixed; inset: 0; background: rgba(0,0,0,.4);
-    display: flex; align-items: center; justify-content: center;
-    z-index: 200; opacity: 0; pointer-events: none; transition: opacity .2s;
+  /* Notion-style callout */
+  .callout {
+    display: flex;
+    gap: 12px;
+    background: var(--bg2);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin: 20px 0;
+    border-left: 3px solid var(--border);
   }
-  .modal-bg.open { opacity: 1; pointer-events: all; }
-  .modal {
-    background: #fff; border: 1px solid #d4d2ca; border-radius: 12px;
-    width: min(560px, 92vw); max-height: 80vh; overflow: hidden;
-    display: flex; flex-direction: column;
-    transform: translateY(10px); transition: transform .2s;
+  .callout.blue { background: var(--accent-bg); border-color: var(--accent); }
+  .callout.green { background: var(--green-bg); border-color: var(--green); }
+  .callout.orange { background: var(--orange-bg); border-color: var(--orange); }
+  .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .callout-text { font-size: 14px; color: var(--text); line-height: 1.6; }
+  .callout-text strong { font-weight: 600; }
+
+  /* Typography */
+  h1 { font-size: 28px; font-weight: 600; letter-spacing: -0.3px; margin: 40px 0 8px; }
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 36px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
   }
-  .modal-bg.open .modal { transform: translateY(0); }
-  .modal-head { padding: 18px 20px 14px; border-bottom: 1px solid #e0ded6; }
-  .modal-track { font-size: 11px; font-weight: 600; margin-bottom: 4px; }
-  .modal-title { font-size: 16px; font-weight: 600; color: #1a1a18; }
-  .modal-dates { font-size: 12px; color: #6b6b67; margin-top: 3px; }
-  .modal-body { overflow-y: auto; padding: 16px 20px 20px; }
-  .sh {
-    font-size: 11px; font-weight: 600; color: #6b6b67;
-    text-transform: uppercase; letter-spacing: .05em; margin: 14px 0 6px;
+  h3 { font-size: 15px; font-weight: 600; margin: 20px 0 8px; color: var(--text); }
+  p { margin-bottom: 12px; color: var(--text2); font-size: 14px; }
+  p strong { color: var(--text); font-weight: 600; }
+
+  /* Metrics grid */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+    margin: 16px 0 24px;
   }
-  .sh:first-child { margin-top: 0; }
-  .task-list { list-style: none; }
-  .task-list li {
-    font-size: 13px; color: #1a1a18; padding: 5px 0 5px 16px;
-    position: relative; line-height: 1.45; border-bottom: 1px solid #e0ded6;
+  .metric {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
   }
-  .task-list li:last-child { border-bottom: none; }
-  .task-list li::before {
-    content: ''; position: absolute; left: 4px; top: 13px;
-    width: 4px; height: 4px; border-radius: 50%; background: currentColor; opacity: .35;
+  .metric .label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+  .metric .value { font-size: 24px; font-weight: 600; color: var(--text); font-family: 'IBM Plex Mono', monospace; line-height: 1.2; }
+  .metric .sub { font-size: 11px; color: var(--text3); margin-top: 4px; }
+  .metric.green { background: var(--green-bg); border-color: rgba(15,123,108,0.2); }
+  .metric.green .value { color: var(--green); }
+  .metric.blue { background: var(--accent-bg); border-color: rgba(47,128,237,0.2); }
+  .metric.blue .value { color: var(--accent); }
+  .metric.orange { background: var(--orange-bg); border-color: rgba(217,115,13,0.2); }
+  .metric.orange .value { color: var(--orange); }
+
+  /* Benefits table */
+  .benefits {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 12px 0 24px;
   }
-  .result-box {
-    background: #f0ede8; border-radius: 8px;
-    padding: 10px 12px; font-size: 13px; color: #1a1a18; line-height: 1.55;
+  .benefits thead tr { border-bottom: 2px solid var(--border); }
+  .benefits th {
+    text-align: left;
+    padding: 8px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--text3);
   }
-  .resp-row {
-    font-size: 13px; color: #1a1a18; padding: 4px 0;
-    border-bottom: 1px solid #e0ded6; line-height: 1.4;
+  .benefits td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text2);
+    line-height: 1.5;
   }
-  .resp-row:last-child { border-bottom: none; }
-  .close-btn {
-    display: inline-block; margin-top: 16px; background: none;
-    border: 1px solid #d4d2ca; border-radius: 8px; padding: 5px 14px;
-    font-size: 12px; cursor: pointer; color: #6b6b67; float: right;
+  .benefits tr:last-child td { border-bottom: none; font-weight: 600; color: var(--text); }
+  .benefits tr:hover td { background: var(--bg2); }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
   }
-  .close-btn:hover { background: #f0ede8; }
+  .tag-blue { background: var(--accent-bg); color: var(--accent); }
+  .tag-green { background: var(--green-bg); color: var(--green); }
+  .tag-orange { background: var(--orange-bg); color: var(--orange); }
+  .tag-purple { background: var(--purple-bg); color: var(--purple); }
+
+  /* Toggle/section blocks */
+  .section-block {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin: 12px 0;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 12px 16px;
+    background: var(--bg2);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-header .icon { font-size: 16px; }
+  .section-body {
+    padding: 14px 16px;
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+  .section-body ul { padding-left: 16px; }
+  .section-body li { margin-bottom: 4px; }
+  .section-body li strong { color: var(--text); font-weight: 600; }
+
+  /* Divider */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+  /* Quote */
+  .quote {
+    border-left: 3px solid var(--border);
+    padding: 4px 0 4px 16px;
+    margin: 16px 0;
+    color: var(--text2);
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text3);
+    font-family: 'IBM Plex Mono', monospace;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Assumptions note */
+  .assumptions {
+    background: var(--bg2);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: var(--text3);
+    margin-top: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    line-height: 1.8;
+  }
 </style>
 </head>
 <body>
 
-<div class="pg-title">Дорожная карта — Bausoft Tech Support</div>
-<div class="pg-sub">17.03.2026 — 16.03.2027 · 6 треков · 24 этапа · нажмите на этап для подробностей</div>
-<div class="tabs" id="tabs"></div>
-<div class="gantt-scroll">
-  <div class="gantt-inner" id="gantt"></div>
+<div class="cover">
+  <span class="cover-emoji">📊</span>
+  <div class="cover-title">Что получит бизнес</div>
+  <div class="cover-sub">Bausoft Tech Support · Дорожная карта 2026–2027</div>
 </div>
 
-<div class="modal-bg" id="modal-bg">
-  <div class="modal">
-    <div class="modal-head">
-      <div class="modal-track" id="m-track"></div>
-      <div class="modal-title" id="m-title"></div>
-      <div class="modal-dates" id="m-dates"></div>
-    </div>
-    <div class="modal-body" id="m-body"></div>
+<div class="page">
+
+  <div class="callout blue">
+    <span class="callout-icon">💡</span>
+    <div class="callout-text">Документ подготовлен на основе фактических данных за 10 месяцев (июль 2025 — март 2026) и действующего фонда оплаты труда.</div>
   </div>
+
+  <h2>Исходные данные</h2>
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="label">Тикетов в месяц</div>
+      <div class="value">1 881</div>
+      <div class="sub">среднее за 10 месяцев</div>
+    </div>
+    <div class="metric">
+      <div class="label">Эскалаций в L2</div>
+      <div class="value">138</div>
+      <div class="sub">7.3% средний за 10 месяцев</div>
+    </div>
+    <div class="metric">
+      <div class="label">Cost per ticket L1</div>
+      <div class="value">239 ₽</div>
+      <div class="sub">без учёта накладных</div>
+    </div>
+    <div class="metric">
+      <div class="label">Cost per escalation</div>
+      <div class="value">1 192 ₽</div>
+      <div class="sub">30 мин времени L2</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout-icon">⚠️</span>
+    <div class="callout-text"><strong>Ключевая проблема сейчас:</strong> 7,1% тикетов уходит на вторую линию, где стоимость часа в 4–5 раз выше, чем у L1. </div>
+  </div>
+
+  <hr class="divider">
+
+  <h2>Финансовый эффект по трекам</h2>
+
+  <p>Консервативный расчёт на горизонте 12 месяцев после полного внедрения.</p>
+
+  <table class="benefits">
+    <thead>
+      <tr>
+        <th>Трек</th>
+        <th>Механизм</th>
+        <th>Эффект</th>
+        <th>Экономия/год</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tag tag-orange">Трек 3 — RCA</span></td>
+        <td>Снижение повторных обращений на 10%</td>
+        <td>−2 257 тикетов/год</td>
+        <td>≈ 540 000 ₽</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-green">Трек 4 — База знаний</span></td>
+        <td>Снижение эскалаций в L2 на 15% за счёт базы знаний и повышения экспертизы первой линии</td>
+        <td>−239 эскалаций/год</td>
+        <td>≈ 285 000 ₽</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-purple">Трек 5 — L0</span></td>
+        <td>5–10% тикетов закрывается автоматически</td>
+        <td>−2 257 тикетов/год</td>
+        <td>≈ 540 000 ₽</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-green">Итого</span></td>
+        <td>Консервативный суммарный эффект</td>
+        <td>−3 625–4 753 тикета/год</td>
+        <td>≈ <strong>1 095 000–1 365 000 ₽/год</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="assumptions">
+    Допущения: стоимость минуты L2 = зарплата / 168 ч / 60 мин; среднее время эскалации L2 = 30 мин;
+    снижение повторяемости по RCA = 10%; снижение эскалаций через базу знаний = 15%; автоматизация L0 = 5–10% тикетов к концу года .
+  </div>
+
+  <hr class="divider">
+
+  <h2>Нефинансовые выгоды</h2>
+
+  <div class="section-block">
+    <div class="section-header"><span class="icon">🔍</span> Прозрачность и управляемость</div>
+    <div class="section-body">
+      <ul>
+        <li>Единый Service Catalog — <strong>все обращения категоризированы с первого касания</strong>, нет «серых» тикетов без категории</li>
+        <li>Дашборд с baseline с 17.03.2026 — руководство видит динамику, а не снимки</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-header"><span class="icon">⚡</span> Скорость и качество сервиса</div>
+    <div class="section-body">
+      <ul>
+        <li>L1 узнаёт об обновлениях системы <strong>до пользователей</strong>, а не после — трек 1.3 «Коммуникация L1↔L2»</li>
+        <li>Тикеты по УТ11 не станут сюрпризом: 7 волн миграции проходят с подготовкой ТП</li>
+        <li>Формализованный SLA для L2: у каждой задачи есть срок и владелец</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-header"><span class="icon">👥</span> Команда и устойчивость</div>
+    <div class="section-body">
+      <ul>
+        <li>Введён грейд старшего специалиста ТП — <strong>карьерный путь без смены компании</strong></li>
+        <li>Руководитель перестаёт быть единой точкой отказа: операционные задачи делегированы</li>
+        <li>Персональные KPI у каждого сотрудника — производительность измерима и прозрачна</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-header"><span class="icon">🤖</span> Технологическая основа</div>
+    <div class="section-body">
+      <ul>
+        <li>Чат Битрикс24 → Jira SM: <strong>пользователь пишет в привычный мессенджер</strong>, тикет создаётся автоматически</li>
+        <li>База знаний в Notion: L1 находит ответ за секунды, а не переспрашивает L2</li>
+        <li>L0-бот закрывает типовые вопросы без участия человека — фундамент для масштабирования</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h2>Итог для руководства</h2>
+
+  <div class="metrics">
+    <div class="metric green">
+      <div class="label">Консервативная экономия</div>
+      <div class="value">1,1–1,4 млн ₽</div>
+      <div class="sub">в год (консервативно)</div>
+    </div>
+    <div class="metric blue">
+      <div class="label">Снижение нагрузки L2</div>
+      <div class="value">−15%</div>
+      <div class="sub">эскалаций через базу знаний</div>
+    </div>
+    <div class="metric orange">
+      <div class="label">Тикетов автоматизировано</div>
+      <div class="value">1 129–2 257</div>
+      <div class="sub">в год (5–10% авто)</div>
+    </div>
+    <div class="metric">
+      <div class="label">Cost per ticket</div>
+      <div class="value">−11%</div>
+      <div class="sub">снижение к концу года</div>
+    </div>
+  </div>
+
+  <div class="quote">
+    Дорожная карта не требует найма новых сотрудников. Все эффекты достигаются за счёт выстраивания процессов, инструментов и роста внутри существующей команды.
+  </div>
+
+  <div class="footer">
+    <span>Bausoft Tech Support · Дорожная карта 2026–2027</span>
+    <span>Расчёт на основе данных июль 2025 — март 2026</span>
+  </div>
+
 </div>
-
-<script>
-const TRACKS = [
-  { id: 1, name: 'Управление сервисом',  color: '#534AB7' },
-  { id: 2, name: 'Аналитика и метрики',  color: '#1D9E75' },
-  { id: 3, name: 'RCA',                  color: '#D85A30' },
-  { id: 4, name: 'База знаний',          color: '#185FA5' },
-  { id: 5, name: 'Нулевая линия (L0)',   color: '#BA7517' },
-  { id: 6, name: 'Команда',              color: '#993556' },
-];
-
-const STAGES = [
-  { t:1, id:'1.1', short:'Согласование доп. ч/н L2', full:'Согласование выделения дополнительных ч/н для разработки и аналитиков', dates:'09.03 — 27.03.2026', s:'2026-03-09', e:'2026-03-27',
-    tasks:['Зафиксировать текущее состояние: каждый разработчик и аналитик L2 выделяет 4 ч/н на задачи от L1, суммарно этого недостаточно для своевременного решения задач','Провести анализ нагрузки: по оценке руководителя L1 требуется дополнительно 25 ч/н со стороны разработки и 10 ч/н со стороны аналитики для разбора текущего бэклога и решения поступающих обращений; на текущий момент в бэклоге разработки более 70 задач на исправление багов и доработок, и данное количество еженедельно увеличивается — из-за этого нет возможности соблюдать SLA и оказывать качественный сервис в установленные сроки','Согласовать с бизнесом увеличение выделенного ресурса до 25 ч/н со стороны разработки и 10 ч/н со стороны аналитики; далее — на основе анализа потраченных ч/н и решённых задач — при необходимости скорректировать выделенные ч/н и согласовать с бизнесом повторно','Зафиксировать договорённости: распределение часов по направлениям L2, порядок приоритизации задач от L1'],
-    resp:['Руководитель L1 — анализ, подготовка обоснования, согласование с бизнесом','Руководители направлений L2 — участие в согласовании распределения часов'],
-    result:'Согласованный и зафиксированный объём ресурса L2: не менее 25 ч/н со стороны разработки и 10 ч/н со стороны аналитики. Распределение часов по направлениям закреплено. Задачи от L1 перестают зависать из-за нехватки ресурса на стороне L2.' },
-  { t:1, id:'1.2', short:'Каталог услуг', full:'Разработка каталога услуг в Jira SM', dates:'28.03 — 30.04.2026', s:'2026-03-28', e:'2026-04-30',
-    tasks:['Разработать единый Service Catalog для всех клиентов','Настроить в Jira SM обязательные поля: ЮЛ, категория, затронутая система','Согласовать структуру каталога с бизнесом','Провести обучение L1 по работе с новым каталогом'],
-    resp:['Руководитель L1 — проектирование структуры, техническая настройка','L1 — тестирование форм'],
-    result:'Работающий Service Catalog в Jira SM. Все новые тикеты создаются с корректной категоризацией.' },
-  { t:1, id:'1.3', short:'SLA для L2', full:'Формализация и внедрение SLA для L2', dates:'17.06 — 31.07.2026', s:'2026-06-17', e:'2026-07-31',
-    tasks:['Разработать и согласовать с L2 SLA по типам запросов и приоритетам','Ввести автоматическое уведомление руководителей отделов при нарушении SLA','Ввести еженедельный статус от L2 по открытым задачам','Провести ретроспективу: где L2 нарушает сроки и почему'],
-    resp:['Руководитель L1 — разработка матрицы SLA, согласование, настройка уведомлений','Руководители L2 — согласование реалистичных сроков'],
-    result:'Согласованная матрица SLA L2, работающий мониторинг нарушений. Еженедельный статус L2 введён в регулярный режим.' },
-  { t:1, id:'1.4', short:'Ретроспектива SLA', full:'Ретроспектива SLA L2', dates:'01.08 — 16.09.2026', s:'2026-08-01', e:'2026-09-16',
-    tasks:['Собрать данные по соблюдению SLA L2 за первые 6 недель','Выявить системные причины нарушений','Скорректировать матрицу SLA при необходимости','Подготовить отчёт для руководства'],
-    resp:['Руководитель L1 — анализ и выводы','L2 — участие в разборе причин'],
-    result:'Скорректированная и реалистичная матрица SLA L2. Понимание системных узких мест в работе L2.' },
-  { t:1, id:'1.5', short:'Стабилизация после миграции', full:'Стабилизация и пересмотр SLA после миграции УТ11', dates:'17.12.2026 — 16.03.2027', s:'2026-12-17', e:'2027-03-16',
-    tasks:['Оценить изменение структуры обращений после миграции','Пересмотреть каталог: добавить категории УТ11, убрать устаревшие УТ10','Пересмотреть SLA L1 и L2 с учётом новой нагрузки','Сформировать итоговый отчёт по управлению сервисом за год'],
-    resp:['Руководитель L1 — анализ, предложения, отчёт'],
-    result:'Актуализированный каталог услуг и матрица SLA для работы в среде УТ11. Итоговый отчёт по году с планом на следующий.' },
-
-  { t:2, id:'2.1', short:'Базовые метрики и дашборд', full:'Базовые метрики и дашборд L1',                         dates:'17.03 — 16.06.2026', s:'2026-03-17', e:'2026-06-16',
-    tasks:['Определить перечень базовых метрик (объём, SLA L1, reopen rate, распределение)','Настроить дашборд в Jira SM для L1','Зафиксировать baseline всех метрик на 17.03.2026','Замерить распределение: сколько тикетов решается на L1, сколько уходит в L2'],
-    resp:['Руководитель L1 — определение метрик, настройка дашборда'],
-    result:'Работающий дашборд в Jira SM. Baseline метрик зафиксирован — есть точка отсчёта для оценки прогресса.' },
-  { t:2, id:'2.2', short:'Сквозные метрики L1+L2',    full:'Сквозные метрики L1+L2',                               dates:'17.06 — 16.09.2026', s:'2026-06-17', e:'2026-09-16',
-    tasks:['Настроить сквозное отслеживание: время жизни тикета от создания до закрытия','Замерить фактическое среднее время решения L2 по типам запросов','Выделить топ-10 категорий по повторяемости и бизнес-влиянию','Подготовить ежемесячный управленческий отчёт'],
-    resp:['Руководитель L1 — формат сквозных метрик, техническая настройка'],
-    result:'Сквозная прозрачность цикла L1→L2. Ежемесячный отчёт для бизнеса введён в регулярный режим.' },
-  { t:2, id:'2.3', short:'Персональные KPI L1',        full:'Персональные KPI сотрудников L1',                      dates:'17.09 — 16.12.2026', s:'2026-09-17', e:'2026-12-16',
-    tasks:['Разработать систему персональных KPI для каждого сотрудника L1','Привязать KPI к измеримым метрикам: SLA, CSAT, качество категоризации, статьи БЗ','Согласовать KPI с каждым сотрудником индивидуально'],
-    resp:['Руководитель L1 — разработка KPI, согласование, контроль'],
-    result:'Каждый сотрудник L1 имеет зафиксированные, измеримые и согласованные KPI.' },
-  { t:2, id:'2.4', short:'Экономика поддержки',        full:'Экономика поддержки',                                  dates:'17.12.2026 — 16.03.2027', s:'2026-12-17', e:'2027-03-16',
-    tasks:['Рассчитать cost per ticket для L1 и L2','Рассчитать стоимость повторных и эскалированных обращений','Оценить экономический эффект от внедрения L0, RCA и базы знаний','Подготовить предложения по оптимизации затрат для руководства'],
-    resp:['Руководитель L1 — расчёты, аналитика, презентация'],
-    result:'Прозрачная экономическая модель поддержки. Обоснованные предложения по снижению затрат.' },
-
-  { t:3, id:'3.1', short:'Запуск RCA',                 full:'Запуск RCA-процесса',                                  dates:'17.03 — 16.06.2026', s:'2026-03-17', e:'2026-06-16',
-    tasks:['Создать Problem Backlog: доска в Jira для системных проблем','Описать порог открытия RCA (3+ повторения за месяц = системная проблема)','Назначить ответственных за RCA по направлениям','Провести обучение L1: как распознать и тегировать системную проблему'],
-    resp:['Руководитель L1 — процесс, порог, обучение, настройка инструментов'],
-    result:'Запущен процесс выявления системных проблем. Problem Backlog ведётся. L1 умеет тегировать системные проблемы.' },
-  { t:3, id:'3.2', short:'RCA-контур',                 full:'RCA-контур: регулярная работа',                        dates:'17.06 — 16.09.2026', s:'2026-06-17', e:'2026-09-16',
-    tasks:['Ввести еженедельный разбор повторяющихся инцидентов с L1 и L2','По каждой проблеме создавать задачу с назначенным владельцем и сроком','Ввести правило: проблема закрыта только после устранения корневой причины','Подготовить первые postmortem по критическим инцидентам'],
-    resp:['Руководитель L1 — проведение разборов, контроль исполнения','L2-владельцы — устранение корневых причин'],
-    result:'Работающий RCA-контур: выявление → владелец → задача → контроль устранения. Первые postmortem написаны.' },
-  { t:3, id:'3.3', short:'Эффективность RCA',          full:'Измерение эффективности RCA',                          dates:'17.09 — 16.12.2026', s:'2026-09-17', e:'2026-12-16',
-    tasks:['Отслеживать средний срок устранения корневой причины','Замерить снижение повторяемости по топ-категориям относительно baseline','Включить RCA-итоги в управленческую отчётность'],
-    resp:['Руководитель L1 — метрики, отчётность'],
-    result:'Первые измеримые данные по эффективности RCA. Бизнес видит в отчёте, какие системные проблемы устранены.' },
-  { t:3, id:'3.4', short:'Годовой обзор RCA',          full:'Зрелый RCA: годовой обзор',                            dates:'17.12.2026 — 16.03.2027', s:'2026-12-17', e:'2027-03-16',
-    tasks:['Провести квартальный обзор Problem Backlog: выявлено / устранено / в работе','Оценить влияние RCA на снижение объёма входящих тикетов','Включить RCA в отчёт по экономике поддержки'],
-    resp:['Руководитель L1 — анализ, итоговый отчёт'],
-    result:'Годовой обзор RCA с измеримым эффектом. Системный подход к управлению проблемами закреплён как стандарт.' },
-
-  { t:4, id:'4.1', short:'Структура БЗ',               full:'Структура базы знаний',                                dates:'17.03 — 30.04.2026', s:'2026-03-17', e:'2026-04-30',
-    tasks:['Инструмент — Notion','Разработать структуру по услугам единого каталога','Определить шаблон статьи: описание → шаги решения → связанные тикеты','Назначить ответственных за поддержание базы знаний'],
-    resp:['Руководитель L1 — структура'],
-    result:'Готовая структура базы знаний в Notion. Шаблон статьи определён. Команда готова к наполнению с мая 2026.' },
-  { t:4, id:'4.2', short:'Наполнение БЗ',              full:'Наполнение базы знаний',                                dates:'01.05 — 16.06.2026', s:'2026-05-01', e:'2026-06-16',
-    tasks:['Написать первые 20 статей по самым частым обращениям','Параллельно готовить статьи по УТ11 в рамках подготовки к миграции'],
-    resp:['Руководитель L1 — контроль наполнения','L1 — написание статей'],
-    result:'База знаний наполнена первыми 20 статьями по топ-категориям. Базовые инструкции по УТ11 подготовлены до старта миграции.' },
-  { t:4, id:'4.3', short:'Интеграция БЗ',              full:'Интеграция базы знаний в рабочий процесс',             dates:'17.06 — 16.09.2026', s:'2026-06-17', e:'2026-09-16',
-    tasks:['Встроить ссылки на статьи в форму создания тикета в Jira SM','Установить цель: +10 новых статей в месяц','Обучить всех сотрудников L1 созданию и обновлению статей'],
-    resp:['Руководитель L1 — контроль наполнения, метрика использования','L1 — написание статей'],
-    result:'База знаний интегрирована в ежедневную работу L1. Статьи регулярно пополняются.' },
-  { t:4, id:'4.4', short:'БЗ под УТ11',               full:'База знаний под УТ11',                                  dates:'17.09 — 16.12.2026', s:'2026-09-17', e:'2026-12-16',
-    tasks:['Создать раздел УТ11 заранее — до активной фазы миграции','L2 наполняют раздел техническими статьями','L1 готовит пользовательские инструкции: что изменилось, типовые вопросы'],
-    resp:['Руководитель L1 — координация наполнения','L2 (разработка, аналитики) — технические статьи','L1 — пользовательские инструкции'],
-    result:'К началу каждой волны миграции в БЗ уже есть актуальные статьи. L1 не тратит время на поиск ответов в период пиковой нагрузки.' },
-  { t:4, id:'4.5', short:'Аудит и актуализация БЗ',   full:'Аудит и актуализация базы знаний',                     dates:'17.12.2026 — 16.03.2027', s:'2026-12-17', e:'2027-03-16',
-    tasks:['Провести аудит: выявить устаревшие, неиспользуемые и дублирующие статьи','Обновить статьи под реалии УТ11 (убрать УТ10-специфику)','Замерить долю тикетов, закрытых с помощью базы знаний'],
-    resp:['Руководитель L1 — аудит, план развития','L1 — актуализация статей'],
-    result:'Актуальная, структурированная база знаний. Измеримая доля тикетов, закрытых через самообслуживание.' },
-
-  { t:5, id:'5.1', short:'Сценарии автоматизации',     full:'Определение сценариев автоматизации',                  dates:'17.06 — 31.07.2026', s:'2026-06-17', e:'2026-07-31',
-    tasks:['Выделить топ-10 типовых запросов для автоматизации на основе аналитики','Критерии: высокая повторяемость, стандартизируемый ответ, не требует человека','Оценить и выбрать инструмент для ИИ-ассистента','Разработать технический план MVP'],
-    resp:['Руководитель L1 — определение сценариев, выбор инструмента'],
-    result:'Утверждённый список из 10 сценариев для L0. Выбранный инструмент. Готовый план запуска MVP.' },
-  { t:5, id:'5.2', short:'MVP нулевой линии',          full:'MVP нулевой линии (L0)',                                dates:'01.08 — 16.09.2026', s:'2026-08-01', e:'2026-09-16',
-    tasks:['Настроить автоматические ответы на топ-5 типовых вопросов','Начать замерять долю обращений, закрытых без участия L1'],
-    resp:['Руководитель L1 — контроль качества, метрики','L1 — тестирование и обратная связь'],
-    result:'Работающий MVP L0: бот отвечает на топ-5 вопросов. Первые данные по доле обращений, закрытых на L0.' },
-  { t:5, id:'5.3', short:'Расширение L0',              full:'Расширение функционала L0',                            dates:'17.12.2026 — 16.03.2027', s:'2026-12-17', e:'2027-03-16',
-    tasks:['Проанализировать результаты MVP: где бот справляется, где нет','Расширить список сценариев с 5 до 15–20 (в т.ч. по УТ11)','Оценить экономический эффект L0 (снижение cost per ticket)'],
-    resp:['Руководитель L1 — анализ, план развития'],
-    result:'Расширенный L0 с 15–20 сценариями. Измеримое снижение нагрузки на L1.' },
-
-  { t:6, id:'6.1', short:'Обучение L1',                full:'Обучение L1 (УТ11)',                                   dates:'17.04 — 31.05.2026', s:'2026-04-17', e:'2026-05-31',
-    tasks:['Провести обучение L1 по работе с УТ11 совместно с L2 (апрель–май 2026)','Ввести систему внутренних разборов кейсов: раз в 2 недели'],
-    resp:['Руководитель L1 — оценка, планы развития, проведение разборов','L2 (разработка) — обучение по УТ11'],
-    result:'Команда начала подготовку к УТ11. Разборы кейсов введены в регулярный режим.' },
-  { t:6, id:'6.2', short:'KPI и режим миграции',       full:'KPI, командные встречи и усиленный режим (миграция УТ11)', dates:'17.09 — 16.12.2026', s:'2026-09-17', e:'2026-12-16',
-    tasks:['Внедрить персональные KPI: SLA, CSAT, качество категоризации, наполнение БЗ','Провести серию командных встреч на ключевых этапах миграции'],
-    resp:['Руководитель L1 — KPI, командные встречи, управление нагрузкой'],
-    result:'KPI внедрены и работают. Команда прошла пиковый период миграции без критического снижения качества.' },
-  { t:6, id:'6.3', short:'Планирование на год',        full:'Планирование на год',                                  dates:'17.12.2026 — 16.03.2027', s:'2026-12-17', e:'2027-03-16',
-    tasks:['Оценить фактическую нагрузку после стабилизации УТ11 и запуска L0','Подготовить план обучения команды на 2027 год','Провести итоговые 1-on-1 с каждым сотрудником'],
-    resp:['Руководитель L1 — анализ нагрузки, план найма, 1-on-1'],
-    result:'Обоснованный план развития команды на 2027 год. Каждый сотрудник понимает свои результаты за год и цели на следующий.' },
-];
-
-const S0 = new Date('2026-03-17'), E0 = new Date('2027-03-16'), TOTAL = E0 - S0;
-function pct(d) { return Math.max(0, Math.min(100, (new Date(d) - S0) / TOTAL * 100)); }
-function trkColor(id) { return TRACKS.find(t => t.id === id)?.color || '#888'; }
-
-let active = 0, BAR_PX = 660;
-
-function monthsHtml() {
-  const months = [];
-  let d = new Date(2026, 2, 1);
-  while (d <= E0) { months.push(new Date(d)); d = new Date(d.getFullYear(), d.getMonth() + 1, 1); }
-  const cells = months.map(m => {
-    const l = pct(m), nxt = new Date(m.getFullYear(), m.getMonth() + 1, 1), w = Math.min(pct(nxt), 100) - l;
-    if (w <= 0) return '';
-    return `<div class="month-cell" style="width:${w}%">${m.toLocaleString('ru', { month: 'short' }).replace('.', '')}</div>`;
-  }).join('');
-  return `<div class="months-row"><div class="month-spacer"></div><div class="months">${cells}</div></div>`;
-}
-
-function render() {
-  const gantt = document.getElementById('gantt');
-  const tracksToShow = active === 0 ? TRACKS : TRACKS.filter(t => t.id === active);
-  let html = monthsHtml();
-
-  tracksToShow.forEach((trk, ti) => {
-    const stages = STAGES.filter(s => s.t === trk.id);
-    if (!stages.length) return;
-    const col = trk.color;
-    const rowH = 29, totalH = stages.length * rowH - 3;
-    const divider = ti > 0 ? `<div style="height:1px;background:#e0ded6;margin:4px 0;margin-left:168px"></div>` : '';
-
-    const stageRows = stages.map(s => {
-      const l = pct(s.s), r = pct(s.e), w = Math.max(r - l, 0.8);
-      return `<div class="stage-row" onclick="openS('${s.id}')">
-        <div class="row-id">${s.id}</div>
-        <div class="bar-wrap">
-          <div class="bar-bg" style="left:${l}%;width:${w}%;background:${col}"></div>
-          <div class="bar-lbl-row" data-lbl="${s.id} · ${s.short}" data-l="${l}" data-r="${r}" style="left:${l}%;width:${w}%">
-            <span class="bar-lbl"></span>
-          </div>
-        </div>
-      </div>`;
-    }).join('');
-
-    html += `${divider}<div class="track-block">
-      <div class="track-label">
-        <div class="track-label-inner">
-          <div class="track-bar" style="height:${totalH}px;background:${col}"></div>
-          <span class="track-name" style="color:${col}">${trk.name}</span>
-        </div>
-      </div>
-      <div class="stages-col">${stageRows}</div>
-    </div>`;
-  });
-
-  gantt.innerHTML = html;
-  requestAnimationFrame(() => {
-    const wrap = gantt.querySelector('.bar-wrap');
-    if (wrap) BAR_PX = wrap.getBoundingClientRect().width || BAR_PX;
-    fitLabels();
-  });
-}
-
-function fitLabels() {
-  document.querySelectorAll('.bar-lbl-row').forEach(row => {
-    const l = parseFloat(row.dataset.l), r = parseFloat(row.dataset.r);
-    const barW = (r - l) / 100 * BAR_PX;
-    const lbl = row.dataset.lbl;
-    const span = row.querySelector('.bar-lbl');
-    const PAD = 14, ctx = getCtx();
-    if (ctx.measureText(lbl).width + PAD <= barW) { span.textContent = lbl; return; }
-    const dot = lbl.indexOf(' · '), prefix = dot >= 0 ? lbl.slice(0, dot + 3) : '', name = dot >= 0 ? lbl.slice(dot + 3) : lbl;
-    let out = '';
-    for (let i = name.length; i >= 0; i--) {
-      const c = i < name.length ? prefix + name.slice(0, i) + '…' : prefix + name;
-      if (ctx.measureText(c).width + PAD <= barW) { out = c; break; }
-    }
-    if (!out) { const id = lbl.split(' ')[0]; out = ctx.measureText(id).width + PAD <= barW ? id : ''; }
-    span.textContent = out;
-  });
-}
-
-let _ctx = null;
-function getCtx() {
-  if (!_ctx) { const c = document.createElement('canvas'); _ctx = c.getContext('2d'); _ctx.font = '600 10px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'; }
-  return _ctx;
-}
-
-function buildTabs() {
-  const all = [{ id: 0, name: 'Все треки', color: '#888' }, ...TRACKS];
-  document.getElementById('tabs').innerHTML = all.map(t =>
-    `<button class="tab${t.id === active ? ' active' : ''}"
-      style="${t.id === active ? 'background:' + t.color + ';border-color:' + t.color : ''}"
-      onclick="setTrack(${t.id})">${t.id === 0 ? t.name : t.id + '. ' + t.name}</button>`
-  ).join('');
-}
-
-function setTrack(id) { active = id; buildTabs(); render(); }
-
-function openS(id) {
-  const s = STAGES.find(x => x.id === id); if (!s) return;
-  const col = trkColor(s.t), tname = TRACKS.find(t => t.id === s.t)?.name || '';
-  document.getElementById('m-track').style.color = col;
-  document.getElementById('m-track').textContent = `Трек ${s.t} · ${tname}`;
-  document.getElementById('m-title').textContent = `Этап ${s.id} — ${s.full}`;
-  document.getElementById('m-dates').textContent = s.dates;
-  document.getElementById('m-body').innerHTML = `
-    <div class="sh">Задачи</div>
-    <ul class="task-list">${s.tasks.map(t => `<li>${t}</li>`).join('')}</ul>
-    <div class="sh">Ответственные</div>
-    ${s.resp.map(r => `<div class="resp-row">${r}</div>`).join('')}
-    <div class="sh">Ожидаемый результат</div>
-    <div class="result-box">${s.result}</div>
-    <button class="close-btn" onclick="closeMod()">Закрыть</button>`;
-  document.getElementById('modal-bg').classList.add('open');
-}
-
-function closeMod() { document.getElementById('modal-bg').classList.remove('open'); }
-document.getElementById('modal-bg').addEventListener('click', e => { if (e.target === document.getElementById('modal-bg')) closeMod(); });
-
-window.addEventListener('resize', () => {
-  const w = document.querySelector('.bar-wrap');
-  if (w) BAR_PX = w.getBoundingClientRect().width || BAR_PX;
-  fitLabels();
-});
-
-buildTabs();
-render();
-</script>
 </body>
 </html>
