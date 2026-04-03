@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Обоснование — Дорожная карта ТП</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --bg2: #f7f6f3;
+    --bg3: #eeece9;
+    --text: #37352f;
+    --text2: #6b6969;
+    --text3: #9b9a97;
+    --border: #e9e7e3;
+    --accent: #2f80ed;
+    --accent-bg: #e8f0fc;
+    --green: #0f7b6c;
+    --green-bg: #e3f5f1;
+    --orange: #d9730d;
+    --orange-bg: #fdebd0;
+    --red: #e03e3e;
+    --red-bg: #fde8e8;
+    --purple: #6940a5;
+    --purple-bg: #eee8f8;
+  }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 0 0 80px;
+  }
+
+  .cover {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    padding: 80px 0 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(47,128,237,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 30%, rgba(105,64,165,0.12) 0%, transparent 50%);
+  }
+  .cover-emoji { font-size: 56px; display: block; margin-bottom: 20px; position: relative; }
+  .cover-title {
+    font-size: 36px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .cover-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    position: relative;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 64px 0;
+  }
+
+  @media (max-width: 700px) {
+    .page { padding: 32px 24px 0; }
+    .cover-title { font-size: 26px; }
+  }
+
+  /* Notion-style callout */
+  .callout {
+    display: flex;
+    gap: 12px;
+    background: var(--bg2);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin: 20px 0;
+    border-left: 3px solid var(--border);
+  }
+  .callout.blue { background: var(--accent-bg); border-color: var(--accent); }
+  .callout.green { background: var(--green-bg); border-color: var(--green); }
+  .callout.orange { background: var(--orange-bg); border-color: var(--orange); }
+  .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .callout-text { font-size: 14px; color: var(--text); line-height: 1.6; }
+  .callout-text strong { font-weight: 600; }
+
+  /* Typography */
+  h1 { font-size: 28px; font-weight: 600; letter-spacing: -0.3px; margin: 40px 0 8px; }
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 36px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 { font-size: 15px; font-weight: 600; margin: 20px 0 8px; color: var(--text); }
+  p { margin-bottom: 12px; color: var(--text2); font-size: 14px; }
+  p strong { color: var(--text); font-weight: 600; }
+
+  /* Metrics grid */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+    margin: 16px 0 24px;
+  }
+  .metric {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .metric .label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+  .metric .value { font-size: 24px; font-weight: 600; color: var(--text); font-family: 'IBM Plex Mono', monospace; line-height: 1.2; }
+  .metric .sub { font-size: 11px; color: var(--text3); margin-top: 4px; }
+  .metric.green { background: var(--green-bg); border-color: rgba(15,123,108,0.2); }
+  .metric.green .value { color: var(--green); }
+  .metric.blue { background: var(--accent-bg); border-color: rgba(47,128,237,0.2); }
+  .metric.blue .value { color: var(--accent); }
+  .metric.orange { background: var(--orange-bg); border-color: rgba(217,115,13,0.2); }
+  .metric.orange .value { color: var(--orange); }
+
+  /* Benefits table */
+  .benefits {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 12px 0 24px;
+  }
+  .benefits thead tr { border-bottom: 2px solid var(--border); }
+  .benefits th {
+    text-align: left;
+    padding: 8px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--text3);
+  }
+  .benefits td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+  .benefits tr:last-child td { border-bottom: none; font-weight: 600; color: var(--text); }
+  .benefits tr:hover td { background: var(--bg2); }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .tag-blue { background: var(--accent-bg); color: var(--accent); }
+  .tag-green { background: var(--green-bg); color: var(--green); }
+  .tag-orange { background: var(--orange-bg); color: var(--orange); }
+  .tag-purple { background: var(--purple-bg); color: var(--purple); }
+
+  /* Toggle/section blocks */
+  .section-block {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin: 12px 0;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 12px 16px;
+    background: var(--bg2);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-header .icon { font-size: 16px; }
+  .section-body {
+    padding: 14px 16px;
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+  .section-body ul { padding-left: 16px; }
+  .section-body li { margin-bottom: 4px; }
+  .section-body li strong { color: var(--text); font-weight: 600; }
+
+  /* Divider */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+  /* Quote */
+  .quote {
+    border-left: 3px solid var(--border);
+    padding: 4px 0 4px 16px;
+    margin: 16px 0;
+    color: var(--text2);
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text3);
+    font-family: 'IBM Plex Mono', monospace;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Assumptions note */
+  .assumptions {
+    background: var(--bg2);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: var(--text3);
+    margin-top: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <span class="cover-emoji">📊</span>
+  <div class="cover-title">Что получит бизнес</div>
+  <div class="cover-sub">Bausoft Tech Support · Дорожная карта 2026–2027</div>
+</div>
+
+<div class="page">
+
+  <div class="callout blue">
+    <span class="callout-icon">💡</span>
+    <div class="callout-text">Документ подготовлен на основе фактических данных за 10 месяцев (июль 2025 — март 2026) и действующего фонда оплаты труда.</div>
+  </div>
+
+  <h2>Исходные данные</h2>
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="label">Тикетов в месяц</div>
+      <div class="value">1 881</div>
+      <div class="sub">среднее за 10 месяцев</div>
+    </div>
+    <div class="metric">
+      <div class="label">Эскалаций в L2</div>
+      <div class="value">138</div>
+      <div class="sub">7.3% средний за 10 месяцев</div>
+    </div>
+    <div class="metric">
+      <div class="label">Cost per ticket L1</div>
+      <div class="value">239 ₽</div>
+      <div class="sub">без учёта накладных</div>
+    </div>
+    <div class="metric">
+      <div class="label">Cost per escalation</div>
+      <div class="value">1 192 ₽</div>
+      <div class="sub">30 мин времени L2</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout-icon">⚠️</span>
+    <div class="callout-text"><strong>Ключевая проблема сейчас:</strong> 7,1% тикетов уходит на вторую линию, где стоимость часа в 4–5 раз выше, чем у L1. </div>
+  </div>
+
+  <hr class="divider">
+
+  <h2>Финансовый эффект по трекам</h2>
+
+  <p>Консервативный расчёт на горизонте 12 месяцев после полного внедрения.</p>
+
+  <table class="benefits">
+    <thead>
+      <tr>
+        <th>Трек</th>
+        <th>Механизм</th>
+        <th>Эффект</th>
+        <th>Экономия/год</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tag tag-orange">Трек 3 — RCA</span></td>
+        <td>Снижение повторных обращений на 10%</td>
+        <td>−2 257 тикетов/год</td>
+        <td>≈ 540 000 ₽</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-green">Трек 4 — База знаний</span></td>
+        <td>Снижение эскалаций в L2 на 15% за счёт базы знаний и повышения экспертизы первой линии</td>
+        <td>−239 эскалаций/год</td>
+        <td>≈ 285 000 ₽</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-purple">Трек 5 — L0</span></td>
+        <td>5–10% тикетов закрывается автоматически</td>
+        <td>−2 257 тикетов/год</td>
+        <td>≈ 540 000 ₽</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-green">Итого</span></td>
+        <td>Консервативный суммарный эффект</td>
+        <td>−3 625–4 753 тикета/год</td>
+        <td>≈ <strong>1 095 000–1 365 000 ₽/год</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="assumptions">
+    Допущения: стоимость минуты L2 = зарплата / 168 ч / 60 мин; среднее время эскалации L2 = 30 мин;
+    снижение повторяемости по RCA = 10%; снижение эскалаций через базу знаний = 15%; автоматизация L0 = 5–10% тикетов к концу года .
+  </div>
+
+  <hr class="divider">
+
+  <h2>Нефинансовые выгоды</h2>
+
+  <div class="section-block">
+    <div class="section-header"><span class="icon">🔍</span> Прозрачность и управляемость</div>
+    <div class="section-body">
+      <ul>
+        <li>Единый Service Catalog — <strong>все обращения категоризированы с первого касания</strong>, нет «серых» тикетов без категории</li>
+        <li>Дашборд с baseline с 17.03.2026 — руководство видит динамику, а не снимки</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-header"><span class="icon">⚡</span> Скорость и качество сервиса</div>
+    <div class="section-body">
+      <ul>
+        <li>L1 узнаёт об обновлениях системы <strong>до пользователей</strong>, а не после — трек 1.3 «Коммуникация L1↔L2»</li>
+        <li>Тикеты по УТ11 не станут сюрпризом: 7 волн миграции проходят с подготовкой ТП</li>
+        <li>Формализованный SLA для L2: у каждой задачи есть срок и владелец</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-header"><span class="icon">👥</span> Команда и устойчивость</div>
+    <div class="section-body">
+      <ul>
+        <li>Введён грейд старшего специалиста ТП — <strong>карьерный путь без смены компании</strong></li>
+        <li>Руководитель перестаёт быть единой точкой отказа: операционные задачи делегированы</li>
+        <li>Персональные KPI у каждого сотрудника — производительность измерима и прозрачна</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <div class="section-header"><span class="icon">🤖</span> Технологическая основа</div>
+    <div class="section-body">
+      <ul>
+        <li>Чат Битрикс24 → Jira SM: <strong>пользователь пишет в привычный мессенджер</strong>, тикет создаётся автоматически</li>
+        <li>База знаний в Notion: L1 находит ответ за секунды, а не переспрашивает L2</li>
+        <li>L0-бот закрывает типовые вопросы без участия человека — фундамент для масштабирования</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h2>Итог для руководства</h2>
+
+  <div class="metrics">
+    <div class="metric green">
+      <div class="label">Консервативная экономия</div>
+      <div class="value">1,1–1,4 млн ₽</div>
+      <div class="sub">в год (консервативно)</div>
+    </div>
+    <div class="metric blue">
+      <div class="label">Снижение нагрузки L2</div>
+      <div class="value">−15%</div>
+      <div class="sub">эскалаций через базу знаний</div>
+    </div>
+    <div class="metric orange">
+      <div class="label">Тикетов автоматизировано</div>
+      <div class="value">1 129–2 257</div>
+      <div class="sub">в год (5–10% авто)</div>
+    </div>
+    <div class="metric">
+      <div class="label">Cost per ticket</div>
+      <div class="value">−11%</div>
+      <div class="sub">снижение к концу года</div>
+    </div>
+  </div>
+
+  <div class="quote">
+    Дорожная карта не требует найма новых сотрудников. Все эффекты достигаются за счёт выстраивания процессов, инструментов и роста внутри существующей команды.
+  </div>
+
+  <div class="footer">
+    <span>Bausoft Tech Support · Дорожная карта 2026–2027</span>
+    <span>Расчёт на основе данных июль 2025 — март 2026</span>
+  </div>
+
+</div>
+</body>
+</html>
