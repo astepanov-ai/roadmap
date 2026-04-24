@@ -105,10 +105,10 @@ body{font-family:'Golos Text',system-ui,sans-serif;background:#F7F8FA;color:#111
 <div class="page">
   <div class="header">
     <div class="title">Каталог ИТ-услуг · БауСофт</div>
-    <div class="subtitle">6 областей услуг · 23 ИТ-услуги · 185 типов запросов · 173 подтипа · Jira ICT · 2026</div>
+    <div class="subtitle">6 областей · 23 ИТ-услуги · 185 типов запросов · 173 подтипа · Jira ICT · 2026</div>
     <div class="stats">
       <div class="stat"><div class="stat-v">6</div><div class="stat-l">Областей услуг</div></div>
-      <div class="stat"><div class="stat-v">23</div><div class="stat-l">ИТ-услуг</div></div>
+      <div class="stat"><div class="stat-v">23</div><div class="stat-l">ИТ-услуги</div></div>
       <div class="stat"><div class="stat-v" id="stat-types">185</div><div class="stat-l">Видов обращений</div></div>
       <div class="stat"><div class="stat-v">43</div><div class="stat-l">Категорий</div></div>
     </div>
@@ -171,7 +171,22 @@ function toggle(bodyId, chevId){
   if(c) c.classList.toggle('open');
 }
 
-function render(){
+
+      function svcs(n) {
+        const n10 = n % 10, n100 = n % 100;
+        if (n100 >= 11 && n100 <= 19) return n + ' услуг';
+        if (n10 === 1) return n + ' услуга';
+        if (n10 >= 2 && n10 <= 4) return n + ' услуги';
+        return n + ' услуг';
+      }
+      function decl(n, one, two, five) {
+        const n10 = n % 10, n100 = n % 100;
+        if (n100 >= 11 && n100 <= 19) return n + ' ' + five;
+        if (n10 === 1) return n + ' ' + one;
+        if (n10 >= 2 && n10 <= 4) return n + ' ' + two;
+        return n + ' ' + five;
+      }
+      function render(){
   const q = document.getElementById('search').value.toLowerCase().trim();
   const tree = document.getElementById('tree');
   tree.innerHTML = '';
@@ -280,7 +295,7 @@ function render(){
       <div class="l1-hdr" style="border-left-color:${dom.color}" onclick="toggle('l1b-${domId}','chev-${domId}')">
         <span class="l1-icon">${dom.icon}</span>
         <span class="l1-name" style="color:${dom.color}">${dom.name}</span>
-        <span class="l1-cnt" style="background:${dom.bg};color:${dom.color}">${dom.services.length} услуг</span>
+        <span class="l1-cnt" style="background:${dom.bg};color:${dom.color}">${svcs(dom.services.length)}</span>
         ${chevSVG(domId)}
       </div>
       <div class="l1-body" id="l1b-${domId}">${domHTML}</div>`;
