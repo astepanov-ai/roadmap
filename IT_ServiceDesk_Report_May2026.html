@@ -1,244 +1,694 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Рекомендации по расширению каталога услуг — Май 2026</title>
+<title>ИТ Служба поддержки — Анализ обращений май 2026</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-:root{--blue:#2E5C99;--bl:#EBF3FB;--bm:#DCE6F1;--green:#3B6D11;--gl:#EAF3DE;--amber:#854F0B;--al:#FAEEDA;--gray:#5F5E5A;--grl:#F1EFE8;--text:#1a1a1a;--muted:#5F5E5A;--bdr:#D9D9D9;--font:'Helvetica Neue',Arial,sans-serif}
+:root{--blue:#2E5C99;--bl:#EBF3FB;--bm:#DCE6F1;--green:#3B6D11;--gl:#EAF3DE;--amber:#854F0B;--al:#FAEEDA;--red:#A32D2D;--rl:#FCEBEB;--gray:#5F5E5A;--grl:#F1EFE8;--text:#1a1a1a;--muted:#5F5E5A;--bdr:#D9D9D9;--font:'Helvetica Neue',Arial,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font);font-size:14px;color:var(--text);background:#fff;max-width:980px;margin:0 auto;padding:36px 28px}
+body{font-family:var(--font);font-size:14px;color:var(--text);background:#fff;max-width:1040px;margin:0 auto;padding:36px 28px}
 .rh{margin-bottom:28px;border-bottom:3px solid var(--blue);padding-bottom:16px}
 .rtag{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
-.rtitle{font-size:24px;font-weight:700;color:#1F3864}
+.rtitle{font-size:26px;font-weight:700;color:#1F3864}
 .rmeta{font-size:11px;color:var(--muted);margin-top:4px}
-h1{font-size:17px;font-weight:700;color:#1F3864;margin:28px 0 10px;padding-bottom:5px;border-bottom:2px solid var(--bm)}
-h2{font-size:13px;font-weight:700;color:var(--blue);margin:18px 0 8px}
-p{margin-bottom:8px;font-size:13px;line-height:1.55;color:var(--muted)}
+.tabs{display:flex;gap:3px;border-bottom:2px solid var(--bm);margin-bottom:24px;flex-wrap:wrap}
+.tab{padding:7px 14px;font-size:12px;cursor:pointer;border-radius:5px 5px 0 0;border:1px solid transparent;color:var(--muted);background:none;font-family:var(--font);white-space:nowrap}
+.tab:hover{background:var(--bl)}
+.tab.active{background:#fff;border-color:var(--bm);border-bottom-color:#fff;color:#1F3864;font-weight:600;margin-bottom:-2px}
+.panel{display:none}.panel.active{display:block}
+h1{font-size:18px;font-weight:700;color:#1F3864;margin:28px 0 10px;padding-bottom:5px;border-bottom:2px solid var(--bm)}
+h2{font-size:14px;font-weight:700;color:var(--blue);margin:20px 0 8px}
+p{margin-bottom:8px;font-size:13px;line-height:1.55}
 table{width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:14px}
-th{background:var(--bm);color:#1F3864;font-weight:600;padding:8px 10px;text-align:left;border:1px solid var(--bdr)}
+th{background:var(--bm);color:#1F3864;font-weight:600;padding:7px 10px;text-align:left;border:1px solid var(--bdr)}
 th.c,td.c{text-align:center}
-td{padding:7px 10px;border:1px solid var(--bdr);vertical-align:top;line-height:1.5}
+td{padding:6px 10px;border:1px solid var(--bdr);vertical-align:middle}
 td.b{font-weight:600}
-td.num{text-align:center;font-weight:700;font-size:13px}
-tr.svc-row td{background:var(--bl);font-weight:600;color:#1F3864}
-tr.group-row td{background:#FAFAF8}
+tr.total td{background:#E8E8E5;font-weight:700}
+tr.hi td{background:#EAF3DE}
+tr.lo td{background:#FAEEDA}
 .badge{display:inline-block;padding:2px 7px;border-radius:10px;font-size:11px;font-weight:500}
-.b-new{background:#EAF3DE;color:#3B6D11}
-.b-sub{background:#EBF3FB;color:#2E5C99}
-.b-pri1{background:#FCEBEB;color:#A32D2D}
-.b-pri2{background:#FAEEDA;color:#854F0B}
-.b-pri3{background:#EBF3FB;color:#2E5C99}
-.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
-.sum-card{background:var(--grl);border-radius:8px;padding:14px 16px}
-.sum-label{font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:var(--gray);margin-bottom:5px}
-.sum-val{font-size:26px;font-weight:700;color:#1F3864;line-height:1}
-.sum-sub{font-size:11px;color:var(--muted);margin-top:3px}
-.footer{margin-top:32px;padding-top:12px;border-top:1px solid var(--bdr);font-size:11px;color:var(--muted)}
-.note{font-size:11px;color:var(--muted);font-style:italic;margin-top:6px;padding-top:6px;border-top:1px dashed var(--bdr)}
-.legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px;font-size:12px;color:var(--muted)}
-.legend span{display:flex;align-items:center;gap:5px}
-@media(max-width:700px){.summary-grid{grid-template-columns:repeat(2,1fr)}body{padding:16px 12px}}
+.bg{background:#EAF3DE;color:#3B6D11}
+.ba{background:#FAEEDA;color:#854F0B}
+.bb{background:#EBF3FB;color:#2E5C99}
+.br{background:#FCEBEB;color:#A32D2D}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+.kc{border-radius:8px;padding:14px 16px}
+.kc.b{background:var(--bl)}.kc.g{background:var(--gl)}.kc.a{background:var(--al)}.kc.gr{background:var(--grl)}
+.kl{font-size:10px;text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px}
+.kc.b .kl{color:var(--blue)}.kc.g .kl{color:var(--green)}.kc.a .kl{color:var(--amber)}.kc.gr .kl{color:var(--gray)}
+.kv{font-size:28px;font-weight:700;line-height:1;margin-bottom:3px}
+.kc.b .kv{color:#1F3864}.kc.g .kv{color:var(--green)}.kc.a .kv{color:var(--amber)}.kc.gr .kv{color:#333}
+.kdelta{font-size:11px;margin-top:4px}
+.kc.b .kdelta{color:var(--blue)}.kc.g .kdelta{color:var(--green)}.kc.a .kdelta{color:var(--amber)}.kc.gr .kdelta{color:var(--gray)}
+.cc{position:relative;width:100%;margin:10px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.dg{color:var(--green);font-weight:600}
+.da{color:var(--amber);font-weight:600}
+.dr{color:var(--red);font-weight:600}
+.card{border-radius:8px;padding:14px 16px;margin-bottom:10px;border-left:4px solid}
+.card.g{border-color:var(--green);background:var(--gl)}
+.card.a{border-color:var(--amber);background:var(--al)}
+.card.r{border-color:var(--red);background:var(--rl)}
+.card.b{border-color:var(--blue);background:var(--bl)}
+.card-t{font-weight:700;font-size:13px;margin-bottom:4px}
+.card.g .card-t{color:var(--green)}.card.a .card-t{color:var(--amber)}.card.r .card-t{color:var(--red)}.card.b .card-t{color:var(--blue)}
+.card-b{font-size:12.5px;line-height:1.55;color:var(--text)}
+.footer{margin-top:36px;padding-top:12px;border-top:1px solid var(--bdr);font-size:11px;color:var(--muted)}
+@media(max-width:700px){.kpi-row{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}body{padding:16px 12px}}
 </style>
 </head>
 <body>
 
 <div class="rh">
-  <div class="rtag">ИТ-отдел / Каталог услуг</div>
-  <div class="rtitle">Рекомендации по расширению каталога услуг</div>
-  <div class="rmeta">Анализ на основе 314 обращений типа «Другая проблема» за май 2026 · Источник: Jira ICT</div>
+  <div class="rtag">ИТ-отдел / Служба поддержки</div>
+  <div class="rtitle">Анализ обращений: май 2026 vs апрель 2026</div>
+  <div class="rmeta">Май: 1 640 обращений &nbsp;|&nbsp; Апрель: 1 724 обращения &nbsp;|&nbsp; Источник: Jira ICT</div>
 </div>
 
-<div class="summary-grid">
-  <div class="sum-card">
-    <div class="sum-label">Всего «Другая проблема»</div>
-    <div class="sum-val">314</div>
-    <div class="sum-sub">18,7% всего потока</div>
+<div class="tabs">
+  <button class="tab active" onclick="showTab('compare',this)">Апрель vs Май</button>
+  <button class="tab" onclick="showTab('cats',this)">По категориям</button>
+  <button class="tab" onclick="showTab('services',this)">По сервисам</button>
+  <button class="tab" onclick="showTab('rt',this)">По типам запроса</button>
+  <button class="tab" onclick="showTab('sub',this)">По подтипам</button>
+  <button class="tab" onclick="showTab('team',this)">Команда</button>
+  <button class="tab" onclick="showTab('systemic',this)">Проблематика</button>
+  <button class="tab" onclick="showTab('monthly',this)">Статистика по месяцам</button>
+</div>
+
+<!-- ══════════ АПРЕЛЬ vs МАЙ ══════════════════════════════════════════════ -->
+<div id="tab-compare" class="panel active">
+
+<div class="kpi-row">
+  <div class="kc b">
+    <div class="kl">Обращений принято</div>
+    <div class="kv">1 640</div>
+    <div class="kdelta">Апрель: 1 724 · <span class="dg">▼ 84 (−4,9%)</span></div>
   </div>
-  <div class="sum-card">
-    <div class="sum-label">Выявлено кластеров</div>
-    <div class="sum-val">26</div>
-    <div class="sum-sub">повторяющихся паттернов</div>
+  <div class="kc g">
+    <div class="kl">Закрыто</div>
+    <div class="kv">88,9%</div>
+    <div class="kdelta">Апрель: 88,1% · <span class="dg">▲ +0,8 п.п.</span></div>
   </div>
-  <div class="sum-card">
-    <div class="sum-label">Охват рекомендациями</div>
-    <div class="sum-val">~240</div>
-    <div class="sum-sub">обращений получат тип/подтип</div>
+  <div class="kc a">
+    <div class="kl">Оценка качества</div>
+    <div class="kv">4,87</div>
+    <div class="kdelta">Апрель: 4,90 · 70 отзывов (+2 к апр.)</div>
+  </div>
+  <div class="kc gr">
+    <div class="kl">Классифицировано</div>
+    <div class="kv">97,7%</div>
+    <div class="kdelta">Апрель: 65,4% · <span class="dg">▲ +32 п.п.</span></div>
   </div>
 </div>
 
-<div class="legend">
-  <span><span class="badge b-pri1">Приоритет 1</span> 10+ обращений</span>
-  <span><span class="badge b-pri2">Приоритет 2</span> 5–9 обращений</span>
-  <span><span class="badge b-pri3">Приоритет 3</span> 3–4 обращения</span>
+<div class="grid2">
+  <div>
+    <h2>Объём обращений</h2>
+    <div class="cc" style="height:180px"><canvas id="chartVolume"></canvas></div>
+  </div>
+  <div>
+    <h2>Статусы закрытия</h2>
+    <table>
+      <thead><tr><th>Статус</th><th class="c">Апрель</th><th class="c">Май</th><th class="c">Изм.</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>Закрыт</td><td class="c">1 519</td><td class="c b">1 458</td><td class="c"><span class="dg">88,9%</span></td></tr>
+        <tr><td>Приёмка автором</td><td class="c">116</td><td class="c">149</td><td class="c">—</td></tr>
+        <tr class="hi"><td>Передано на 2/3 линии</td><td class="c">27</td><td class="c b">23</td><td class="c"><span class="dg">▼ 15%</span></td></tr>
+        <tr class="hi"><td>Классификация</td><td class="c">27</td><td class="c b">2</td><td class="c"><span class="dg">▼ 93%</span></td></tr>
+        <tr><td>В работе</td><td class="c">20</td><td class="c">20</td><td class="c">—</td></tr>
+        <tr><td>Ожидает информации</td><td class="c">7</td><td class="c">3</td><td class="c">—</td></tr>
+        <tr><td>Отложено</td><td class="c">2</td><td class="c">6</td><td class="c">—</td></tr>
+        <tr><td>Отменено</td><td class="c">6</td><td class="c">14</td><td class="c">—</td></tr>
+        <tr class="total"><td>Итого</td><td class="c">1 724</td><td class="c">1 640</td><td class="c">—</td></tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
-<h1>Рекомендуемые новые типы и подтипы по сервисам</h1>
+<h2>Ключевые изменения май vs апрель</h2>
+<table>
+  <thead><tr><th>Показатель</th><th class="c">Апрель</th><th class="c">Май</th><th class="c">Изменение</th></tr></thead>
+  <tbody>
+    <tr class="hi"><td>Общий объём обращений</td><td class="c">1 724</td><td class="c b">1 640</td><td class="c"><span class="dg">▼ 84 (−4,9%)</span></td></tr>
+    <tr class="hi"><td>Процент закрытых</td><td class="c">88,1%</td><td class="c b">88,9%</td><td class="c"><span class="dg">▲ +0,8 п.п.</span></td></tr>
+    <tr class="hi"><td>Классифицировано обращений</td><td class="c">65,4% (1 127 из 1 724)</td><td class="c b">97,7% (1 603 из 1 640)</td><td class="c"><span class="dg">▲ +32 п.п.</span></td></tr>
+    <tr class="hi"><td>Передано на 2/3 линии</td><td class="c">27</td><td class="c b">23</td><td class="c"><span class="dg">▼ −15%</span></td></tr>
+    <tr class="hi"><td>В статусе «Классификация»</td><td class="c">27</td><td class="c b">2</td><td class="c"><span class="dg">▼ −93%</span></td></tr>
+    <tr class="hi"><td>Количество отзывов</td><td class="c">68</td><td class="c b">70</td><td class="c"><span class="dg">▲ +2</span></td></tr>
+    <tr><td>Средняя оценка</td><td class="c">4,90</td><td class="c b">4,87</td><td class="c">−0,03</td></tr>
+    <tr class="hi"><td>Оценка 5 («отлично»)</td><td class="c">94%</td><td class="c b">94%</td><td class="c">без изм.</td></tr>
+  </tbody>
+</table>
 
-<!-- 1С -->
+<h2>Сравнение по ключевым направлениям</h2>
+<table>
+  <thead><tr><th>Направление</th><th class="c">Апрель</th><th class="c">Май</th><th class="c">Изменение</th></tr></thead>
+  <tbody>
+    <tr class="hi"><td>Доставка БП</td><td class="c">83</td><td class="c b">73</td><td class="c"><span class="dg">▼ −12%</span></td></tr>
+    <tr class="hi"><td>Утверждение договора БП</td><td class="c">82</td><td class="c b">58</td><td class="c"><span class="dg">▼ −29%</span></td></tr>
+    <tr class="hi"><td>Кассы и фискальные устройства</td><td class="c">76</td><td class="c b">47</td><td class="c"><span class="dg">▼ −38%</span></td></tr>
+    <tr class="hi"><td>ЗВУ (Заказ выставления)</td><td class="c">43</td><td class="c b">10</td><td class="c"><span class="dg">▼ −77%</span></td></tr>
+    <tr class="hi"><td>ЗРДС (бюджетная заявка)</td><td class="c">37</td><td class="c b">26</td><td class="c"><span class="dg">▼ −30%</span></td></tr>
+    <tr class="hi"><td>Претензия БП</td><td class="c">39</td><td class="c b">32</td><td class="c"><span class="dg">▼ −18%</span></td></tr>
+    <tr class="hi"><td>Внутренний заказ</td><td class="c">27</td><td class="c b">12</td><td class="c"><span class="dg">▼ −56%</span></td></tr>
+    <tr class="hi"><td>Права доступа и параметры</td><td class="c">138</td><td class="c b">129</td><td class="c"><span class="dg">▼ −6%</span></td></tr>
+    <tr><td>Заказ покупателя</td><td class="c">78</td><td class="c">75</td><td class="c">▼ −4%</td></tr>
+    <tr><td>Резервы</td><td class="c">29</td><td class="c">29</td><td class="c">без изм.</td></tr>
+    <tr><td>Обработка заявок по стендам</td><td class="c">20</td><td class="c">20</td><td class="c">без изм.</td></tr>
+    <tr class="lo"><td>Комплексная продажа БП</td><td class="c">39</td><td class="c">53</td><td class="c"><span class="da">▲ +36%</span></td></tr>
+    <tr class="lo"><td>Запрос льготной доставки</td><td class="c">15</td><td class="c">26</td><td class="c"><span class="da">▲ +73%</span></td></tr>
+    <tr class="lo"><td>Предварительные наборы</td><td class="c">31</td><td class="c">38</td><td class="c"><span class="da">▲ +23%</span></td></tr>
+  </tbody>
+</table>
+
+</div>
+
+<!-- ══════════ ПО КАТЕГОРИЯМ ══════════════════════════════════════════════ -->
+<div id="tab-cats" class="panel">
+<h1>Распределение по категориям — май 2026</h1>
+<p>Май 2026 — первый месяц с полной классификацией обращений по введённому каталогу услуг. В апреле 34,6% обращений не имели категории.</p>
+
+<div class="grid2">
+  <div>
+    <div class="cc" style="height:280px"><canvas id="chartCats"></canvas></div>
+  </div>
+  <div>
+    <table style="margin-top:20px">
+      <thead><tr><th>Категория</th><th class="c">Кол-во</th><th class="c">Доля</th></tr></thead>
+      <tbody>
+        <tr><td>1С и бизнес-процессы</td><td class="c b">936</td><td class="c">55,7%</td></tr>
+        <tr><td>Инфраструктура и РМ</td><td class="c b">415</td><td class="c">24,7%</td></tr>
+        <tr><td>Коммуникации и связь</td><td class="c b">133</td><td class="c">7,9%</td></tr>
+        <tr><td>Доступы и учётные записи</td><td class="c b">87</td><td class="c">5,2%</td></tr>
+        <tr><td>Бизнес-приложения</td><td class="c b">70</td><td class="c">4,2%</td></tr>
+        <tr><td>Не классифицировано</td><td class="c">37</td><td class="c">2,2%</td></tr>
+        <tr><td>Логистика и склад</td><td class="c">2</td><td class="c">0,1%</td></tr>
+        <tr class="total"><td>Итого</td><td class="c">1 680</td><td class="c">100%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h2>Состав категорий по сервисам</h2>
+<table>
+  <thead><tr><th>Категория</th><th>Сервис</th><th class="c">Обращений</th><th class="c">% от категории</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="4"><b>1С и бизнес-процессы</b> — 936</td><td>1С: Управление торговлей (УТ10)</td><td class="c b">895</td><td class="c">95,6%</td></tr>
+    <tr><td>ЭДО: Диадок / ЭТРАН / СБИС / Сфера</td><td class="c">25</td><td class="c">2,7%</td></tr>
+    <tr><td>BI Отчётность</td><td class="c">10</td><td class="c">1,1%</td></tr>
+    <tr><td>ЗУП: Зарплата и управление персоналом</td><td class="c">4</td><td class="c">0,4%</td></tr>
+    <tr><td rowspan="6"><b>Инфраструктура и РМ</b> — 415</td><td>Сеть и интернет</td><td class="c b">103</td><td class="c">24,8%</td></tr>
+    <tr><td>Рабочее место (ПК, ноутбук, периферия)</td><td class="c">93</td><td class="c">22,4%</td></tr>
+    <tr><td>Корпоративная печать и сканирование</td><td class="c">93</td><td class="c">22,4%</td></tr>
+    <tr><td>Программное обеспечение (общее)</td><td class="c">71</td><td class="c">17,1%</td></tr>
+    <tr><td>Касса и фискальные устройства</td><td class="c">47</td><td class="c">11,3%</td></tr>
+    <tr><td>Серверная инфраструктура и ИБ</td><td class="c">8</td><td class="c">1,9%</td></tr>
+    <tr><td rowspan="4"><b>Коммуникации и связь</b> — 133</td><td>Электронная почта</td><td class="c b">87</td><td class="c">65,4%</td></tr>
+    <tr><td>Телефония (VoIP / Стационарная)</td><td class="c">38</td><td class="c">28,6%</td></tr>
+    <tr><td>Корп. коммуникация (Переговорные, ВКС)</td><td class="c">6</td><td class="c">4,5%</td></tr>
+    <tr><td>Мобильная связь</td><td class="c">2</td><td class="c">1,5%</td></tr>
+    <tr><td><b>Доступы и учётные записи</b> — 87</td><td>Корпоративная учётная запись</td><td class="c b">87</td><td class="c">100%</td></tr>
+    <tr><td rowspan="2"><b>Бизнес-приложения</b> — 70</td><td>Битрикс24</td><td class="c">37</td><td class="c">52,9%</td></tr>
+    <tr><td>Сайты, веб-кабинет, B2B портал</td><td class="c">33</td><td class="c">47,1%</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ══════════ ПО СЕРВИСАМ ════════════════════════════════════════════════ -->
+<div id="tab-services" class="panel">
+<h1>Детализация по сервисам — май 2026</h1>
+<div class="cc" style="height:320px"><canvas id="chartServices"></canvas></div>
+
+<h2>Полная таблица по сервисам</h2>
+<table>
+  <thead><tr><th>Сервис</th><th>Категория</th><th class="c">Обращений</th><th class="c">Доля</th></tr></thead>
+  <tbody>
+    <tr><td>1С: Управление торговлей (УТ10)</td><td>1С и бизнес-процессы</td><td class="c b">895</td><td class="c">53,3%</td></tr>
+    <tr><td>Сеть и интернет</td><td>Инфраструктура</td><td class="c">103</td><td class="c">6,1%</td></tr>
+    <tr><td>Рабочее место (ПК, ноутбук, периферия)</td><td>Инфраструктура</td><td class="c">93</td><td class="c">5,5%</td></tr>
+    <tr><td>Корпоративная печать и сканирование</td><td>Инфраструктура</td><td class="c">93</td><td class="c">5,5%</td></tr>
+    <tr><td>Электронная почта</td><td>Коммуникации</td><td class="c">87</td><td class="c">5,2%</td></tr>
+    <tr><td>Корпоративная учётная запись</td><td>Доступы</td><td class="c">87</td><td class="c">5,2%</td></tr>
+    <tr><td>Программное обеспечение (общее)</td><td>Инфраструктура</td><td class="c">71</td><td class="c">4,2%</td></tr>
+    <tr><td>Касса и фискальные устройства</td><td>Инфраструктура</td><td class="c">47</td><td class="c">2,8%</td></tr>
+    <tr><td>Телефония (VoIP / Стационарная)</td><td>Коммуникации</td><td class="c">38</td><td class="c">2,3%</td></tr>
+    <tr><td>Битрикс24</td><td>Бизнес-приложения</td><td class="c">37</td><td class="c">2,2%</td></tr>
+    <tr><td>Сайты, веб-кабинет, B2B портал</td><td>Бизнес-приложения</td><td class="c">33</td><td class="c">2,0%</td></tr>
+    <tr><td>ЭДО: Диадок / ЭТРАН / СБИС / Сфера</td><td>1С и бизнес-процессы</td><td class="c">25</td><td class="c">1,5%</td></tr>
+    <tr><td>BI Отчётность</td><td>1С и бизнес-процессы</td><td class="c">10</td><td class="c">0,6%</td></tr>
+    <tr><td>Серверная инфраструктура и ИБ</td><td>Инфраструктура</td><td class="c">8</td><td class="c">0,5%</td></tr>
+    <tr><td>Корп. коммуникация (Переговорные, ВКС)</td><td>Коммуникации</td><td class="c">6</td><td class="c">0,4%</td></tr>
+    <tr><td>ЗУП: Зарплата и управление персоналом</td><td>1С и бизнес-процессы</td><td class="c">4</td><td class="c">0,2%</td></tr>
+    <tr><td>Мобильная связь</td><td>Коммуникации</td><td class="c">2</td><td class="c">0,1%</td></tr>
+    <tr><td>WMS / Антор</td><td>Логистика</td><td class="c">2</td><td class="c">0,1%</td></tr>
+    <tr><td>Не классифицировано</td><td>—</td><td class="c">37</td><td class="c">2,2%</td></tr>
+    <tr class="total"><td>Итого</td><td></td><td class="c">1 680</td><td class="c">100%</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ══════════ ПО ТИПАМ ЗАПРОСА ══════════════════════════════════════════ -->
+<div id="tab-rt" class="panel">
+<h1>Типы запросов — май 2026</h1>
+<div class="grid2">
+  <div>
+    <h2>Топ-15 типов запроса</h2>
+    <div class="cc" style="height:360px"><canvas id="chartRT"></canvas></div>
+  </div>
+  <div>
+    <h2>Полная таблица по 1С: УТ10</h2>
+    <table>
+      <thead><tr><th>Тип запроса</th><th class="c">Кол-во</th></tr></thead>
+      <tbody>
+        <tr><td>Другая проблема</td><td class="c">95</td></tr>
+        <tr><td>Заказ покупателя</td><td class="c">75</td></tr>
+        <tr><td>БП Доставка</td><td class="c">73</td></tr>
+        <tr><td>Работа с документами</td><td class="c">58</td></tr>
+        <tr><td>БП Утверждение договора</td><td class="c">58</td></tr>
+        <tr><td>БП Комплексная продажа</td><td class="c">53</td></tr>
+        <tr><td>Прочие настройки</td><td class="c">42</td></tr>
+        <tr><td>Контрагент</td><td class="c">38</td></tr>
+        <tr><td>БП Предварительные наборы</td><td class="c">38</td></tr>
+        <tr><td>БП Претензия</td><td class="c">32</td></tr>
+        <tr><td>Резервы</td><td class="c">29</td></tr>
+        <tr><td>БП Утверждение ЗРДС</td><td class="c">26</td></tr>
+        <tr><td>БП Запрос льготной доставки</td><td class="c">26</td></tr>
+        <tr><td>БП Возврат</td><td class="c">24</td></tr>
+        <tr><td>БП Обработка заявок (стенды)</td><td class="c">20</td></tr>
+        <tr><td>БП Заказные позиции</td><td class="c">18</td></tr>
+        <tr><td>Системные инциденты</td><td class="c">16</td></tr>
+        <tr><td>БП Запрос скидки</td><td class="c">14</td></tr>
+        <tr><td>Внутренний заказ</td><td class="c">12</td></tr>
+        <tr><td>БП Служебная записка в ФО</td><td class="c">12</td></tr>
+        <tr><td>БП Корректировка ПТУ/РТУ</td><td class="c">12</td></tr>
+        <tr><td>Прочие (≤11 каждый)</td><td class="c">47</td></tr>
+        <tr class="total"><td>Итого 1С: УТ10</td><td class="c">895</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h2>Типы запроса по остальным сервисам</h2>
+<table>
+  <thead><tr><th>Сервис</th><th>Тип запроса</th><th class="c">Кол-во</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="7">Сеть и интернет</td><td>Удалённое подключение / RDP</td><td class="c">23</td></tr>
+    <tr><td>Проблема с работой сети</td><td class="c">20</td></tr>
+    <tr><td>Мониторинг интернет-соединения</td><td class="c">18</td></tr>
+    <tr><td>Нет подключения к интернету</td><td class="c">14</td></tr>
+    <tr><td>Другая проблема</td><td class="c">13</td></tr>
+    <tr><td>Подключение VPN</td><td class="c">9</td></tr>
+    <tr><td>Настройка сетевого оборудования</td><td class="c">6</td></tr>
+    <tr><td rowspan="6">Корп. печать и сканирование</td><td>Принтер не печатает</td><td class="c">27</td></tr>
+    <tr><td>МФУ / сканер не работает</td><td class="c">19</td></tr>
+    <tr><td>Замена картриджа / тонера / барабана</td><td class="c">14</td></tr>
+    <tr><td>Настройка параметров и профилей печати</td><td class="c">13</td></tr>
+    <tr><td>Другая проблема</td><td class="c">12</td></tr>
+    <tr><td>Ошибка при печати</td><td class="c">5</td></tr>
+    <tr><td rowspan="4">Рабочее место</td><td>Другая проблема</td><td class="c">40</td></tr>
+    <tr><td>Настройка нового рабочего места</td><td class="c">28</td></tr>
+    <tr><td>Замена / ремонт ПК или комплектующих</td><td class="c">9</td></tr>
+    <tr><td>Прочие типы</td><td class="c">16</td></tr>
+    <tr><td rowspan="3">ПО (общее)</td><td>Другая проблема</td><td class="c">36</td></tr>
+    <tr><td>Установка ПО</td><td class="c">24</td></tr>
+    <tr><td>Настройка и диагностика / Обновление</td><td class="c">11</td></tr>
+    <tr><td rowspan="4">Электронная почта</td><td>Почта не работает / письма не отправляются</td><td class="c">29</td></tr>
+    <tr><td>Другая проблема</td><td class="c">24</td></tr>
+    <tr><td>Архивация старых писем</td><td class="c">13</td></tr>
+    <tr><td>Прочие типы</td><td class="c">21</td></tr>
+    <tr><td rowspan="3">Корп. учётная запись</td><td>Предоставление доступа к сетевым папкам</td><td class="c">22</td></tr>
+    <tr><td>Другая проблема</td><td class="c">22</td></tr>
+    <tr><td>Предоставление доступа / Восстановление / Изменение прав</td><td class="c">43</td></tr>
+    <tr><td rowspan="3">Касса и фискальные</td><td>Смена не открывается / Касса не работает</td><td class="c">20</td></tr>
+    <tr><td>Обновление ПО / Перерегистрация ФН</td><td class="c">13</td></tr>
+    <tr><td>Чек не пробивается / Прочие</td><td class="c">14</td></tr>
+    <tr><td rowspan="2">Битрикс24</td><td>Предоставление доступа в Битрикс24</td><td class="c">20</td></tr>
+    <tr><td>Другая проблема / Недоступен</td><td class="c">17</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ══════════ ПО ПОДТИПАМ ════════════════════════════════════════════════ -->
+<div id="tab-sub" class="panel">
+<h1>Подтипы обращений — май 2026</h1>
+<p>Подтип заполнен у 764 из 1 680 обращений (45,5%). Большинство подтипов относятся к 1С: УТ10.</p>
+<div class="grid2">
+  <div>
+    <div class="cc" style="height:300px"><canvas id="chartSub"></canvas></div>
+  </div>
+  <div>
+    <table>
+      <thead><tr><th>Подтип</th><th class="c">Кол-во</th><th class="c">% от заполн.</th></tr></thead>
+      <tbody>
+        <tr><td><b>Внесение изменений</b></td><td class="c b">433</td><td class="c">56,7%</td></tr>
+        <tr><td>Ошибка</td><td class="c">55</td><td class="c">7,2%</td></tr>
+        <tr><td>Провести / скорректировать документ</td><td class="c">44</td><td class="c">5,8%</td></tr>
+        <tr><td>Изменение карточки контрагента</td><td class="c">30</td><td class="c">3,9%</td></tr>
+        <tr><td>Предоставление доступа к 1С УТ</td><td class="c">29</td><td class="c">3,8%</td></tr>
+        <tr><td>Настройка</td><td class="c">29</td><td class="c">3,8%</td></tr>
+        <tr><td>Изменение маршрута</td><td class="c">28</td><td class="c">3,7%</td></tr>
+        <tr><td>Проставление / снятие резерва</td><td class="c">25</td><td class="c">3,3%</td></tr>
+        <tr><td>Проставление дизайнера</td><td class="c">19</td><td class="c">2,5%</td></tr>
+        <tr><td>Проведение / распроведение</td><td class="c">9</td><td class="c">1,2%</td></tr>
+        <tr><td>Изменение карточки номенклатуры</td><td class="c">9</td><td class="c">1,2%</td></tr>
+        <tr><td>База недоступна</td><td class="c">7</td><td class="c">0,9%</td></tr>
+        <tr><td>Доработка / разработка функционала</td><td class="c">6</td><td class="c">0,8%</td></tr>
+        <tr><td>Регистры и настройки</td><td class="c">6</td><td class="c">0,8%</td></tr>
+        <tr><td>1С зависает в работе</td><td class="c">5</td><td class="c">0,7%</td></tr>
+        <tr><td>Прочие подтипы</td><td class="c">25</td><td class="c">3,3%</td></tr>
+        <tr class="total"><td>Итого (заполненные)</td><td class="c">764</td><td class="c">100%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h2>Подтипы по типам запроса</h2>
+<table>
+  <thead><tr><th>Тип запроса</th><th>Подтип</th><th class="c">Кол-во</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="3">Заказ покупателя (75)</td><td>Внесение изменений</td><td class="c b">48</td></tr>
+    <tr><td>Проставление дизайнера</td><td class="c">19</td></tr>
+    <tr><td>Проведение / распроведение</td><td class="c">4</td></tr>
+    <tr><td rowspan="3">БП Доставка (73)</td><td>Внесение изменений</td><td class="c b">59</td></tr>
+    <tr><td>Ошибка</td><td class="c">11</td></tr>
+    <tr><td>Настройка</td><td class="c">1</td></tr>
+    <tr><td rowspan="4">БП Утверждение договора (58)</td><td>Внесение изменений</td><td class="c b">43</td></tr>
+    <tr><td>Настройка</td><td class="c">5</td></tr>
+    <tr><td>Изменение маршрута</td><td class="c">4</td></tr>
+    <tr><td>Ошибка</td><td class="c">1</td></tr>
+    <tr><td rowspan="3">БП Комплексная продажа (53)</td><td>Внесение изменений</td><td class="c b">47</td></tr>
+    <tr><td>Настройка</td><td class="c">2</td></tr>
+    <tr><td>Ошибка</td><td class="c">2</td></tr>
+    <tr><td rowspan="3">Работа с документами (58)</td><td>Провести / скорректировать документ</td><td class="c b">44</td></tr>
+    <tr><td>Доработка / разработка функционала</td><td class="c">6</td></tr>
+    <tr><td>Консультация по функционалу</td><td class="c">4</td></tr>
+    <tr><td rowspan="3">Контрагент (38)</td><td>Изменение карточки контрагента</td><td class="c b">30</td></tr>
+    <tr><td>Создание карточки</td><td class="c">5</td></tr>
+    <tr><td>Предоставление доступа</td><td class="c">2</td></tr>
+    <tr><td rowspan="3">БП Предварительные наборы (38)</td><td>Внесение изменений</td><td class="c b">32</td></tr>
+    <tr><td>Ошибка</td><td class="c">2</td></tr>
+    <tr><td>Изменение маршрута</td><td class="c">2</td></tr>
+    <tr><td>Прочие настройки (42)</td><td>Предоставление доступа к 1С УТ</td><td class="c b">29</td></tr>
+    <tr><td rowspan="2">Резервы (29)</td><td>Проставление / снятие резерва</td><td class="c b">25</td></tr>
+    <tr><td>Настройка резервов</td><td class="c">2</td></tr>
+    <tr><td rowspan="3">Системные инциденты 1С (16)</td><td>База недоступна</td><td class="c b">7</td></tr>
+    <tr><td>1С зависает в работе</td><td class="c">5</td></tr>
+    <tr><td>Ошибка при использовании 1С</td><td class="c">3</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ══════════ КОМАНДА ════════════════════════════════════════════════════ -->
+<div id="tab-team" class="panel">
+<h1>Выполнение по специалистам — апрель и май 2026</h1>
+<div class="grid2">
+  <div>
+    <div class="cc" style="height:340px"><canvas id="chartTeam"></canvas></div>
+  </div>
+  <div>
+    <table>
+      <thead><tr><th>Отдел</th><th>Специалист</th><th class="c">Апр</th><th class="c">Май</th></tr></thead>
+      <tbody>
+        <tr><td>Сервисная группа</td><td>Андреева Ольга</td><td class="c">288</td><td class="c">230</td></tr>
+        <tr><td>Сервисная группа</td><td>Макарова Ирина</td><td class="c">428</td><td class="c">351</td></tr>
+        <tr><td>Сервисная группа</td><td>Стрыгина Мария</td><td class="c">291</td><td class="c">272</td></tr>
+        <tr><td>Сервисная группа</td><td>Степанов Андрей</td><td class="c">15</td><td class="c">42</td></tr>
+        <tr><td>Системные адм.</td><td>Халявкин Артём</td><td class="c">239</td><td class="c">226</td></tr>
+        <tr><td>Системные адм.</td><td>Крюков Александр</td><td class="c">121</td><td class="c">120</td></tr>
+        <tr><td>Системные адм.</td><td>Головчук Руслан</td><td class="c">174</td><td class="c">202</td></tr>
+        <tr><td>Системные адм.</td><td>Старовойтов Василий</td><td class="c">31</td><td class="c">41</td></tr>
+        <tr><td>Системные адм.</td><td>Петровский Виктор</td><td class="c">25</td><td class="c">36</td></tr>
+        <tr><td>Отдел разработки</td><td>Якуйтис Максим</td><td class="c">19</td><td class="c">41</td></tr>
+        <tr><td>Отдел разработки</td><td>Хайлапов Рустам</td><td class="c">4</td><td class="c">15</td></tr>
+        <tr><td>Отдел разработки</td><td>Соловей Сергей</td><td class="c">8</td><td class="c">7</td></tr>
+        <tr><td>Разработка сайта</td><td>Лукьяненко Сергей</td><td class="c">9</td><td class="c">14</td></tr>
+        <tr><td>BI</td><td>Сунцов Артём / Водопьянов</td><td class="c">6</td><td class="c">9</td></tr>
+        <tr><td>Аналитика</td><td>Черныш Дарья</td><td class="c">6</td><td class="c">6</td></tr>
+        <tr class="total"><td colspan="2">Итого</td><td class="c">1 685</td><td class="c">1 622</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<h2>Удовлетворённость пользователей</h2>
+<table style="max-width:500px">
+  <thead><tr><th>Показатель</th><th class="c">Апрель 2026</th><th class="c">Май 2026</th></tr></thead>
+  <tbody>
+    <tr><td>Количество оценок</td><td class="c">68</td><td class="c b">70</td></tr>
+    <tr class="hi"><td>Средняя оценка</td><td class="c b">4,90 / 5</td><td class="c b">4,87 / 5</td></tr>
+    <tr class="hi"><td>Оценка 5 («отлично»)</td><td class="c">64 (94%)</td><td class="c">66 (94%)</td></tr>
+    <tr><td>Оценка ниже 4</td><td class="c">2 (3%)</td><td class="c">2 (3%)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ══════════ ПРОБЛЕМАТИКА ════════════════════════════════════════════════ -->
+<div id="tab-systemic" class="panel">
+<h1>Проблематика и системность — май 2026</h1>
+
+<h2>Инциденты 1С: УТ10</h2>
+<table>
+  <thead><tr><th>Тип инцидента</th><th class="c">Кол-во</th><th>Примеры из обращений</th></tr></thead>
+  <tbody>
+    <tr><td>Ошибки входа и запуска</td><td class="c b">~24</td><td>«Не работает 1С», «выбивает», «не заходит», «нет прав на запуск ИБ»</td></tr>
+    <tr><td>База недоступна</td><td class="c b">7</td><td>«Не войти в 1С», «Не работает 1С», «не грузятся панорамы»</td></tr>
+    <tr><td>1С зависает в работе</td><td class="c b">5</td><td>«Зависла база и удалёнка», «висит 1С»</td></tr>
+    <tr><td>Ошибки при работе</td><td class="c b">3</td><td>«Ошибка 1С», «ошибка при подтверждении»</td></tr>
+    <tr class="total"><td>Итого</td><td class="c">39</td><td></td></tr>
+  </tbody>
+</table>
+
+<h2>Повторяющиеся паттерны по БП</h2>
+<table>
+  <thead><tr><th>Бизнес-процесс</th><th class="c">Обращений</th><th>Доминирующий подтип</th><th class="c">Доля подтипа</th></tr></thead>
+  <tbody>
+    <tr><td>БП Доставка</td><td class="c b">73</td><td>Внесение изменений (переносы дат, параметры)</td><td class="c">81%</td></tr>
+    <tr><td>БП Утверждение договора</td><td class="c b">58</td><td>Внесение изменений (прикрепление, корректировки)</td><td class="c">74%</td></tr>
+    <tr><td>БП Комплексная продажа</td><td class="c b">53</td><td>Внесение изменений (статусы, прикрепление отгрузок)</td><td class="c">89%</td></tr>
+    <tr><td>БП Предварительные наборы</td><td class="c b">38</td><td>Внесение изменений (ответственные, отказы)</td><td class="c">84%</td></tr>
+    <tr><td>БП Претензия</td><td class="c b">32</td><td>Внесение изменений (снятие галки «завершён»)</td><td class="c">81%</td></tr>
+    <tr><td>ЗРДС (бюджетная заявка)</td><td class="c b">26</td><td>Внесение изменений (оплаты, удаление, маршруты)</td><td class="c">73%</td></tr>
+    <tr><td>БП Запрос льготной доставки</td><td class="c b">26</td><td>Внесение изменений + Ошибки старта</td><td class="c">96%</td></tr>
+    <tr><td>Работа с документами</td><td class="c b">58</td><td>Провести / скорректировать документ</td><td class="c">76%</td></tr>
+  </tbody>
+</table>
+
+<h2>Проблематика по направлениям инфраструктуры</h2>
+<table>
+  <thead><tr><th>Направление</th><th class="c">Обращений</th><th>Фактические проблемы из обращений</th></tr></thead>
+  <tbody>
+    <tr><td>Сеть и интернет</td><td class="c b">103</td><td>Удалённое подключение (23), проблемы сети (20), мониторинг интернет-соединения (18 — в т.ч. серия «Недоступны настройки интернет-соединений»), нет интернета (14)</td></tr>
+    <tr><td>Корпоративная печать</td><td class="c b">93</td><td>Принтер не печатает (27), МФУ/сканер не работает (19), замена картриджей (14), настройка профилей печати (13)</td></tr>
+    <tr><td>Рабочее место</td><td class="c b">93</td><td>Настройка нового РМ (28), замена/ремонт (9), медленная работа ПК (3)</td></tr>
+    <tr><td>Электронная почта</td><td class="c b">87</td><td>Почта не работает (29 — включая разовый инцидент сервера 07.05), архивация ящиков (13), настройка Outlook (5), ящик переполнен (4)</td></tr>
+    <tr><td>Корп. учётная запись</td><td class="c b">87</td><td>Предоставление доступа к папкам (22), восстановление доступа (13), изменение прав (12), предоставление доступа к системам (16)</td></tr>
+    <tr><td>Касса и фискальные</td><td class="c b">47</td><td>Смена не открывается / касса не работает (20), обновление ПО/перерегистрация ФН (13), чек не пробивается (5)</td></tr>
+    <tr><td>Битрикс24</td><td class="c b">37</td><td>Предоставление доступа (20), ошибки работы (11), недоступен/ошибка входа (5), интеграция с 1С (1)</td></tr>
+  </tbody>
+</table>
+
+</div>
+
+<!-- ══════════ СТАТИСТИКА ПО МЕСЯЦАМ ══════════════════════════════════════ -->
+<div id="tab-monthly" class="panel">
+<h1>Статистика обращений по месяцам — май 2025 / май 2026</h1>
+<p>Источник: Jira ICT, 25 077 уникальных обращений. Рабочие дни по российскому производственному календарю.</p>
+
+<div style="position:relative;width:100%;height:300px;margin:12px 0 24px">
+  <canvas id="chartMonthlyBar" role="img" aria-label="Ежемесячная динамика май 2025 — май 2026"></canvas>
+</div>
+
+<div style="position:relative;width:100%;height:220px;margin:12px 0 24px">
+  <canvas id="chartMonthlyAvg" role="img" aria-label="Среднее в рабочий день по месяцам"></canvas>
+</div>
+
+<h2>Данные по месяцам</h2>
 <table>
   <thead>
     <tr>
-      <th style="width:240px">Сервис / Новый тип запроса</th>
-      <th>Обобщённый подтип</th>
-      <th class="c" style="width:80px">Обращ.</th>
-      <th class="c" style="width:110px">Приоритет</th>
+      <th>Месяц</th>
+      <th class="c">Обращений</th>
+      <th class="c">Раб. дней</th>
+      <th class="c">Ср/раб.день</th>
+      <th>Период</th>
     </tr>
   </thead>
   <tbody>
-
-    <tr class="svc-row"><td colspan="4">1С: Управление торговлей (УТ10) — 95 обращений типа «Другая проблема»</td></tr>
-
-    <tr><td rowspan="3"><span class="badge b-new">новый тип</span><br><b>Ошибки входа и доступа к 1С</b></td>
-      <td>Ошибка запуска / не открывается 1С</td><td class="num">14</td><td class="c"><span class="badge b-pri1">Приоритет 1</span></td></tr>
-    <tr><td>Нет прав на запуск информационной базы</td><td class="num">5</td><td class="c"><span class="badge b-pri2">Приоритет 2</span></td></tr>
-    <tr><td>Сброс / смена пароля 1С</td><td class="num">5</td><td class="c"><span class="badge b-pri2">Приоритет 2</span></td></tr>
-
-    <tr class="group-row"><td rowspan="2"><span class="badge b-new">новый тип</span><br><b>Управление сеансами 1С</b></td>
-      <td>Завершение / закрытие зависших сеансов</td><td class="num">4</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-    <tr class="group-row"><td>Снятие / перераспределение задач уволенных</td><td class="num">6</td><td class="c"><span class="badge b-pri2">Приоритет 2</span></td></tr>
-
-    <tr><td rowspan="2"><span class="badge b-new">новый тип</span><br><b>Создание структур в 1С</b></td>
-      <td>Создание склада / организационной структуры</td><td class="num">4</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-    <tr><td>Создание / настройка ОП</td><td class="num">3</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-
-    <tr class="group-row"><td rowspan="2"><span class="badge b-new">новый тип</span><br><b>Интеграции и выгрузки</b></td>
-      <td>Ошибка выгрузки / загрузки WMS</td><td class="num">5</td><td class="c"><span class="badge b-pri2">Приоритет 2</span></td></tr>
-    <tr class="group-row"><td>Выгрузка / обновление данных на внешние сервисы</td><td class="num">5</td><td class="c"><span class="badge b-pri2">Приоритет 2</span></td></tr>
-
-    <tr><td><span class="badge b-new">новый тип</span><br><b>Уведомления и SMS</b></td>
-      <td>Не приходят SMS-уведомления</td><td class="num">5</td><td class="c"><span class="badge b-pri2">Приоритет 2</span></td></tr>
-
-    <tr class="group-row"><td rowspan="2"><span class="badge b-new">новый тип</span><br><b>Управление задачами в 1С</b></td>
-      <td>Закрытие / удаление неактуальных задач</td><td class="num">4</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-    <tr class="group-row"><td>Замена / настройка получателей задач</td><td class="num">4</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-
-    <tr><td><span class="badge b-new">новый тип</span><br><b>Учётная запись в 1С</b></td>
-      <td>Создание учётной записи для нового сотрудника</td><td class="num">4</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-
-    <!-- РАБОЧЕЕ МЕСТО -->
-    <tr class="svc-row"><td colspan="4">Рабочее место (ПК, ноутбук, периферия) — 40 обращений типа «Другая проблема»</td></tr>
-
-    <tr><td rowspan="2"><span class="badge b-new">новый тип</span><br><b>Дежурство и консультации</b></td>
-      <td>Дежурство: обеспечение оперативной доступности ИТ</td><td class="num">8</td><td class="c"><span class="badge b-pri1">Приоритет 1</span></td></tr>
-    <tr><td>Консультация пользователей (очно / телефон)</td><td class="num">6</td><td class="c"><span class="badge b-pri2">Приоритет 2</span></td></tr>
-
-    <tr class="group-row"><td rowspan="2"><span class="badge b-new">новый тип</span><br><b>Отключение и переезд РМ</b></td>
-      <td>Отключение рабочего места (увольнение / переезд)</td><td class="num">5</td><td class="c"><span class="badge b-pri2">Приоритет 2</span></td></tr>
-    <tr class="group-row"><td>Перемещение оборудования</td><td class="num">3</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-
-    <tr><td><span class="badge b-new">новый тип</span><br><b>Настройка удалённого доступа</b></td>
-      <td>Настройка / восстановление удалённого рабочего стола</td><td class="num">7</td><td class="c"><span class="badge b-pri1">Приоритет 1</span></td></tr>
-
-    <!-- ПО (ОБЩЕЕ) -->
-    <tr class="svc-row"><td colspan="4">Программное обеспечение (общее) — 36 обращений типа «Другая проблема»</td></tr>
-
-    <tr class="group-row"><td rowspan="2"><span class="badge b-sub">существующий тип</span><br><b>Настройка и диагностика ПО</b><br><small style="color:var(--muted)">добавить подтипы</small></td>
-      <td>Ошибки MS Office (Word, Excel, PDF)</td><td class="num">6</td><td class="c"><span class="badge b-pri2">Приоритет 2</span></td></tr>
-    <tr class="group-row"><td>Настройка VPN / Cisco / удалённого доступа</td><td class="num">5</td><td class="c"><span class="badge b-pri2">Приоритет 2</span></td></tr>
-
-    <tr><td><span class="badge b-new">новый тип</span><br><b>Дежурство и консультации</b></td>
-      <td>Дежурство / консультации пользователей</td><td class="num">7</td><td class="c"><span class="badge b-pri1">Приоритет 1</span></td></tr>
-
-    <!-- ЭЛЕКТРОННАЯ ПОЧТА -->
-    <tr class="svc-row"><td colspan="4">Электронная почта — 24 обращения типа «Другая проблема»</td></tr>
-
-    <tr class="group-row"><td rowspan="2"><span class="badge b-sub">существующий тип</span><br><b>Настройка Outlook</b><br><small style="color:var(--muted)">добавить подтипы</small></td>
-      <td>Установка / переустановка / переподключение Outlook</td><td class="num">5</td><td class="c"><span class="badge b-pri2">Приоритет 2</span></td></tr>
-    <tr class="group-row"><td>Переадресация / смена адреса</td><td class="num">3</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-
-    <tr><td><span class="badge b-new">новый тип</span><br><b>Доступ к почтовому ящику</b></td>
-      <td>Предоставление / восстановление доступа к ящику</td><td class="num">4</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-
-    <!-- КОРП. УЗ -->
-    <tr class="svc-row"><td colspan="4">Корпоративная учётная запись — 22 обращения типа «Другая проблема»</td></tr>
-
-    <tr class="group-row"><td><span class="badge b-new">новый тип</span><br><b>Проблемы с удалённым доступом</b></td>
-      <td>Нестабильная работа / разрыв удалённого соединения</td><td class="num">6</td><td class="c"><span class="badge b-pri2">Приоритет 2</span></td></tr>
-
-    <tr><td><span class="badge b-new">новый тип</span><br><b>Управление профилем</b></td>
-      <td>Очистка кэша / сброс сетевого профиля</td><td class="num">3</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-
-    <!-- САЙТЫ / B2B -->
-    <tr class="svc-row"><td colspan="4">Сайты, веб-кабинет, B2B портал — 21 обращение типа «Другая проблема»</td></tr>
-
-    <tr class="group-row"><td><span class="badge b-new">новый тип</span><br><b>Проблема с заказом B2B</b></td>
-      <td>Ошибка / сбой при оформлении заказа в B2B</td><td class="num">7</td><td class="c"><span class="badge b-pri1">Приоритет 1</span></td></tr>
-
-    <tr><td><span class="badge b-new">новый тип</span><br><b>Интеграция и парсинг</b></td>
-      <td>Ошибка парсера / интеграции с внешним сервисом</td><td class="num">3</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-
-    <!-- ТЕЛЕФОНИЯ -->
-    <tr class="svc-row"><td colspan="4">Телефония (VoIP / Стационарная) — 9 обращений типа «Другая проблема»</td></tr>
-
-    <tr class="group-row"><td rowspan="2"><span class="badge b-new">новый тип</span><br><b>Панель телефонии</b></td>
-      <td>Не отображается / не работает панель телефонии в 1С</td><td class="num">4</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-    <tr class="group-row"><td>Настройка телефонии при удалённой работе</td><td class="num">3</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-
-    <!-- ЭДО -->
-    <tr class="svc-row"><td colspan="4">ЭДО: Диадок / ЭТРАН / СБИС — 12 обращений типа «Другая проблема»</td></tr>
-
-    <tr><td rowspan="2"><span class="badge b-new">новый тип</span><br><b>Доступ и ошибки ЭДО</b></td>
-      <td>Предоставление / восстановление доступа в Контур/Диадок</td><td class="num">3</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-    <tr><td>Ошибка в работе ЭДО / слетела организация</td><td class="num">5</td><td class="c"><span class="badge b-pri2">Приоритет 2</span></td></tr>
-
-    <!-- СЕТЬ -->
-    <tr class="svc-row"><td colspan="4">Сеть и интернет — 13 обращений типа «Другая проблема»</td></tr>
-
-    <tr class="group-row"><td rowspan="2"><span class="badge b-new">новый тип</span><br><b>Специфические сетевые инциденты</b></td>
-      <td>Недоступны настройки интернет-соединений</td><td class="num">3</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-    <tr class="group-row"><td>Не формируется QR-код для оплаты</td><td class="num">2</td><td class="c">—</td></tr>
-
-    <!-- КОРП. ПЕЧАТЬ -->
-    <tr class="svc-row"><td colspan="4">Корпоративная печать и сканирование — 12 обращений типа «Другая проблема»</td></tr>
-
-    <tr><td><span class="badge b-sub">существующий тип</span><br><b>МФУ / сканер не работает</b><br><small style="color:var(--muted)">добавить подтип</small></td>
-      <td>Сканы не передаются на компьютер / в почту</td><td class="num">3</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-
-    <!-- БИТРИКС24 -->
-    <tr class="svc-row"><td colspan="4">Битрикс24 — 11 обращений типа «Другая проблема»</td></tr>
-
-    <tr class="group-row"><td rowspan="2"><span class="badge b-new">новый тип</span><br><b>Проблемы при звонках и видео</b></td>
-      <td>Нет звука / соединения на совещаниях в Битрикс24</td><td class="num">3</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-    <tr class="group-row"><td>Работа с документами и папками в Битрикс24</td><td class="num">2</td><td class="c">—</td></tr>
-
+    <tr><td>Май 2025</td><td class="c b">2 372</td><td class="c">18</td><td class="c">132</td><td>Предыдущий руководитель</td></tr>
+    <tr><td>Июн 2025</td><td class="c b">1 970</td><td class="c">19</td><td class="c">104</td><td>Предыдущий руководитель</td></tr>
+    <tr><td>Июл 2025</td><td class="c b">2 108</td><td class="c">23</td><td class="c">92</td><td>Предыдущий руководитель</td></tr>
+    <tr><td>Авг 2025</td><td class="c b">1 954</td><td class="c">21</td><td class="c">93</td><td>Предыдущий руководитель</td></tr>
+    <tr><td>Сен 2025</td><td class="c b">1 974</td><td class="c">22</td><td class="c">90</td><td>Предыдущий руководитель</td></tr>
+    <tr><td>Окт 2025</td><td class="c b">2 013</td><td class="c">23</td><td class="c">88</td><td>Предыдущий руководитель</td></tr>
+    <tr><td>Ноя 2025</td><td class="c b">1 977</td><td class="c">19</td><td class="c">104</td><td>Переходный период</td></tr>
+    <tr><td>Дек 2025</td><td class="c b">2 156</td><td class="c">22</td><td class="c">98</td><td>Переходный период</td></tr>
+    <tr><td>Янв 2026</td><td class="c b">1 578</td><td class="c">16</td><td class="c">99</td><td>Переходный период</td></tr>
+    <tr class="hi"><td>Фев 2026</td><td class="c b">1 798</td><td class="c">19</td><td class="c">95</td><td>Текущий руководитель</td></tr>
+    <tr class="hi"><td>Мар 2026</td><td class="c b">1 773</td><td class="c">21</td><td class="c">84</td><td>Текущий руководитель</td></tr>
+    <tr class="hi"><td>Апр 2026</td><td class="c b">1 724</td><td class="c">22</td><td class="c">78</td><td>Текущий руководитель</td></tr>
+    <tr class="hi"><td>Май 2026</td><td class="c b">1 640</td><td class="c">18</td><td class="c">91</td><td>Текущий руководитель</td></tr>
+    <tr class="total"><td>Итого</td><td class="c">25 077</td><td class="c">263</td><td class="c">95</td><td>13 месяцев</td></tr>
   </tbody>
 </table>
 
-<div class="note">Обращения с пустой темой (&lt;Пустая тема&gt;) и разовые уникальные обращения (менее 2 повторений) в таблицу не включены. Итоговая экономия после внедрения рекомендаций — снижение доли «Другая проблема» с 18,7% до предположительно 3–5% от общего потока.</div>
-
-<h1>Сводная таблица новых типов по приоритету</h1>
+<h2>Сравнение периодов</h2>
 <table>
   <thead>
-    <tr><th>Новый тип запроса</th><th>Сервис</th><th class="c">Обращ./мес</th><th class="c">Приоритет</th></tr>
+    <tr>
+      <th>Период</th>
+      <th class="c">Всего</th>
+      <th class="c">Мес.</th>
+      <th class="c">Ср/месяц</th>
+      <th class="c">Ср/раб.день</th>
+      <th class="c">Изм. к предыд.</th>
+    </tr>
   </thead>
   <tbody>
-    <tr><td>Дежурство и консультации</td><td>Рабочее место + ПО (общее)</td><td class="num">21</td><td class="c"><span class="badge b-pri1">Приоритет 1</span></td></tr>
-    <tr><td>Ошибки входа и доступа к 1С</td><td>1С: УТ10</td><td class="num">24</td><td class="c"><span class="badge b-pri1">Приоритет 1</span></td></tr>
-    <tr><td>Настройка удалённого доступа</td><td>Рабочее место</td><td class="num">7</td><td class="c"><span class="badge b-pri1">Приоритет 1</span></td></tr>
-    <tr><td>Проблема с заказом B2B</td><td>Сайты / B2B</td><td class="num">7</td><td class="c"><span class="badge b-pri1">Приоритет 1</span></td></tr>
-    <tr><td>Управление сеансами и задачами 1С</td><td>1С: УТ10</td><td class="num">14</td><td class="c"><span class="badge b-pri2">Приоритет 2</span></td></tr>
-    <tr><td>Интеграции и выгрузки 1С</td><td>1С: УТ10</td><td class="num">10</td><td class="c"><span class="badge b-pri2">Приоритет 2</span></td></tr>
-    <tr><td>Проблемы с удалённым доступом</td><td>Корп. учётная запись</td><td class="num">6</td><td class="c"><span class="badge b-pri2">Приоритет 2</span></td></tr>
-    <tr><td>Уведомления и SMS</td><td>1С: УТ10</td><td class="num">5</td><td class="c"><span class="badge b-pri2">Приоритет 2</span></td></tr>
-    <tr><td>Ошибки ЭДО</td><td>ЭДО</td><td class="num">5</td><td class="c"><span class="badge b-pri2">Приоритет 2</span></td></tr>
-    <tr><td>Настройка Outlook (расширение подтипов)</td><td>Электронная почта</td><td class="num">8</td><td class="c"><span class="badge b-pri2">Приоритет 2</span></td></tr>
-    <tr><td>Настройка и диагностика ПО (доп. подтипы)</td><td>ПО (общее)</td><td class="num">11</td><td class="c"><span class="badge b-pri2">Приоритет 2</span></td></tr>
-    <tr><td>Создание структур в 1С</td><td>1С: УТ10</td><td class="num">7</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-    <tr><td>Учётная запись в 1С</td><td>1С: УТ10</td><td class="num">4</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-    <tr><td>Панель телефонии</td><td>Телефония</td><td class="num">7</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-    <tr><td>Отключение и переезд РМ</td><td>Рабочее место</td><td class="num">8</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-    <tr><td>Управление профилем</td><td>Корп. учётная запись</td><td class="num">3</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-    <tr><td>Доступ к почтовому ящику</td><td>Электронная почта</td><td class="num">4</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-    <tr><td>Проблемы при звонках / видео</td><td>Битрикс24</td><td class="num">3</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-    <tr><td>Доступ в Контур/Диадок</td><td>ЭДО</td><td class="num">3</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
-    <tr><td>Сканы не передаются на ПК</td><td>Корп. печать</td><td class="num">3</td><td class="c"><span class="badge b-pri3">Приоритет 3</span></td></tr>
+    <tr><td>Май–Окт 2025 (предыдущий руководитель)</td><td class="c b">12 391</td><td class="c">6</td><td class="c">2 065</td><td class="c">98</td><td class="c" style="color:var(--muted)">—</td></tr>
+    <tr><td>Ноя 2025–Янв 2026 (переходный период)</td><td class="c b">5 711</td><td class="c">3</td><td class="c">1 903</td><td class="c">100</td><td class="c" style="color:var(--amber);font-weight:600">▲ +2%</td></tr>
+    <tr class="hi"><td>Фев–Май 2026 (текущий руководитель)</td><td class="c b">6 935</td><td class="c">4</td><td class="c">1 733</td><td class="c">87</td><td class="c" style="color:var(--green);font-weight:600">▼ −11%</td></tr>
   </tbody>
 </table>
 
-<div class="footer">
-  Подготовлено: июнь 2026 &nbsp;|&nbsp; На основе анализа 314 обращений типа «Другая проблема» за май 2026 &nbsp;|&nbsp; Jira ICT
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+  <div style="background:var(--grl);border-radius:6px;padding:10px 16px;flex:1;min-width:180px">
+    <div style="font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:var(--gray);margin-bottom:4px">Всего за период</div>
+    <div style="font-size:24px;font-weight:700;color:#333">25 077</div>
+    <div style="font-size:11px;color:var(--muted)">уникальных обращений</div>
+  </div>
+  <div style="background:var(--bl);border-radius:6px;padding:10px 16px;flex:1;min-width:180px">
+    <div style="font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:var(--blue);margin-bottom:4px">Снижение объёма</div>
+    <div style="font-size:24px;font-weight:700;color:var(--green)">−16%</div>
+    <div style="font-size:11px;color:var(--muted)">ср/месяц: предыд. 2 065 → текущий 1 733</div>
+  </div>
+  <div style="background:var(--gl);border-radius:6px;padding:10px 16px;flex:1;min-width:180px">
+    <div style="font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:var(--green);margin-bottom:4px">Снижение нагрузки/день</div>
+    <div style="font-size:24px;font-weight:700;color:var(--green)">−11%</div>
+    <div style="font-size:11px;color:var(--muted)">ср/раб.день: 98 → 87 обращений</div>
+  </div>
 </div>
 
+</div>
+
+<div class="footer">
+  Анализ подготовлен: июнь 2026 &nbsp;|&nbsp; Источник: Jira Service Management, проект ICT &nbsp;|&nbsp; Май 2026: 1 640 обращений &nbsp;|&nbsp; Апрель 2026: 1 724 обращения
+</div>
+
+<script>
+const gc='rgba(0,0,0,0.07)',tc='#888';
+const built={};
+
+function showTab(n,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+n).classList.add('active');
+  if(el)el.classList.add('active');
+  const builders={compare:buildCompare,cats:buildCats,services:buildServices,rt:buildRT,sub:buildSub,team:buildTeam,monthly:buildMonthly};
+  if(builders[n])setTimeout(builders[n],50);
+}
+
+function buildCompare(){
+  if(built.compare)return;built.compare=true;
+  new Chart(document.getElementById('chartVolume'),{type:'bar',
+    data:{labels:['Апрель 2026','Май 2026'],datasets:[{data:[1724,1640],backgroundColor:['#3266AD','#1d9e75'],borderRadius:4}]},
+    options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw.toLocaleString('ru')+' обращений'}}},
+      scales:{x:{ticks:{font:{size:11},color:tc},grid:{color:gc}},y:{ticks:{font:{size:12},color:tc},grid:{display:false}}}}});
+}
+buildCompare();
+
+function buildCats(){
+  if(built.cats)return;built.cats=true;
+  new Chart(document.getElementById('chartCats'),{type:'doughnut',
+    data:{labels:['1С и бизнес-процессы','Инфраструктура и РМ','Коммуникации и связь','Доступы и уч. записи','Бизнес-приложения','Не классифицировано'],
+      datasets:[{data:[936,415,133,87,70,37],backgroundColor:['#2E5C99','#D85A30','#BA7517','#7f77dd','#1d9e75','#888780'],borderWidth:2,borderColor:'#fff'}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:11},boxWidth:12,padding:8}},
+      tooltip:{callbacks:{label:c=>' '+c.label+': '+c.raw+' ('+Math.round(c.raw/1680*100)+'%)'}}}}});
+}
+
+function buildServices(){
+  if(built.services)return;built.services=true;
+  new Chart(document.getElementById('chartServices'),{type:'bar',
+    data:{labels:['1С: УТ10','Сеть','Рабочее место','Корп. печать','Электр. почта','Корп. учётная зап.','ПО (общее)','Касса','Телефония','Битрикс24','Сайты/B2B','ЭДО','BI','Прочие'],
+      datasets:[{data:[895,103,93,93,87,87,71,47,38,37,33,25,10,12],backgroundColor:'#2E5C99',borderRadius:2}]},
+    options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw+' обращений'}}},
+      scales:{x:{ticks:{font:{size:10},color:tc},grid:{color:gc}},y:{ticks:{font:{size:10},color:tc},grid:{display:false}}}}});
+}
+
+function buildRT(){
+  if(built.rt)return;built.rt=true;
+  new Chart(document.getElementById('chartRT'),{type:'bar',
+    data:{labels:['Другая проблема','Заказ покупателя','БП Доставка','Раб. с документами','БП Утв. договора','БП Компл. продажа','Прочие настройки','Контрагент','БП Преднаборы','БП Претензия','Принтер не печатает','Почта не работает','Резервы','Настройка нового РМ','БП ЗРДС'],
+      datasets:[{data:[314,75,73,58,58,53,42,38,38,32,27,29,29,28,26],
+        backgroundColor:['#888780','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#D85A30','#D85A30','#2E5C99','#D85A30','#2E5C99'],borderRadius:2}]},
+    options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw+' обращений'}}},
+      scales:{x:{ticks:{font:{size:10},color:tc},grid:{color:gc}},y:{ticks:{font:{size:10},color:tc},grid:{display:false}}}}});
+}
+
+function buildSub(){
+  if(built.sub)return;built.sub=true;
+  new Chart(document.getElementById('chartSub'),{type:'bar',
+    data:{labels:['Внесение изменений','Ошибка','Провести документ','Изм. карточки контр.','Предостав. доступа 1С','Настройка','Изм. маршрута','Пр./снятие резерва','Проставл. дизайнера'],
+      datasets:[{data:[433,55,44,30,29,29,28,25,19],backgroundColor:'#2E5C99',borderRadius:2}]},
+    options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw}}},
+      scales:{x:{ticks:{font:{size:10},color:tc},grid:{color:gc}},y:{ticks:{font:{size:10},color:tc},grid:{display:false}}}}});
+}
+
+function buildTeam(){
+  if(built.team)return;built.team=true;
+  const labels=['Андреева О.','Макарова И.','Стрыгина М.','Степанов А.','Халявкин А.','Крюков А.','Головчук Р.','Старовойтов В.','Петровский В.','Якуйтис М.','Хайлапов Р.','Соловей С.','Лукьяненко С.','Сунцов А.','Черныш Д.'];
+  new Chart(document.getElementById('chartTeam'),{type:'bar',
+    data:{labels,datasets:[
+      {label:'Апрель',data:[288,428,291,15,239,121,174,31,25,19,4,8,9,6,6],backgroundColor:'#3266AD88',borderColor:'#3266AD',borderWidth:1,borderRadius:2},
+      {label:'Май',data:[230,351,272,42,226,120,202,41,36,41,15,7,14,9,6],backgroundColor:'#1d9e7588',borderColor:'#1d9e75',borderWidth:1,borderRadius:2}]},
+    options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{position:'top',labels:{font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:c=>' '+c.dataset.label+': '+c.raw}}},
+      scales:{x:{ticks:{font:{size:10},color:tc},grid:{color:gc}},y:{ticks:{font:{size:10},color:tc},grid:{display:false}}}}});
+}
+
+function buildMonthly(){
+  if(built.monthly)return;built.monthly=true;
+  const labels=['Май 25','Июн 25','Июл 25','Авг 25','Сен 25','Окт 25','Ноя 25','Дек 25','Янв 26','Фев 26','Мар 26','Апр 26','Май 26'];
+  const vals=[2372,1970,2108,1954,1974,2013,1977,2156,1578,1798,1773,1724,1640];
+  const avgVals=[132,104,92,93,90,88,104,98,99,95,84,78,91];
+  const colors=['#888780','#888780','#888780','#888780','#888780','#888780','#C4B573','#C4B573','#C4B573','#2E5C99','#2E5C99','#2E5C99','#2E5C99'];
+
+  new Chart(document.getElementById('chartMonthlyBar'),{type:'bar',
+    data:{labels,datasets:[
+      {data:vals,backgroundColor:colors,borderRadius:3,label:'Обращений'},
+      {type:'line',data:[2065,2065,2065,2065,2065,2065,null,null,null,null,null,null,null],borderColor:'#88878066',borderDash:[5,4],borderWidth:1.5,pointRadius:0,fill:false,label:'Ср. предыд.'},
+      {type:'line',data:[null,null,null,null,null,null,null,null,null,1733,1733,1733,1733],borderColor:'#2E5C9966',borderDash:[5,4],borderWidth:1.5,pointRadius:0,fill:false,label:'Ср. текущий'}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.datasetIndex===0?' '+c.raw.toLocaleString('ru')+' обращений':c.datasetIndex===1?' среднее предыд.: 2 065':' среднее текущий: 1 733'}}},
+      scales:{x:{ticks:{font:{size:11},color:tc},grid:{display:false}},y:{ticks:{font:{size:11},color:tc},grid:{color:gc},min:1300,max:2500}}}
+  });
+
+  const legEl=document.createElement('div');
+  legEl.style.cssText='display:flex;gap:16px;font-size:12px;color:#888;margin-bottom:10px;flex-wrap:wrap';
+  legEl.innerHTML='<span style="display:flex;align-items:center;gap:5px"><span style="width:11px;height:11px;border-radius:2px;background:#888780;display:inline-block"></span>Предыдущий руководитель</span><span style="display:flex;align-items:center;gap:5px"><span style="width:11px;height:11px;border-radius:2px;background:#C4B573;display:inline-block"></span>Переходный период</span><span style="display:flex;align-items:center;gap:5px"><span style="width:11px;height:11px;border-radius:2px;background:#2E5C99;display:inline-block"></span>Текущий руководитель</span>';
+  const barCanvas=document.getElementById('chartMonthlyBar');
+  barCanvas.parentNode.insertBefore(legEl,barCanvas);
+
+  new Chart(document.getElementById('chartMonthlyAvg'),{type:'line',
+    data:{labels,datasets:[{
+      data:avgVals,
+      borderColor:colors,
+      backgroundColor:'transparent',
+      tension:0.3,
+      pointRadius:5,
+      pointBackgroundColor:colors,
+      borderWidth:2,
+      segment:{borderColor:ctx=>colors[ctx.p1DataIndex]}
+    }]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw+' обр/раб.день'}},
+        title:{display:true,text:'Среднее обращений в рабочий день',font:{size:13},color:'#2E5C99',padding:{bottom:8}}},
+      scales:{x:{ticks:{font:{size:11},color:tc},grid:{display:false}},y:{ticks:{font:{size:11},color:tc},grid:{color:gc},min:60,max:145}}}
+  });
+}
+</script>
 </body>
 </html>
