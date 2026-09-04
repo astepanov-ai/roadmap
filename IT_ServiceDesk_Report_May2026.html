@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -56,19 +57,21 @@ tr.lo td{background:#FAEEDA}
 <div class="rh">
   <div class="rtag">ИТ-отдел / Служба поддержки</div>
   <div class="rtitle">Статистика обращений - 2026</div>
-  <div class="rmeta">Помесячные вкладки (апрель · май · июнь) + динамика &nbsp;|&nbsp; Источник: Jira Service Management, проект ICT</div>
+  <div class="rmeta">Помесячные вкладки (апрель · май · июнь · июль · август) + динамика &nbsp;|&nbsp; Июнь-август - счётный поток «Мониторинга проблем» (без служебных и авто-задач) &nbsp;|&nbsp; Источник: Jira Service Management, проект ICT</div>
 </div>
 
 <div class="tabs">
   <span class="tabgrp">Месяц:</span>
   <button class="tab" data-tab="m-apr" onclick="showTab('m-apr',this)">Апрель 2026</button>
   <button class="tab" data-tab="m-may" onclick="showTab('m-may',this)">Май 2026</button>
-  <button class="tab active" data-tab="m-jun" onclick="showTab('m-jun',this)">Июнь 2026</button>
+  <button class="tab" data-tab="m-jun" onclick="showTab('m-jun',this)">Июнь 2026</button>
+  <button class="tab" data-tab="m-jul" onclick="showTab('m-jul',this)">Июль 2026</button>
+  <button class="tab active" data-tab="m-aug" onclick="showTab('m-aug',this)">Август 2026</button>
 </div>
 <div class="tabbar2">
   <span class="tabgrp">Динамика:</span>
   <button class="tab" data-tab="d-compare" onclick="showTab('d-compare',this)">Сравнение месяцев</button>
-  <button class="tab" data-tab="d-monthly" onclick="showTab('d-monthly',this)">По месяцам (13 мес.)</button>
+  <button class="tab" data-tab="d-monthly" onclick="showTab('d-monthly',this)">По месяцам (16 мес.)</button>
   <button class="tab" data-tab="d-systemic" onclick="showTab('d-systemic',this)">Проблематика</button>
 </div>
 
@@ -147,117 +150,239 @@ tr.lo td{background:#FAEEDA}
 <tr class="hi"><td>Оценка 5 («отлично»)</td><td class="c">96%</td></tr>
 <tr><td>Оценка ниже 4</td><td class="c">2</td></tr></tbody></table>
 </div>
-<div id="tab-m-jun" class="panel active">
-<div class="note">Июнь 2026 - максимальный объём за 4 месяца (1 765, +5,1% к маю). Классификация - 96,8%. Выполнено (включая обращения на проверке) - 88,1%; часть июньских задач ещё в работе, показатель вырастет по мере приёмки.</div>
+<div id="tab-m-jun" class="panel">
+<div class="note">Июнь 2026 - 1 553 обращения бизнеса (из 1 765 заведённых в Jira: 164 - служебный поток ИТ, ещё 48 не попали в разметку мониторинга). Классификация 98,2%. <b>Оговорка по июню:</b> корпус мониторинга по этому месяцу собирался из выгрузки решённых задач, поэтому 48 не попавших в него обращений - это в основном незакрытые (16 «Передано на 2 линию», 8 «В работе»). Из-за этого выполнение по счётному потоку выглядит как 97,3%, тогда как по полному списку Jira июнь закрыт на 95,7%. Июль и август такого перекоса не имеют. Изменение к маю не приводится: май считался по всем заведённым задачам, июнь - по счётному потоку.</div>
 <div class="kpi-row">
-  <div class="kc b"><div class="kl">Обращений принято</div><div class="kv">1 765</div><div class="kdelta">за месяц</div></div>
-  <div class="kc g"><div class="kl">Закрыто</div><div class="kv">88,1%</div><div class="kdelta">1 555 обращений</div></div>
-  <div class="kc a"><div class="kl">Оценка качества</div><div class="kv">4,82</div><div class="kdelta">57 отзывов · 5★ у 93%</div></div>
-  <div class="kc gr"><div class="kl">Классифицировано</div><div class="kv">96,8%</div><div class="kdelta">96,8% (1 708 из 1 765)</div></div>
+  <div class="kc b"><div class="kl">Обращений принято</div><div class="kv">1 553</div><div class="kdelta">без служебных · всего заведено 1 765</div></div>
+  <div class="kc g"><div class="kl">Закрыто</div><div class="kv">97,3%</div><div class="kdelta">1 511 обращений</div></div>
+  <div class="kc a"><div class="kl">Оценка качества</div><div class="kv">4,82</div><div class="kdelta">60 отзывов &middot; 5&#9733; у 92%</div></div>
+  <div class="kc gr"><div class="kl">Классифицировано</div><div class="kv">98,2%</div><div class="kdelta">98,2% (1 525 из 1 553)</div></div>
 </div>
-<h2>Статусы обращений</h2>
+<div class="grid2"><div><h2>Статусы обращений</h2>
 <table style="max-width:460px"><thead><tr><th>Статус</th><th class="c">Кол-во</th></tr></thead>
-<tbody><tr class="hi"><td>Готово</td><td class="c b">1 379</td></tr><tr class="hi"><td>На проверке</td><td class="c b">176</td></tr><tr class=""><td>В работе</td><td class="c b">95</td></tr><tr class=""><td>Отменено</td><td class="c b">54</td></tr><tr class=""><td>Передано на 2 линию</td><td class="c b">28</td></tr><tr class=""><td>Отложено</td><td class="c b">11</td></tr><tr class=""><td>Ожидает информации</td><td class="c b">9</td></tr><tr class=""><td>Классификация</td><td class="c b">6</td></tr><tr class=""><td>Новое</td><td class="c b">5</td></tr><tr class=""><td>Передано на 3 линию</td><td class="c b">2</td></tr><tr class="total"><td>Итого</td><td class="c">1 765</td></tr></tbody></table>
+<tbody><tr class="hi"><td>Готово</td><td class="c b">1 509</td></tr><tr class=""><td>Отменено</td><td class="c b">41</td></tr><tr class="hi"><td>На проверке</td><td class="c b">2</td></tr><tr class=""><td>Передано на 2 линию</td><td class="c b">1</td></tr><tr class="total"><td>Итого</td><td class="c">1 553</td></tr></tbody></table></div>
+<div><h2>Служебный поток вне статистики</h2>
+<table style="max-width:460px"><thead><tr><th>Что исключено</th><th class="c">Кол-во</th></tr></thead>
+<tbody><tr><td>Дежурства и регламентные проверки</td><td class="c b">57</td></tr><tr><td>Не попало в разметку мониторинга</td><td class="c b">48</td></tr><tr><td>Заявка ИТ самому себе</td><td class="c b">43</td></tr><tr><td>Автор из ИТ-команды</td><td class="c b">34</td></tr><tr><td>Авто-алерты интернета</td><td class="c b">30</td></tr><tr class="total"><td>Исключено</td><td class="c">212</td></tr><tr><td>Всего заведено в Jira</td><td class="c b">1 765</td></tr></tbody></table>
+<p style="font-size:11.5px;color:#5F5E5A;margin-top:6px">Правило «Мониторинга проблем»: авто-алерты, дежурства и регламентные проверки, авто-задачи RCA и заявки, которые ИТ-отдел заводит сам себе, не считаются обращениями бизнеса.</p></div></div>
 <h1>Динамика обращений по организациям</h1>
 <div class="grid2"><div><div class="cc" style="height:280px"><canvas id="org_jun"></canvas></div></div><div><table style="margin-top:10px">
 <thead><tr><th>Организация</th><th class="c">Обращений</th><th class="c">Доля</th><th class="c">Изм. к пред. мес.</th></tr></thead>
-<tbody><tr><td>ООО Баусервис</td><td class="c b">715</td><td class="c">40.5%</td><td class="c"><span class="dg">▼ -94 (-12%)</span></td></tr><tr><td>ИП Ахаимов</td><td class="c b">242</td><td class="c">13.7%</td><td class="c"><span class="da">▲ +69 (+40%)</span></td></tr><tr><td>ООО БауВосток</td><td class="c b">205</td><td class="c">11.6%</td><td class="c"><span class="da">▲ +24 (+13%)</span></td></tr><tr><td>ООО БауЗапад</td><td class="c b">188</td><td class="c">10.7%</td><td class="c"><span class="da">▲ +27 (+17%)</span></td></tr><tr><td>ООО Открытие</td><td class="c b">175</td><td class="c">9.9%</td><td class="c"><span class="da">▲ +58 (+50%)</span></td></tr><tr><td>ООО БауСофт</td><td class="c b">73</td><td class="c">4.1%</td><td class="c"><span class="dg">▼ -12 (-14%)</span></td></tr><tr><td>ИП Волчков В.Л.</td><td class="c b">51</td><td class="c">2.9%</td><td class="c">-</td></tr><tr><td>ООО Урбанист</td><td class="c b">46</td><td class="c">2.6%</td><td class="c">-</td></tr><tr><td>Прочие / не указана</td><td class="c b">70</td><td class="c">4.0%</td><td class="c"><span class="da">▲ +16 (+30%)</span></td></tr><tr class="total"><td>Итого</td><td class="c">1 765</td><td class="c">100%</td><td class="c"></td></tr></tbody></table></div></div>
+<tbody><tr><td>ООО Баусервис</td><td class="c b">632</td><td class="c">40.7%</td><td class="c">-</td></tr><tr><td>ИП Ахаимов</td><td class="c b">238</td><td class="c">15.3%</td><td class="c">-</td></tr><tr><td>ООО БауВосток</td><td class="c b">201</td><td class="c">12.9%</td><td class="c">-</td></tr><tr><td>ООО БауЗапад</td><td class="c b">184</td><td class="c">11.8%</td><td class="c">-</td></tr><tr><td>ООО Открытие</td><td class="c b">138</td><td class="c">8.9%</td><td class="c">-</td></tr><tr><td>ИП Волчков В.Л.</td><td class="c b">50</td><td class="c">3.2%</td><td class="c">-</td></tr><tr><td>ООО Урбанист</td><td class="c b">45</td><td class="c">2.9%</td><td class="c">-</td></tr><tr><td>ООО БауСофт</td><td class="c b">19</td><td class="c">1.2%</td><td class="c">-</td></tr><tr><td>Прочие / не указана</td><td class="c b">46</td><td class="c">3.0%</td><td class="c">-</td></tr><tr class="total"><td>Итого</td><td class="c">1 553</td><td class="c">100%</td><td class="c"></td></tr></tbody></table></div></div>
 <h1>Динамика обращений по дням</h1>
-<p>Пик - 1 числа (136 обращений). Среднее в рабочий день - 77, в выходной - 8. Столбцы выходных дней выделены серым.</p>
+<p>Пик - 1 числа (127 обращений). Среднее в рабочий день - 68, в выходной - 7. Столбцы выходных дней выделены серым.</p>
 <div class="cc" style="height:260px"><canvas id="day_jun"></canvas></div>
 <h1>Распределение по категориям</h1>
 <div class="grid2"><div><div class="cc" style="height:280px"><canvas id="cat_jun"></canvas></div></div><div><table style="margin-top:20px">
 <thead><tr><th>Категория</th><th class="c">Кол-во</th><th class="c">Доля</th></tr></thead>
-<tbody><tr><td>1С и бизнес-процессы</td><td class="c b">1 060</td><td class="c">60,1%</td></tr><tr><td>Инфраструктура и РМ</td><td class="c b">380</td><td class="c">21,5%</td></tr><tr><td>Коммуникации и связь</td><td class="c b">115</td><td class="c">6,5%</td></tr><tr><td>Доступы и учётные записи</td><td class="c b">86</td><td class="c">4,9%</td></tr><tr><td>Бизнес-приложения</td><td class="c b">66</td><td class="c">3,7%</td></tr><tr><td>Не классифицировано</td><td class="c b">57</td><td class="c">3,2%</td></tr><tr><td>Логистика и склад</td><td class="c b">1</td><td class="c">0,1%</td></tr><tr class="total"><td>Итого</td><td class="c">1 765</td><td class="c">100%</td></tr></tbody></table></div></div>
+<tbody><tr><td>1С и бизнес-процессы</td><td class="c b">1 023</td><td class="c">65,9%</td></tr><tr><td>Инфраструктура и РМ</td><td class="c b">285</td><td class="c">18,4%</td></tr><tr><td>Коммуникации и связь</td><td class="c b">85</td><td class="c">5,5%</td></tr><tr><td>Доступы и учётные записи</td><td class="c b">79</td><td class="c">5,1%</td></tr><tr><td>Бизнес-приложения</td><td class="c b">52</td><td class="c">3,3%</td></tr><tr><td>Не классифицировано</td><td class="c b">28</td><td class="c">1,8%</td></tr><tr><td>Логистика и склад</td><td class="c b">1</td><td class="c">0,1%</td></tr><tr class="total"><td>Итого</td><td class="c">1 553</td><td class="c">100%</td></tr></tbody></table></div></div>
 <h1>Детализация по сервисам</h1><div class="cc" style="height:320px"><canvas id="svc_jun"></canvas></div>
 <table><thead><tr><th>Сервис</th><th>Категория</th><th class="c">Обращений</th><th class="c">Доля</th></tr></thead>
-<tbody><tr><td>1С: Управление торговлей (УТ10)</td><td>1С и бизнес-процессы</td><td class="c b">1 021</td><td class="c">57,8%</td></tr><tr><td>Сеть и интернет</td><td>Инфраструктура</td><td class="c b">105</td><td class="c">5,9%</td></tr><tr><td>Корпоративная печать и сканирование</td><td>Инфраструктура</td><td class="c b">93</td><td class="c">5,3%</td></tr><tr><td>Корпоративная учётная запись</td><td>Доступы</td><td class="c b">85</td><td class="c">4,8%</td></tr><tr><td>Рабочее место (ПК, ноутбук, периферия)</td><td>Инфраструктура</td><td class="c b">73</td><td class="c">4,1%</td></tr><tr><td>Программное обеспечение (общее)</td><td>Инфраструктура</td><td class="c b">69</td><td class="c">3,9%</td></tr><tr><td>Электронная почта</td><td>Коммуникации</td><td class="c b">53</td><td class="c">3,0%</td></tr><tr><td>Телефония (VoIP / Стационарная)</td><td>Коммуникации</td><td class="c b">41</td><td class="c">2,3%</td></tr><tr><td>Сайты, веб-кабинет, B2B портал</td><td>Бизнес-приложения</td><td class="c b">37</td><td class="c">2,1%</td></tr><tr><td>Касса и фискальные устройства</td><td>Инфраструктура</td><td class="c b">32</td><td class="c">1,8%</td></tr><tr><td>Битрикс24</td><td>Бизнес-приложения</td><td class="c b">28</td><td class="c">1,6%</td></tr><tr><td>ЭДО: Диадок / ЭТРАН / СБИС / Сфера</td><td>1С и бизнес-процессы</td><td class="c b">19</td><td class="c">1,1%</td></tr><tr><td>Корп. коммуникация (Переговорные, ВКС)</td><td>Коммуникации</td><td class="c b">19</td><td class="c">1,1%</td></tr><tr><td>BI Отчётность</td><td>1С и бизнес-процессы</td><td class="c b">15</td><td class="c">0,8%</td></tr><tr><td>Серверная инфраструктура и ИБ</td><td>Инфраструктура</td><td class="c b">8</td><td class="c">0,5%</td></tr><tr><td>ЗУП: Зарплата и управление персоналом</td><td>1С и бизнес-процессы</td><td class="c b">4</td><td class="c">0,2%</td></tr><tr><td>Мобильная связь</td><td>Коммуникации</td><td class="c b">2</td><td class="c">0,1%</td></tr><tr><td>Прочие (WMS, Видеонабл., ViSoft)</td><td>-</td><td class="c b">3</td><td class="c">0,2%</td></tr><tr><td>Не классифицировано</td><td>-</td><td class="c b">58</td><td class="c">3,3%</td></tr><tr class="total"><td>Итого</td><td></td><td class="c">1 765</td><td class="c">100%</td></tr></tbody></table>
+<tbody><tr><td>1С: Управление торговлей (УТ10)</td><td>1С и бизнес-процессы</td><td class="c b">993</td><td class="c">63,9%</td></tr><tr><td>Корпоративная учётная запись</td><td>Доступы</td><td class="c b">79</td><td class="c">5,1%</td></tr><tr><td>Корпоративная печать и сканирование</td><td>Инфраструктура</td><td class="c b">78</td><td class="c">5,0%</td></tr><tr><td>Сеть и интернет</td><td>Инфраструктура</td><td class="c b">68</td><td class="c">4,4%</td></tr><tr><td>Программное обеспечение (общее)</td><td>Инфраструктура</td><td class="c b">56</td><td class="c">3,6%</td></tr><tr><td>Электронная почта</td><td>Коммуникации</td><td class="c b">49</td><td class="c">3,2%</td></tr><tr><td>Рабочее место (ПК, ноутбук, периферия)</td><td>Инфраструктура</td><td class="c b">49</td><td class="c">3,2%</td></tr><tr><td>Телефония (VoIP / Стационарная)</td><td>Коммуникации</td><td class="c b">34</td><td class="c">2,2%</td></tr><tr><td>Касса и фискальные устройства</td><td>Инфраструктура</td><td class="c b">31</td><td class="c">2,0%</td></tr><tr><td>Сайты, веб-кабинет, B2B портал</td><td>Бизнес-приложения</td><td class="c b">26</td><td class="c">1,7%</td></tr><tr><td>Битрикс24</td><td>Бизнес-приложения</td><td class="c b">25</td><td class="c">1,6%</td></tr><tr><td>ЭДО: Диадок / ЭТРАН / СБИС / Сфера</td><td>1С и бизнес-процессы</td><td class="c b">18</td><td class="c">1,2%</td></tr><tr><td>BI Отчётность</td><td>1С и бизнес-процессы</td><td class="c b">8</td><td class="c">0,5%</td></tr><tr><td>Прочие (ЗУП, Серверы и ИБ, Моб. связь, Платформа ViSoft)</td><td>-</td><td class="c b">10</td><td class="c">0,6%</td></tr><tr><td>Не классифицировано</td><td>-</td><td class="c b">29</td><td class="c">1,9%</td></tr><tr class="total"><td>Итого</td><td></td><td class="c">1 553</td><td class="c">100%</td></tr></tbody></table>
 <h1>Типы запросов</h1>
 <div class="grid2"><div><h2>Топ-15 типов запроса (все сервисы)</h2><div class="cc" style="height:360px"><canvas id="rt_jun"></canvas></div></div>
 <div><h2>Типы запроса по 1С: УТ10</h2>
 <table><thead><tr><th>Тип запроса</th><th class="c">Кол-во</th></tr></thead>
-<tbody><tr><td>БП Комплексная продажа</td><td class="c">103</td></tr><tr><td>Заказ покупателя</td><td class="c">88</td></tr><tr><td>Другая проблема</td><td class="c">77</td></tr><tr><td>БП Доставка</td><td class="c">75</td></tr><tr><td>БП Утверждение договора</td><td class="c">68</td></tr><tr><td>Прочие настройки</td><td class="c">47</td></tr><tr><td>БП Предварительные наборы</td><td class="c">44</td></tr><tr><td>Работа с документами</td><td class="c">40</td></tr><tr><td>БП Утверждение ЗРДС</td><td class="c">40</td></tr><tr><td>Контрагент</td><td class="c">38</td></tr><tr><td>Внутренний заказ</td><td class="c">32</td></tr><tr><td>БП Заказные позиции</td><td class="c">25</td></tr><tr><td>БП Премии, штрафы</td><td class="c">24</td></tr><tr><td>БП Претензия</td><td class="c">24</td></tr><tr><td>БП Возврат</td><td class="c">23</td></tr><tr><td>БП Запрос льготной доставки</td><td class="c">21</td></tr><tr><td>Заказ поставщику</td><td class="c">21</td></tr><tr><td>БП ЗВУ</td><td class="c">17</td></tr><tr><td>БП Служебная записка в ФО</td><td class="c">16</td></tr><tr><td>БП Командировка</td><td class="c">15</td></tr><tr><td>БП Отгрузка</td><td class="c">14</td></tr><tr><td>Резервы</td><td class="c">13</td></tr><tr><td>Прочие (≤12 каждый)</td><td class="c">111</td></tr><tr class="total"><td>Итого 1С: УТ10</td><td class="c">1 021</td></tr></tbody></table></div></div>
+<tbody><tr><td>БП Комплексная продажа</td><td class="c">102</td></tr><tr><td>Заказ покупателя</td><td class="c">85</td></tr><tr><td>БП Доставка</td><td class="c">74</td></tr><tr><td>Другая проблема</td><td class="c">72</td></tr><tr><td>БП Утверждение договора</td><td class="c">68</td></tr><tr><td>Прочие настройки</td><td class="c">46</td></tr><tr><td>БП Предварительные наборы</td><td class="c">41</td></tr><tr><td>БП Утверждение бюджетной заявки (ЗРДС)</td><td class="c">40</td></tr><tr><td>Контрагент</td><td class="c">35</td></tr><tr><td>Работа с документами</td><td class="c">33</td></tr><tr><td>Внутренний заказ</td><td class="c">32</td></tr><tr><td>БП Заказные позиции</td><td class="c">25</td></tr><tr><td>БП Премии, штрафы</td><td class="c">24</td></tr><tr><td>БП Претензия</td><td class="c">24</td></tr><tr><td>БП Возврат</td><td class="c">23</td></tr><tr><td>БП Запрос льготной доставки</td><td class="c">21</td></tr><tr><td>Заказ поставщику</td><td class="c">20</td></tr><tr><td>БП Заказ выставления универсальный (ЗВУ)</td><td class="c">17</td></tr><tr><td>БП Командировка</td><td class="c">15</td></tr><tr><td>БП Служебная записка в ФО</td><td class="c">15</td></tr><tr><td>БП Отгрузка</td><td class="c">14</td></tr><tr><td>Резервы</td><td class="c">12</td></tr><tr><td>БП Ввод индивидуальных графиков работы</td><td class="c">12</td></tr><tr><td>БП Поступление товара на склад</td><td class="c">12</td></tr><tr><td>БП Заказ товара универсальный (ЗТУ)</td><td class="c">12</td></tr><tr><td>БП Внутреннее перемещение</td><td class="c">12</td></tr><tr><td>Прочие (&le;11 каждый)</td><td class="c">107</td></tr><tr class="total"><td>Итого 1С: УТ10</td><td class="c">993</td></tr></tbody></table></div></div>
 <h1>Подтипы обращений</h1>
-<p>Подтип заполнен у 931 из 1 765 обращений (52,7%). Большинство подтипов относятся к 1С: УТ10.</p>
+<p>Подтип заполнен у 908 из 1 553 обращений (58,5%). Большинство подтипов относятся к 1С: УТ10.</p>
 <div class="grid2"><div><div class="cc" style="height:300px"><canvas id="sub_jun"></canvas></div></div><div>
 <table><thead><tr><th>Подтип</th><th class="c">Кол-во</th><th class="c">% от заполн.</th></tr></thead>
-<tbody><tr><td class="b"><b>Внесение изменений</b></td><td class="c b">593</td><td class="c">63,7%</td></tr><tr><td>Ошибка</td><td class="c b">58</td><td class="c">6,2%</td></tr><tr><td>Настройка</td><td class="c b">54</td><td class="c">5,8%</td></tr><tr><td>Предоставление доступа к 1С УТ</td><td class="c b">38</td><td class="c">4,1%</td></tr><tr><td>Провести / скорректировать документ</td><td class="c b">33</td><td class="c">3,5%</td></tr><tr><td>Проведение / распроведение</td><td class="c b">29</td><td class="c">3,1%</td></tr><tr><td>Изменение карточки контрагента</td><td class="c b">27</td><td class="c">2,9%</td></tr><tr><td>Проставление дизайнера</td><td class="c b">22</td><td class="c">2,4%</td></tr><tr><td>Проставление / снятие резерва</td><td class="c b">13</td><td class="c">1,4%</td></tr><tr><td>Изменение маршрута</td><td class="c b">10</td><td class="c">1,1%</td></tr><tr><td>База недоступна</td><td class="c b">7</td><td class="c">0,8%</td></tr><tr><td>Предоставление доступа</td><td class="c b">6</td><td class="c">0,6%</td></tr><tr><td>Настройка печатных форм</td><td class="c b">5</td><td class="c">0,5%</td></tr><tr><td>Транспортные документы</td><td class="c b">5</td><td class="c">0,5%</td></tr><tr><td>Прочие подтипы</td><td class="c b">31</td><td class="c">3,3%</td></tr><tr class="total"><td>Итого (заполненные)</td><td class="c">931</td><td class="c">100%</td></tr></tbody></table></div></div>
+<tbody><tr><td class="b"><b>Внесение изменений</b></td><td class="c b">588</td><td class="c">64,8%</td></tr><tr><td>Ошибка</td><td class="c b">57</td><td class="c">6,3%</td></tr><tr><td>Настройка</td><td class="c b">50</td><td class="c">5,5%</td></tr><tr><td>Предостав. доступа 1С</td><td class="c b">38</td><td class="c">4,2%</td></tr><tr><td>Пров./распров.</td><td class="c b">29</td><td class="c">3,2%</td></tr><tr><td>Провести документ</td><td class="c b">28</td><td class="c">3,1%</td></tr><tr><td>Изм. карточки контр.</td><td class="c b">25</td><td class="c">2,8%</td></tr><tr><td>Проставл. дизайнера</td><td class="c b">21</td><td class="c">2,3%</td></tr><tr><td>Пр./снятие резерва</td><td class="c b">12</td><td class="c">1,3%</td></tr><tr><td>Изм. маршрута</td><td class="c b">10</td><td class="c">1,1%</td></tr><tr><td>База недоступна</td><td class="c b">7</td><td class="c">0,8%</td></tr><tr><td>Предоставление доступа</td><td class="c b">5</td><td class="c">0,6%</td></tr><tr><td>Транспортные документы</td><td class="c b">5</td><td class="c">0,6%</td></tr><tr><td>Настройка печ. форм</td><td class="c b">4</td><td class="c">0,4%</td></tr><tr><td>Предоставление доступа к карточкам номенклатуры</td><td class="c b">3</td><td class="c">0,3%</td></tr><tr><td>Прочие подтипы</td><td class="c b">26</td><td class="c">2,9%</td></tr><tr class="total"><td>Итого (заполненные)</td><td class="c">908</td><td class="c">100%</td></tr></tbody></table></div></div>
 <h1>Выполнение по специалистам</h1>
 <div class="cc" style="height:340px"><canvas id="team_jun"></canvas></div>
 <table><thead><tr><th>Отдел</th><th>Специалист</th><th class="c">Обработано</th></tr></thead>
-<tbody><tr><td>Сервисная группа</td><td>Андреева Ольга</td><td class="c b">338</td></tr><tr><td>Сервисная группа</td><td>Макарова Ирина</td><td class="c b">398</td></tr><tr><td>Сервисная группа</td><td>Стрыгина Мария</td><td class="c b">254</td></tr><tr><td>Сервисная группа</td><td>Степанов Андрей</td><td class="c b">63</td></tr><tr><td>Системные адм.</td><td>Халявкин Артём</td><td class="c b">220</td></tr><tr><td>Системные адм.</td><td>Крюков Александр</td><td class="c b">167</td></tr><tr><td>Системные адм.</td><td>Головчук Руслан</td><td class="c b">112</td></tr><tr><td>Системные адм.</td><td>Старовойтов Василий</td><td class="c b">41</td></tr><tr><td>Системные адм.</td><td>Петровский Виктор</td><td class="c b">26</td></tr><tr><td>Отдел разработки</td><td>Якуйтис Максим</td><td class="c b">26</td></tr><tr><td>Отдел разработки</td><td>Хайлапов Рустам</td><td class="c b">15</td></tr><tr><td>Отдел разработки</td><td>Соловей Сергей</td><td class="c b">13</td></tr><tr><td>Разработка сайта</td><td>Лукьяненко Сергей</td><td class="c b">16</td></tr><tr><td>BI</td><td>Водопьянов Иван</td><td class="c b">27</td></tr><tr><td>Аналитика</td><td>Черныш Дарья</td><td class="c b">12</td></tr><tr><td>-</td><td>Прочие исполнители</td><td class="c b">26</td></tr><tr class="total"><td colspan="2">Итого</td><td class="c">1 754</td></tr></tbody></table>
+<tbody><tr><td>Сервисная группа</td><td>Андреева Ольга</td><td class="c b">316</td></tr><tr><td>Сервисная группа</td><td>Макарова Ирина</td><td class="c b">396</td></tr><tr><td>Сервисная группа</td><td>Стрыгина Мария</td><td class="c b">249</td></tr><tr><td>Сервисная группа</td><td>Тощёва Мария</td><td class="c b">2</td></tr><tr><td>Сервисная группа</td><td>Степанов Андрей</td><td class="c b">48</td></tr><tr><td>Системные адм.</td><td>Халявкин Артём</td><td class="c b">188</td></tr><tr><td>Системные адм.</td><td>Крюков Александр</td><td class="c b">110</td></tr><tr><td>Системные адм.</td><td>Головчук Руслан</td><td class="c b">106</td></tr><tr><td>Системные адм.</td><td>Старовойтов Василий</td><td class="c b">36</td></tr><tr><td>Системные адм.</td><td>Петровский Виктор</td><td class="c b">19</td></tr><tr><td>Отдел разработки</td><td>Якуйтис Максим</td><td class="c b">23</td></tr><tr><td>Отдел разработки</td><td>Хайралапов Рустам</td><td class="c b">9</td></tr><tr><td>Отдел разработки</td><td>Соловей Сергей</td><td class="c b">1</td></tr><tr><td>Отдел разработки</td><td>Блинов Роман</td><td class="c b">2</td></tr><tr><td>Разработка сайта</td><td>Лукьяненко Сергей</td><td class="c b">11</td></tr><tr><td>BI</td><td>Водопьянов Иван</td><td class="c b">15</td></tr><tr><td>Аналитика</td><td>Черныш Дарья</td><td class="c b">12</td></tr><tr><td>-</td><td>Прочие исполнители</td><td class="c b">10</td></tr><tr class="total"><td colspan="2">Итого</td><td class="c">1 553</td></tr></tbody></table>
 <h2>Удовлетворённость пользователей</h2>
 <table style="max-width:420px"><thead><tr><th>Показатель</th><th class="c">Значение</th></tr></thead><tbody>
-<tr><td>Количество оценок</td><td class="c b">57</td></tr>
+<tr><td>Количество оценок</td><td class="c b">60</td></tr>
 <tr class="hi"><td>Средняя оценка</td><td class="c b">4,82 / 5</td></tr>
-<tr class="hi"><td>Оценка 5 («отлично»)</td><td class="c">93%</td></tr>
+<tr class="hi"><td>Оценка 5 (&laquo;отлично&raquo;)</td><td class="c">92%</td></tr>
 <tr><td>Оценка ниже 4</td><td class="c">2</td></tr></tbody></table>
 </div>
+<div id="tab-m-jul" class="panel">
+<div class="note">Июль 2026 - 1 634 обращения бизнеса (из 1 822; 188 служебных), +5,2% к июню. Классификация 98,5%, выполнено 96,3%. С июля ИТ-отдел ведёт мониторинг и дежурства задачами в Jira, плюс пошли авто-письма ALARM по обмену с WMS (58 за месяц) - весь этот поток в статистику обращений не входит. Пик 28 июля (88).</div>
+<div class="kpi-row">
+  <div class="kc b"><div class="kl">Обращений принято</div><div class="kv">1 634</div><div class="kdelta">без служебных · всего заведено 1 822</div></div>
+  <div class="kc g"><div class="kl">Закрыто</div><div class="kv">96,3%</div><div class="kdelta">1 573 обращений</div></div>
+  <div class="kc a"><div class="kl">Оценка качества</div><div class="kv">4,91</div><div class="kdelta">47 отзывов &middot; 5&#9733; у 98%</div></div>
+  <div class="kc gr"><div class="kl">Классифицировано</div><div class="kv">98,5%</div><div class="kdelta">98,5% (1 609 из 1 634)</div></div>
+</div>
+<div class="grid2"><div><h2>Статусы обращений</h2>
+<table style="max-width:460px"><thead><tr><th>Статус</th><th class="c">Кол-во</th></tr></thead>
+<tbody><tr class="hi"><td>Готово</td><td class="c b">1 564</td></tr><tr class=""><td>В работе</td><td class="c b">24</td></tr><tr class=""><td>Передано на 2 линию</td><td class="c b">22</td></tr><tr class="hi"><td>На проверке</td><td class="c b">9</td></tr><tr class=""><td>Отложено</td><td class="c b">7</td></tr><tr class=""><td>Отменено</td><td class="c b">4</td></tr><tr class=""><td>Передано на 3 линию</td><td class="c b">2</td></tr><tr class=""><td>Ожидает информации</td><td class="c b">1</td></tr><tr class=""><td>Классификация</td><td class="c b">1</td></tr><tr class="total"><td>Итого</td><td class="c">1 634</td></tr></tbody></table></div>
+<div><h2>Служебный поток вне статистики</h2>
+<table style="max-width:460px"><thead><tr><th>Что исключено</th><th class="c">Кол-во</th></tr></thead>
+<tbody><tr><td>ALARM WMS (авто-письма)</td><td class="c b">58</td></tr><tr><td>Дежурства и регламентные проверки</td><td class="c b">47</td></tr><tr><td>Заявка ИТ самому себе</td><td class="c b">31</td></tr><tr><td>Авто-алерты интернета</td><td class="c b">31</td></tr><tr><td>Автор из ИТ-команды</td><td class="c b">19</td></tr><tr><td>Авто-RCA (робот Jira)</td><td class="c b">2</td></tr><tr class="total"><td>Исключено</td><td class="c">188</td></tr><tr><td>Всего заведено в Jira</td><td class="c b">1 822</td></tr></tbody></table>
+<p style="font-size:11.5px;color:#5F5E5A;margin-top:6px">Правило «Мониторинга проблем»: авто-алерты, дежурства и регламентные проверки, авто-задачи RCA и заявки, которые ИТ-отдел заводит сам себе, не считаются обращениями бизнеса.</p></div></div>
+<h1>Динамика обращений по организациям</h1>
+<div class="grid2"><div><div class="cc" style="height:280px"><canvas id="org_jul"></canvas></div></div><div><table style="margin-top:10px">
+<thead><tr><th>Организация</th><th class="c">Обращений</th><th class="c">Доля</th><th class="c">Изм. к пред. мес.</th></tr></thead>
+<tbody><tr><td>ООО Баусервис</td><td class="c b">682</td><td class="c">41.7%</td><td class="c">-</td></tr><tr><td>ООО БауЗапад</td><td class="c b">221</td><td class="c">13.5%</td><td class="c"><span class="da">&#9650; +37 (+20%)</span></td></tr><tr><td>ИП Ахаимов</td><td class="c b">199</td><td class="c">12.2%</td><td class="c"><span class="dg">&#9660; -39 (-16%)</span></td></tr><tr><td>ООО БауВосток</td><td class="c b">173</td><td class="c">10.6%</td><td class="c"><span class="dg">&#9660; -28 (-14%)</span></td></tr><tr><td>ООО Открытие</td><td class="c b">167</td><td class="c">10.2%</td><td class="c"><span class="da">&#9650; +29 (+21%)</span></td></tr><tr><td>ООО Урбанист</td><td class="c b">95</td><td class="c">5.8%</td><td class="c"><span class="da">&#9650; +50 (+111%)</span></td></tr><tr><td>ИП Волчков В.Л.</td><td class="c b">37</td><td class="c">2.3%</td><td class="c"><span class="dg">&#9660; -13 (-26%)</span></td></tr><tr><td>ООО БауСофт</td><td class="c b">18</td><td class="c">1.1%</td><td class="c">-</td></tr><tr><td>Прочие / не указана</td><td class="c b">42</td><td class="c">2.6%</td><td class="c">-</td></tr><tr class="total"><td>Итого</td><td class="c">1 634</td><td class="c">100%</td><td class="c"></td></tr></tbody></table></div></div>
+<h1>Динамика обращений по дням</h1>
+<p>Пик - 28 числа (88 обращений). Среднее в рабочий день - 68, в выходной - 8. Столбцы выходных дней выделены серым.</p>
+<div class="cc" style="height:260px"><canvas id="day_jul"></canvas></div>
+<h1>Распределение по категориям</h1>
+<div class="grid2"><div><div class="cc" style="height:280px"><canvas id="cat_jul"></canvas></div></div><div><table style="margin-top:20px">
+<thead><tr><th>Категория</th><th class="c">Кол-во</th><th class="c">Доля</th></tr></thead>
+<tbody><tr><td>1С и бизнес-процессы</td><td class="c b">1 052</td><td class="c">64,4%</td></tr><tr><td>Инфраструктура и РМ</td><td class="c b">365</td><td class="c">22,3%</td></tr><tr><td>Коммуникации и связь</td><td class="c b">80</td><td class="c">4,9%</td></tr><tr><td>Бизнес-приложения</td><td class="c b">56</td><td class="c">3,4%</td></tr><tr><td>Доступы и учётные записи</td><td class="c b">53</td><td class="c">3,2%</td></tr><tr><td>Не классифицировано</td><td class="c b">25</td><td class="c">1,5%</td></tr><tr><td>Логистика и склад</td><td class="c b">3</td><td class="c">0,2%</td></tr><tr class="total"><td>Итого</td><td class="c">1 634</td><td class="c">100%</td></tr></tbody></table></div></div>
+<h1>Детализация по сервисам</h1><div class="cc" style="height:320px"><canvas id="svc_jul"></canvas></div>
+<table><thead><tr><th>Сервис</th><th>Категория</th><th class="c">Обращений</th><th class="c">Доля</th></tr></thead>
+<tbody><tr><td>1С: Управление торговлей (УТ10)</td><td>1С и бизнес-процессы</td><td class="c b">1 009</td><td class="c">61,8%</td></tr><tr><td>Рабочее место (ПК, ноутбук, периферия)</td><td>Инфраструктура</td><td class="c b">116</td><td class="c">7,1%</td></tr><tr><td>Корпоративная печать и сканирование</td><td>Инфраструктура</td><td class="c b">76</td><td class="c">4,7%</td></tr><tr><td>Программное обеспечение (общее)</td><td>Инфраструктура</td><td class="c b">73</td><td class="c">4,5%</td></tr><tr><td>Электронная почта</td><td>Коммуникации</td><td class="c b">55</td><td class="c">3,4%</td></tr><tr><td>Касса и фискальные устройства</td><td>Инфраструктура</td><td class="c b">54</td><td class="c">3,3%</td></tr><tr><td>Корпоративная учётная запись</td><td>Доступы</td><td class="c b">53</td><td class="c">3,2%</td></tr><tr><td>Сеть и интернет</td><td>Инфраструктура</td><td class="c b">40</td><td class="c">2,4%</td></tr><tr><td>ЭДО: Диадок / ЭТРАН / СБИС / Сфера</td><td>1С и бизнес-процессы</td><td class="c b">32</td><td class="c">2,0%</td></tr><tr><td>Сайты, веб-кабинет, B2B портал</td><td>Бизнес-приложения</td><td class="c b">31</td><td class="c">1,9%</td></tr><tr><td>Битрикс24</td><td>Бизнес-приложения</td><td class="c b">24</td><td class="c">1,5%</td></tr><tr><td>Телефония (VoIP / Стационарная)</td><td>Коммуникации</td><td class="c b">24</td><td class="c">1,5%</td></tr><tr><td>BI Отчётность</td><td>1С и бизнес-процессы</td><td class="c b">9</td><td class="c">0,6%</td></tr><tr><td>Серверная инфраструктура и ИБ</td><td>Инфраструктура</td><td class="c b">6</td><td class="c">0,4%</td></tr><tr><td>Прочие (WMS, Моб. связь, Мобильное приложение ViHome, ЗУП)</td><td>-</td><td class="c b">6</td><td class="c">0,4%</td></tr><tr><td>Не классифицировано</td><td>-</td><td class="c b">26</td><td class="c">1,6%</td></tr><tr class="total"><td>Итого</td><td></td><td class="c">1 634</td><td class="c">100%</td></tr></tbody></table>
+<h1>Типы запросов</h1>
+<div class="grid2"><div><h2>Топ-15 типов запроса (все сервисы)</h2><div class="cc" style="height:360px"><canvas id="rt_jul"></canvas></div></div>
+<div><h2>Типы запроса по 1С: УТ10</h2>
+<table><thead><tr><th>Тип запроса</th><th class="c">Кол-во</th></tr></thead>
+<tbody><tr><td>Заказ покупателя</td><td class="c">114</td></tr><tr><td>БП Комплексная продажа</td><td class="c">71</td></tr><tr><td>БП Доставка</td><td class="c">70</td></tr><tr><td>Прочие настройки</td><td class="c">69</td></tr><tr><td>БП Утверждение договора</td><td class="c">63</td></tr><tr><td>БП Утверждение бюджетной заявки (ЗРДС)</td><td class="c">51</td></tr><tr><td>Внутренний заказ</td><td class="c">50</td></tr><tr><td>Работа с документами</td><td class="c">49</td></tr><tr><td>БП Претензия</td><td class="c">36</td></tr><tr><td>Контрагент</td><td class="c">36</td></tr><tr><td>Ошибки входа и доступа к 1С</td><td class="c">32</td></tr><tr><td>БП Предварительные наборы</td><td class="c">31</td></tr><tr><td>БП Возврат</td><td class="c">22</td></tr><tr><td>БП Служебная записка в ФО</td><td class="c">20</td></tr><tr><td>БП Внутреннее перемещение</td><td class="c">20</td></tr><tr><td>БП Заказ товара универсальный (ЗТУ)</td><td class="c">19</td></tr><tr><td>БП Заказные позиции</td><td class="c">19</td></tr><tr><td>Заказ поставщику</td><td class="c">17</td></tr><tr><td>БП Ввод индивидуальных графиков работы</td><td class="c">17</td></tr><tr><td>Другая проблема</td><td class="c">17</td></tr><tr><td>Системные инциденты</td><td class="c">16</td></tr><tr><td>БП Заказ выставления универсальный (ЗВУ)</td><td class="c">16</td></tr><tr><td>БП Согласование переноса даты доставки</td><td class="c">14</td></tr><tr><td>Логистика</td><td class="c">13</td></tr><tr><td>Прочие (&le;11 каждый)</td><td class="c">127</td></tr><tr class="total"><td>Итого 1С: УТ10</td><td class="c">1 009</td></tr></tbody></table></div></div>
+<h1>Подтипы обращений</h1>
+<p>Подтип заполнен у 991 из 1 634 обращений (60,6%). Большинство подтипов относятся к 1С: УТ10.</p>
+<div class="grid2"><div><div class="cc" style="height:300px"><canvas id="sub_jul"></canvas></div></div><div>
+<table><thead><tr><th>Подтип</th><th class="c">Кол-во</th><th class="c">% от заполн.</th></tr></thead>
+<tbody><tr><td class="b"><b>Внесение изменений</b></td><td class="c b">588</td><td class="c">59,3%</td></tr><tr><td>Предостав. доступа 1С</td><td class="c b">54</td><td class="c">5,4%</td></tr><tr><td>Пров./распров.</td><td class="c b">53</td><td class="c">5,3%</td></tr><tr><td>Ошибка</td><td class="c b">40</td><td class="c">4,0%</td></tr><tr><td>Не открывается 1С</td><td class="c b">31</td><td class="c">3,1%</td></tr><tr><td>Провести документ</td><td class="c b">27</td><td class="c">2,7%</td></tr><tr><td>Изм. карточки контр.</td><td class="c b">26</td><td class="c">2,6%</td></tr><tr><td>Настройка</td><td class="c b">25</td><td class="c">2,5%</td></tr><tr><td>Проставл. дизайнера</td><td class="c b">22</td><td class="c">2,2%</td></tr><tr><td>База недоступна</td><td class="c b">14</td><td class="c">1,4%</td></tr><tr><td>Предоставление доступа</td><td class="c b">10</td><td class="c">1,0%</td></tr><tr><td>Консультация</td><td class="c b">10</td><td class="c">1,0%</td></tr><tr><td>Транспортные документы</td><td class="c b">9</td><td class="c">0,9%</td></tr><tr><td>Настройка печ. форм</td><td class="c b">8</td><td class="c">0,8%</td></tr><tr><td>Настр. оповещений</td><td class="c b">7</td><td class="c">0,7%</td></tr><tr><td>Прочие подтипы</td><td class="c b">67</td><td class="c">6,8%</td></tr><tr class="total"><td>Итого (заполненные)</td><td class="c">991</td><td class="c">100%</td></tr></tbody></table></div></div>
+<h1>Выполнение по специалистам</h1>
+<div class="cc" style="height:340px"><canvas id="team_jul"></canvas></div>
+<table><thead><tr><th>Отдел</th><th>Специалист</th><th class="c">Обработано</th></tr></thead>
+<tbody><tr><td>Сервисная группа</td><td>Андреева Ольга</td><td class="c b">214</td></tr><tr><td>Сервисная группа</td><td>Макарова Ирина</td><td class="c b">322</td></tr><tr><td>Сервисная группа</td><td>Стрыгина Мария</td><td class="c b">458</td></tr><tr><td>Сервисная группа</td><td>Тощёва Мария</td><td class="c b">3</td></tr><tr><td>Сервисная группа</td><td>Степанов Андрей</td><td class="c b">27</td></tr><tr><td>Системные адм.</td><td>Халявкин Артём</td><td class="c b">168</td></tr><tr><td>Системные адм.</td><td>Крюков Александр</td><td class="c b">54</td></tr><tr><td>Системные адм.</td><td>Головчук Руслан</td><td class="c b">183</td></tr><tr><td>Системные адм.</td><td>Старовойтов Василий</td><td class="c b">26</td></tr><tr><td>Системные адм.</td><td>Петровский Виктор</td><td class="c b">64</td></tr><tr><td>Отдел разработки</td><td>Якуйтис Максим</td><td class="c b">41</td></tr><tr><td>Отдел разработки</td><td>Хайралапов Рустам</td><td class="c b">7</td></tr><tr><td>Отдел разработки</td><td>Соловей Сергей</td><td class="c b">14</td></tr><tr><td>Отдел разработки</td><td>Блинов Роман</td><td class="c b">5</td></tr><tr><td>Разработка сайта</td><td>Лукьяненко Сергей</td><td class="c b">21</td></tr><tr><td>BI</td><td>Водопьянов Иван</td><td class="c b">12</td></tr><tr><td>Аналитика</td><td>Черныш Дарья</td><td class="c b">3</td></tr><tr><td>-</td><td>Прочие исполнители</td><td class="c b">12</td></tr><tr class="total"><td colspan="2">Итого</td><td class="c">1 634</td></tr></tbody></table>
+<h2>Удовлетворённость пользователей</h2>
+<table style="max-width:420px"><thead><tr><th>Показатель</th><th class="c">Значение</th></tr></thead><tbody>
+<tr><td>Количество оценок</td><td class="c b">47</td></tr>
+<tr class="hi"><td>Средняя оценка</td><td class="c b">4,91 / 5</td></tr>
+<tr class="hi"><td>Оценка 5 (&laquo;отлично&raquo;)</td><td class="c">98%</td></tr>
+<tr><td>Оценка ниже 4</td><td class="c">1</td></tr></tbody></table>
+</div>
+<div id="tab-m-aug" class="panel active">
+<div class="note">Август 2026 - 1 700 обращений бизнеса (из 1 944: 220 служебных и 24 отменённые заявки «[B2B] Другое», не попавшие в разметку мониторинга), максимум за три месяца, +4,0% к июлю. Классификация 98,5%, выполнено 93,8%; из 179 незакрытых 66 созданы 30-31 августа и находятся в приёмке. Месяц открылся аварией сервера 1С (31 июля - 4 августа): выход из строя диска, откат базы и полный перенос на другой сервер - отсюда пик 4 августа (119) и рост типа &laquo;Системные инциденты&raquo;.</div>
+<div class="kpi-row">
+  <div class="kc b"><div class="kl">Обращений принято</div><div class="kv">1 700</div><div class="kdelta">без служебных · всего заведено 1 944</div></div>
+  <div class="kc g"><div class="kl">Закрыто</div><div class="kv">93,8%</div><div class="kdelta">1 594 обращений</div></div>
+  <div class="kc a"><div class="kl">Оценка качества</div><div class="kv">4,89</div><div class="kdelta">47 отзывов &middot; 5&#9733; у 91%</div></div>
+  <div class="kc gr"><div class="kl">Классифицировано</div><div class="kv">98,5%</div><div class="kdelta">98,5% (1 674 из 1 700)</div></div>
+</div>
+<div class="grid2"><div><h2>Статусы обращений</h2>
+<table style="max-width:460px"><thead><tr><th>Статус</th><th class="c">Кол-во</th></tr></thead>
+<tbody><tr class="hi"><td>Готово</td><td class="c b">1 514</td></tr><tr class="hi"><td>На проверке</td><td class="c b">80</td></tr><tr class=""><td>В работе</td><td class="c b">72</td></tr><tr class=""><td>Передано на 2 линию</td><td class="c b">12</td></tr><tr class=""><td>Ожидает информации</td><td class="c b">8</td></tr><tr class=""><td>Отменено</td><td class="c b">7</td></tr><tr class=""><td>Отложено</td><td class="c b">4</td></tr><tr class=""><td>Классификация</td><td class="c b">3</td></tr><tr class="total"><td>Итого</td><td class="c">1 700</td></tr></tbody></table></div>
+<div><h2>Служебный поток вне статистики</h2>
+<table style="max-width:460px"><thead><tr><th>Что исключено</th><th class="c">Кол-во</th></tr></thead>
+<tbody><tr><td>ALARM WMS (авто-письма)</td><td class="c b">75</td></tr><tr><td>Дежурства и регламентные проверки</td><td class="c b">42</td></tr><tr><td>Заявка ИТ самому себе</td><td class="c b">39</td></tr><tr><td>Авто-алерты интернета</td><td class="c b">29</td></tr><tr><td>Автор из ИТ-команды</td><td class="c b">25</td></tr><tr><td>Не попало в разметку мониторинга</td><td class="c b">24</td></tr><tr><td>Авто-RCA (робот Jira)</td><td class="c b">10</td></tr><tr class="total"><td>Исключено</td><td class="c">244</td></tr><tr><td>Всего заведено в Jira</td><td class="c b">1 944</td></tr></tbody></table>
+<p style="font-size:11.5px;color:#5F5E5A;margin-top:6px">Правило «Мониторинга проблем»: авто-алерты, дежурства и регламентные проверки, авто-задачи RCA и заявки, которые ИТ-отдел заводит сам себе, не считаются обращениями бизнеса.</p></div></div>
+<h1>Динамика обращений по организациям</h1>
+<div class="grid2"><div><div class="cc" style="height:280px"><canvas id="org_aug"></canvas></div></div><div><table style="margin-top:10px">
+<thead><tr><th>Организация</th><th class="c">Обращений</th><th class="c">Доля</th><th class="c">Изм. к пред. мес.</th></tr></thead>
+<tbody><tr><td>ООО Баусервис</td><td class="c b">763</td><td class="c">44.9%</td><td class="c"><span class="da">&#9650; +81 (+12%)</span></td></tr><tr><td>ИП Ахаимов</td><td class="c b">221</td><td class="c">13.0%</td><td class="c"><span class="da">&#9650; +22 (+11%)</span></td></tr><tr><td>ООО БауВосток</td><td class="c b">220</td><td class="c">12.9%</td><td class="c"><span class="da">&#9650; +47 (+27%)</span></td></tr><tr><td>ООО БауЗапад</td><td class="c b">206</td><td class="c">12.1%</td><td class="c">-</td></tr><tr><td>ООО Открытие</td><td class="c b">156</td><td class="c">9.2%</td><td class="c">-</td></tr><tr><td>ООО Урбанист</td><td class="c b">49</td><td class="c">2.9%</td><td class="c"><span class="dg">&#9660; -46 (-48%)</span></td></tr><tr><td>ООО БауСофт</td><td class="c b">24</td><td class="c">1.4%</td><td class="c"><span class="da">&#9650; +6 (+33%)</span></td></tr><tr><td>ИП Волчков В.Л.</td><td class="c b">20</td><td class="c">1.2%</td><td class="c"><span class="dg">&#9660; -17 (-46%)</span></td></tr><tr><td>Прочие / не указана</td><td class="c b">41</td><td class="c">2.4%</td><td class="c">-</td></tr><tr class="total"><td>Итого</td><td class="c">1 700</td><td class="c">100%</td><td class="c"></td></tr></tbody></table></div></div>
+<h1>Динамика обращений по дням</h1>
+<p>Пик - 4 числа (119 обращений). Среднее в рабочий день - 76, в выходной - 10. Столбцы выходных дней выделены серым.</p>
+<div class="cc" style="height:260px"><canvas id="day_aug"></canvas></div>
+<h1>Распределение по категориям</h1>
+<div class="grid2"><div><div class="cc" style="height:280px"><canvas id="cat_aug"></canvas></div></div><div><table style="margin-top:20px">
+<thead><tr><th>Категория</th><th class="c">Кол-во</th><th class="c">Доля</th></tr></thead>
+<tbody><tr><td>1С и бизнес-процессы</td><td class="c b">1 100</td><td class="c">64,7%</td></tr><tr><td>Инфраструктура и РМ</td><td class="c b">366</td><td class="c">21,5%</td></tr><tr><td>Коммуникации и связь</td><td class="c b">79</td><td class="c">4,6%</td></tr><tr><td>Доступы и учётные записи</td><td class="c b">70</td><td class="c">4,1%</td></tr><tr><td>Бизнес-приложения</td><td class="c b">55</td><td class="c">3,2%</td></tr><tr><td>Не классифицировано</td><td class="c b">26</td><td class="c">1,5%</td></tr><tr><td>Логистика и склад</td><td class="c b">4</td><td class="c">0,2%</td></tr><tr class="total"><td>Итого</td><td class="c">1 700</td><td class="c">100%</td></tr></tbody></table></div></div>
+<h1>Детализация по сервисам</h1><div class="cc" style="height:320px"><canvas id="svc_aug"></canvas></div>
+<table><thead><tr><th>Сервис</th><th>Категория</th><th class="c">Обращений</th><th class="c">Доля</th></tr></thead>
+<tbody><tr><td>1С: Управление торговлей (УТ10)</td><td>1С и бизнес-процессы</td><td class="c b">1 049</td><td class="c">61,7%</td></tr><tr><td>Рабочее место (ПК, ноутбук, периферия)</td><td>Инфраструктура</td><td class="c b">102</td><td class="c">6,0%</td></tr><tr><td>Корпоративная печать и сканирование</td><td>Инфраструктура</td><td class="c b">80</td><td class="c">4,7%</td></tr><tr><td>Электронная почта</td><td>Коммуникации</td><td class="c b">71</td><td class="c">4,2%</td></tr><tr><td>Корпоративная учётная запись</td><td>Доступы</td><td class="c b">70</td><td class="c">4,1%</td></tr><tr><td>Программное обеспечение (общее)</td><td>Инфраструктура</td><td class="c b">67</td><td class="c">3,9%</td></tr><tr><td>Сеть и интернет</td><td>Инфраструктура</td><td class="c b">61</td><td class="c">3,6%</td></tr><tr><td>Касса и фискальные устройства</td><td>Инфраструктура</td><td class="c b">43</td><td class="c">2,5%</td></tr><tr><td>ЭДО: Диадок / ЭТРАН / СБИС / Сфера</td><td>1С и бизнес-процессы</td><td class="c b">29</td><td class="c">1,7%</td></tr><tr><td>Сайты, веб-кабинет, B2B портал</td><td>Бизнес-приложения</td><td class="c b">28</td><td class="c">1,6%</td></tr><tr><td>Битрикс24</td><td>Бизнес-приложения</td><td class="c b">25</td><td class="c">1,5%</td></tr><tr><td>BI Отчётность</td><td>1С и бизнес-процессы</td><td class="c b">13</td><td class="c">0,8%</td></tr><tr><td>Серверная инфраструктура и ИБ</td><td>Инфраструктура</td><td class="c b">13</td><td class="c">0,8%</td></tr><tr><td>ЗУП: Зарплата и управление персоналом</td><td>1С и бизнес-процессы</td><td class="c b">7</td><td class="c">0,4%</td></tr><tr><td>Телефония (VoIP / Стационарная)</td><td>Коммуникации</td><td class="c b">5</td><td class="c">0,3%</td></tr><tr><td>Прочие (Моб. связь, Система управления транспортной логистикой Антор, Платформа ViSoft, WMS)</td><td>-</td><td class="c b">10</td><td class="c">0,6%</td></tr><tr><td>Не классифицировано</td><td>-</td><td class="c b">27</td><td class="c">1,6%</td></tr><tr class="total"><td>Итого</td><td></td><td class="c">1 700</td><td class="c">100%</td></tr></tbody></table>
+<h1>Типы запросов</h1>
+<div class="grid2"><div><h2>Топ-15 типов запроса (все сервисы)</h2><div class="cc" style="height:360px"><canvas id="rt_aug"></canvas></div></div>
+<div><h2>Типы запроса по 1С: УТ10</h2>
+<table><thead><tr><th>Тип запроса</th><th class="c">Кол-во</th></tr></thead>
+<tbody><tr><td>Заказ покупателя</td><td class="c">124</td></tr><tr><td>БП Комплексная продажа</td><td class="c">76</td></tr><tr><td>БП Доставка</td><td class="c">66</td></tr><tr><td>Системные инциденты</td><td class="c">59</td></tr><tr><td>БП Утверждение договора</td><td class="c">55</td></tr><tr><td>БП Утверждение бюджетной заявки (ЗРДС)</td><td class="c">55</td></tr><tr><td>БП Предварительные наборы</td><td class="c">54</td></tr><tr><td>Внутренний заказ</td><td class="c">44</td></tr><tr><td>Другая проблема</td><td class="c">43</td></tr><tr><td>Прочие настройки</td><td class="c">37</td></tr><tr><td>БП Претензия</td><td class="c">37</td></tr><tr><td>БП Запрос льготной доставки</td><td class="c">34</td></tr><tr><td>БП Служебная записка в ФО</td><td class="c">34</td></tr><tr><td>БП Заказ выставления универсальный (ЗВУ)</td><td class="c">31</td></tr><tr><td>Контрагент</td><td class="c">29</td></tr><tr><td>Работа с документами</td><td class="c">26</td></tr><tr><td>БП Заказ товара универсальный (ЗТУ)</td><td class="c">20</td></tr><tr><td>Ошибки входа и доступа к 1С</td><td class="c">18</td></tr><tr><td>БП Обработка заявок по стендам и планшетам</td><td class="c">17</td></tr><tr><td>БП Возврат</td><td class="c">16</td></tr><tr><td>Логистика</td><td class="c">15</td></tr><tr><td>БП Заказные позиции</td><td class="c">14</td></tr><tr><td>Карточка номенклатуры</td><td class="c">13</td></tr><tr><td>БП Запрос скидки</td><td class="c">12</td></tr><tr><td>БП Внутреннее перемещение</td><td class="c">12</td></tr><tr><td>Прочие (&le;11 каждый)</td><td class="c">108</td></tr><tr class="total"><td>Итого 1С: УТ10</td><td class="c">1 049</td></tr></tbody></table></div></div>
+<h1>Подтипы обращений</h1>
+<p>Подтип заполнен у 1 009 из 1 700 обращений (59,4%). Большинство подтипов относятся к 1С: УТ10.</p>
+<div class="grid2"><div><div class="cc" style="height:300px"><canvas id="sub_aug"></canvas></div></div><div>
+<table><thead><tr><th>Подтип</th><th class="c">Кол-во</th><th class="c">% от заполн.</th></tr></thead>
+<tbody><tr><td class="b"><b>Внесение изменений</b></td><td class="c b">569</td><td class="c">56,4%</td></tr><tr><td>Ошибка</td><td class="c b">88</td><td class="c">8,7%</td></tr><tr><td>Настройка</td><td class="c b">47</td><td class="c">4,7%</td></tr><tr><td>Пров./распров.</td><td class="c b">40</td><td class="c">4,0%</td></tr><tr><td>Ошибка в работе 1С</td><td class="c b">34</td><td class="c">3,4%</td></tr><tr><td>Провести документ</td><td class="c b">23</td><td class="c">2,3%</td></tr><tr><td>Изм. карточки контр.</td><td class="c b">21</td><td class="c">2,1%</td></tr><tr><td>Изм. маршрута</td><td class="c b">21</td><td class="c">2,1%</td></tr><tr><td>База недоступна</td><td class="c b">20</td><td class="c">2,0%</td></tr><tr><td>Предостав. доступа 1С</td><td class="c b">20</td><td class="c">2,0%</td></tr><tr><td>Не открывается 1С</td><td class="c b">18</td><td class="c">1,8%</td></tr><tr><td>Транспортные документы</td><td class="c b">15</td><td class="c">1,5%</td></tr><tr><td>Проставл. дизайнера</td><td class="c b">10</td><td class="c">1,0%</td></tr><tr><td>Настройка печ. форм</td><td class="c b">8</td><td class="c">0,8%</td></tr><tr><td>Предоставление доступа</td><td class="c b">7</td><td class="c">0,7%</td></tr><tr><td>Прочие подтипы</td><td class="c b">68</td><td class="c">6,7%</td></tr><tr class="total"><td>Итого (заполненные)</td><td class="c">1 009</td><td class="c">100%</td></tr></tbody></table></div></div>
+<h1>Выполнение по специалистам</h1>
+<div class="cc" style="height:340px"><canvas id="team_aug"></canvas></div>
+<table><thead><tr><th>Отдел</th><th>Специалист</th><th class="c">Обработано</th></tr></thead>
+<tbody><tr><td>Сервисная группа</td><td>Андреева Ольга</td><td class="c b">446</td></tr><tr><td>Сервисная группа</td><td>Макарова Ирина</td><td class="c b">257</td></tr><tr><td>Сервисная группа</td><td>Стрыгина Мария</td><td class="c b">72</td></tr><tr><td>Сервисная группа</td><td>Тощёва Мария</td><td class="c b">235</td></tr><tr><td>Сервисная группа</td><td>Степанов Андрей</td><td class="c b">25</td></tr><tr><td>Системные адм.</td><td>Халявкин Артём</td><td class="c b">265</td></tr><tr><td>Системные адм.</td><td>Крюков Александр</td><td class="c b">76</td></tr><tr><td>Системные адм.</td><td>Головчук Руслан</td><td class="c b">113</td></tr><tr><td>Системные адм.</td><td>Старовойтов Василий</td><td class="c b">32</td></tr><tr><td>Системные адм.</td><td>Петровский Виктор</td><td class="c b">43</td></tr><tr><td>Отдел разработки</td><td>Якуйтис Максим</td><td class="c b">44</td></tr><tr><td>Отдел разработки</td><td>Хайралапов Рустам</td><td class="c b">25</td></tr><tr><td>Отдел разработки</td><td>Соловей Сергей</td><td class="c b">17</td></tr><tr><td>Отдел разработки</td><td>Блинов Роман</td><td class="c b">8</td></tr><tr><td>Разработка сайта</td><td>Лукьяненко Сергей</td><td class="c b">22</td></tr><tr><td>BI</td><td>Водопьянов Иван</td><td class="c b">2</td></tr><tr><td>Аналитика</td><td>Черныш Дарья</td><td class="c b">3</td></tr><tr><td>-</td><td>Прочие исполнители</td><td class="c b">15</td></tr><tr class="total"><td colspan="2">Итого</td><td class="c">1 700</td></tr></tbody></table>
+<h2>Удовлетворённость пользователей</h2>
+<table style="max-width:420px"><thead><tr><th>Показатель</th><th class="c">Значение</th></tr></thead><tbody>
+<tr><td>Количество оценок</td><td class="c b">47</td></tr>
+<tr class="hi"><td>Средняя оценка</td><td class="c b">4,89 / 5</td></tr>
+<tr class="hi"><td>Оценка 5 (&laquo;отлично&raquo;)</td><td class="c">91%</td></tr>
+<tr><td>Оценка ниже 4</td><td class="c">1</td></tr></tbody></table>
+</div>
 <div id="tab-d-compare" class="panel">
-<h1>Сравнение месяцев - апрель · май · июнь 2026</h1>
+<h1>Сравнение месяцев - апрель … август 2026</h1>
+<div class="note">С июня отчёт считает <b>обращения бизнеса</b>: из объёма вычтен служебный поток ИТ - авто-алерты мониторинга (ALARM по обмену с WMS, алерты интернет-каналов), дежурства и регламентные проверки, авто-задачи RCA и заявки, которые сотрудники ИТ заводят сами себе. Правило и состав корпуса взяты из продукта «Мониторинг проблем» - цифры счётного потока совпадают с его дашбордом. Апрель и май показаны как есть: разметка появилась только с июня, поэтому их объём сопоставим с колонкой «Всего заведено», а не со счётным потоком.</div>
 <div class="grid2">
-  <div><h2>Объём обращений</h2><div class="cc" style="height:200px"><canvas id="cmpVolume"></canvas></div></div>
-  <div><h2>Классификация обращений</h2><div class="cc" style="height:200px"><canvas id="cmpClass"></canvas></div></div>
+  <div><h2>Объём обращений</h2><div class="cc" style="height:220px"><canvas id="cmpVolume"></canvas></div></div>
+  <div><h2>Классификация обращений</h2><div class="cc" style="height:220px"><canvas id="cmpClass"></canvas></div></div>
 </div>
 <h2>Ключевые показатели по месяцам</h2>
 <table>
-  <thead><tr><th>Показатель</th><th class="c">Апрель</th><th class="c">Май</th><th class="c">Июнь</th></tr></thead>
+  <thead><tr><th>Показатель</th><th class="c">Апрель</th><th class="c">Май</th><th class="c">Июнь</th><th class="c">Июль</th><th class="c">Август</th></tr></thead>
   <tbody>
-    <tr class="hi"><td>Общий объём обращений</td><td class="c">1 724</td><td class="c">1 679</td><td class="c b">1 765</td></tr>
-    <tr><td>Выполнено (вкл. «на проверке»)</td><td class="c">1 692</td><td class="c">1 626</td><td class="c b">1 555</td></tr>
-    <tr><td>Процент выполненных</td><td class="c">98,1%</td><td class="c">96,8%</td><td class="c b">88,1%*</td></tr>
-    <tr class="hi"><td>Классифицировано</td><td class="c">23,3%</td><td class="c">97,9%</td><td class="c b">96,8%</td></tr>
-    <tr><td>Передано на 2/3 линии</td><td class="c">13</td><td class="c">21</td><td class="c b">30</td></tr>
-    <tr class="hi"><td>Количество отзывов (CSAT)</td><td class="c">68</td><td class="c">71</td><td class="c b">57</td></tr>
-    <tr><td>Средняя оценка</td><td class="c">4,90</td><td class="c">4,92</td><td class="c b">4,82</td></tr>
-    <tr><td>Оценка 5 («отлично»)</td><td class="c">96%</td><td class="c">96%</td><td class="c b">93%</td></tr>
+    <tr class="hi"><td>Обращения бизнеса (счётный поток)</td><td class="c">-</td><td class="c">-</td><td class="c">1 553</td><td class="c">1 634</td><td class="c b">1 700</td></tr>
+    <tr><td>Всего заведено в Jira</td><td class="c">1 724</td><td class="c">1 679</td><td class="c">1 765</td><td class="c">1 822</td><td class="c b">1 944</td></tr>
+    <tr><td>Служебный поток ИТ (исключён)</td><td class="c">-</td><td class="c">-</td><td class="c">164</td><td class="c">188</td><td class="c b">220</td></tr>
+    <tr><td>Не попало в разметку мониторинга</td><td class="c">-</td><td class="c">-</td><td class="c">48</td><td class="c">0</td><td class="c b">24</td></tr>
+    <tr><td>Выполнено (вкл. «на проверке»)</td><td class="c">1 692</td><td class="c">1 626</td><td class="c">1 511</td><td class="c">1 573</td><td class="c b">1 594</td></tr>
+    <tr><td>Процент выполненных</td><td class="c">98,1%</td><td class="c">96,8%</td><td class="c">97,3%*</td><td class="c">96,3%</td><td class="c b">93,8%**</td></tr>
+    <tr class="hi"><td>Классифицировано</td><td class="c">23,3%</td><td class="c">97,9%</td><td class="c">98,2%</td><td class="c">98,5%</td><td class="c b">98,5%</td></tr>
+    <tr><td>Передано на 2/3 линии</td><td class="c">13</td><td class="c">21</td><td class="c">1*</td><td class="c">24</td><td class="c b">12</td></tr>
+    <tr class="hi"><td>Количество отзывов (CSAT)</td><td class="c">68</td><td class="c">71</td><td class="c">60</td><td class="c">47</td><td class="c b">47</td></tr>
+    <tr><td>Средняя оценка</td><td class="c">4,90</td><td class="c">4,92</td><td class="c">4,82</td><td class="c">4,91</td><td class="c b">4,89</td></tr>
+    <tr><td>Оценка 5 («отлично»)</td><td class="c">96%</td><td class="c">96%</td><td class="c">92%</td><td class="c">98%</td><td class="c b">91%</td></tr>
+    <tr><td>Обращений бизнеса в рабочий день</td><td class="c">-</td><td class="c">-</td><td class="c">68</td><td class="c">68</td><td class="c b">76</td></tr>
   </tbody>
 </table>
-<div class="note">* Экспорт июня выгружен в начале июля - часть обращений ещё «В работе» (95). Показатель выполнения вырастет по мере приёмки. Классификация за апрель (23,3%) отражает состояние до перехода на каталог услуг.</div>
-<h2>Категории обращений - май vs июнь</h2>
+<div class="note">* Июнь: корпус мониторинга по этому месяцу собран из выгрузки решённых задач, поэтому 48 обращений (в основном незакрытые - 16 «Передано на 2 линию», 8 «В работе») в него не попали. Выполнение и вторая линия за июнь по этой базе занижают долю незакрытого: по полному списку Jira июнь закрыт на 95,7%, на 2/3 линии передано 17.<br>** Август: выборка сделана 3 сентября 2026, 66 из 179 незакрытых обращений созданы 30-31 августа и находятся в приёмке - показатель ещё вырастет. Классификация за апрель (23,3%) отражает состояние до перехода на каталог услуг.</div>
+<h2>Категории обращений - июнь · июль · август</h2>
 <div class="cc" style="height:260px"><canvas id="cmpCats"></canvas></div>
 
-<h2>Динамика по организациям - апрель · май · июнь</h2>
+<h2>Динамика по организациям - июнь · июль · август</h2>
 <div class="cc" style="height:300px"><canvas id="cmpOrg"></canvas></div>
-<div class="note">Заметный рост в июне у ИП Ахаимов (173 → 242, +40%) - совпадает с всплеском по типу «БП Комплексная продажа» (ошибки выгрузки заявок с сайта «Лапарет»). ООО Баусервис остаётся крупнейшим заказчиком (~40% обращений во все месяцы).</div>
-<h2>Причины роста по типам обращений и статус на конец месяца (июнь vs май)</h2>
-<p>Для каждого типа с ростом объёма указана причина (по описаниям, резюме и подтипам задач) и решена ли проблема к концу месяца - есть ли свежие обращения в последние дни июня.</p>
+<div class="note">ООО Баусервис растёт третий месяц подряд: 632 → 682 → 763, доля от счётного потока выросла с 40,7% до 44,9%. ООО Урбанист дал всплеск в июле (45 → 95) и вернулся к норме в августе (49). Малый объём ООО БауСофт (18-24) объясняется методикой: почти весь поток этой организации - заявки самого ИТ-отдела, и они в статистику не входят.</div>
+<h2>Причины роста по типам обращений и статус на конец месяца (август vs июль)</h2>
+<p>Для каждого типа с ростом объёма указана причина (по темам, организациям и подтипам задач) и решена ли проблема к концу месяца. Служебные типы («Мониторинг», «Мониторинг интернет-соединения», дежурства) в таблицу не входят - они исключены из статистики.</p>
 <div style="display:flex;gap:14px;flex-wrap:wrap;font-size:11px;margin-bottom:8px">
   <span><span class="dg">■</span> Решена / волна исчерпана</span>
   <span><span class="da">■</span> Учётные / плановые / в проработке</span>
-  <span>■ Обычный поток (открытые = свежие задачи 29-30 июня)</span>
+  <span>■ Обычный поток</span>
 </div>
 <table>
-<thead><tr><th>Тип запроса</th><th class="c">Май</th><th class="c">Июнь</th><th class="c">Рост</th><th>Причина</th><th>Статус на конец месяца</th></tr></thead>
-<tbody><tr><td class="b">БП Комплексная продажа</td><td class="c">53</td><td class="c b">103</td><td class="c"><span class="da">▲ +94%</span></td><td>73% - ИП Ахаимов (75 из 103). Заявки на смену статуса заказов (КП): проставить «Отгружено», убрать отметку «заявка с сайта», прикрепить заказ/отгрузку, сменить ответственного. У авторов заявок нет прав на самостоятельную смену статуса в 1С/Битрикс24, поэтому смену выполняет ТП вручную.</td><td><span class="">В проработке - рассматривается выдача прав на самостоятельную смену статуса, чтобы снять рутинную нагрузку с ТП. Открытые на конец месяца - свежие заявки 29-30 июня в приёмке.</span></td></tr><tr><td class="b">Внутренний заказ</td><td class="c">12</td><td class="c b">32</td><td class="c"><span class="da">▲ +167%</span></td><td>84% - ООО Баусервис (27 из 32). Всплеск межскладских перемещений (Подольск → Самара), в основном керамогранит; подтип «Проведение / распроведение» (21).</td><td><span class="dg">Исчерпан - разовая волна перемещений; к концу месяца поток спал (4 задачи в последнюю неделю).</span></td></tr><tr><td class="b">БП Премии, штрафы</td><td class="c">9</td><td class="c b">24</td><td class="c"><span class="da">▲ +167%</span></td><td>Настройка доступа и видимости журнала премий/штрафов сотрудникам; 79% задач - в первой декаде.</td><td><span class="dg">Исчерпан - единичный всплеск в начале месяца (19 из 24 за 1-10 июня), далее почти нет.</span></td></tr><tr><td class="b">Настройка и диагностика ПО</td><td class="c">8</td><td class="c b">22</td><td class="c"><span class="da">▲ +175%</span></td><td>Значительная часть - регулярные служебные записи дежурства и консультаций пользователей («[Дежурство]», «Консультации»), а не инциденты; остальное - установка ПО, VPN.</td><td><span class="da">Учётный рост - плановые дежурные задачи закрываются штатно; отдельной проблемы нет.</span></td></tr><tr><td class="b">БП Утверждение бюджетной заявки (ЗРДС)</td><td class="c">26</td><td class="c b">40</td><td class="c"><span class="da">▲ +54%</span></td><td>Массовые правки и удаления ЗРДС, ошибки согласования («зависают», «вернуть»), в т.ч. по командировкам. 52% - ООО Баусервис.</td><td><span class="dg">Решена - последняя задача 25 июня, в последнюю неделю новых нет; на конец месяца 2 задачи в приёмке.</span></td></tr><tr><td class="b">Заказ поставщику</td><td class="c">10</td><td class="c b">21</td><td class="c"><span class="da">▲ +110%</span></td><td>90% - ООО Баусервис (19 из 21). Партия закупок керамогранита (матовый/полированный, импорт), корректировки позиций.</td><td><span class="dg">Исчерпан - разовая партия закупок; последняя задача 25 июня, новых к концу месяца нет.</span></td></tr><tr><td class="b">Удаленное подключение / RDP</td><td class="c">23</td><td class="c b">37</td><td class="c"><span class="da">▲ +61%</span></td><td>Настройка удалёнки, подключение к рабочему столу, учётные записи для RDP; распределён по организациям.</td><td><span class="dg">Отработан - последняя задача 24 июня, к концу месяца новых нет, все закрыты.</span></td></tr><tr><td class="b">Заказ покупателя</td><td class="c">75</td><td class="c b">88</td><td class="c"><span class="da">▲ +17%</span></td><td>Подтип «Внесение изменений» (60): проставление дизайнера, размещение, привязка договора/оплаты, исправление некорректных заказов.</td><td><span class="">Обычный поток - равномерно по месяцу; открытые в конце месяца (11) - свежие задачи 29-30 июня.</span></td></tr><tr><td class="b">БП Утверждение договора</td><td class="c">58</td><td class="c b">68</td><td class="c"><span class="da">▲ +17%</span></td><td>Подтип «Внесение изменений» (58): замена подписанта, смена согласующего, добавление в маршрут; лидирует ООО БауВосток (15).</td><td><span class="">Обычный поток - открытые в конце месяца (14) созданы 26-30 июня, в приёмке.</span></td></tr><tr><td class="b">Предоставление доступа к системам</td><td class="c">16</td><td class="c b">24</td><td class="c"><span class="da">▲ +50%</span></td><td>Оформление доступов новым сотрудникам (clone УЗ, новый пользователь) - приём/ротация персонала.</td><td><span class="">Обычный поток - приём сотрудников; открытых в конце месяца 3 (свежие).</span></td></tr><tr><td class="b">Восстановление доступа</td><td class="c">13</td><td class="c b">21</td><td class="c"><span class="da">▲ +62%</span></td><td>Проблемы входа в удалёнку и учётные записи (не заходит, сброс пароля).</td><td><span class="dg">Отработан - пик в середине месяца, к концу почти нет (2 свежие).</span></td></tr><tr><td class="b">Телефон не работает</td><td class="c">9</td><td class="c b">19</td><td class="c"><span class="da">▲ +111%</span></td><td>Сбои телефонии/регистрации внутренних номеров и подключение телефонов сотрудникам.</td><td><span class="dg">Отработан - распределён по месяцу, в конце месяца 1 свежая задача.</span></td></tr><tr><td class="b">Настройка параметров и профилей печати</td><td class="c">13</td><td class="c b">21</td><td class="c"><span class="da">▲ +62%</span></td><td>Настройка и подключение принтеров/сканеров по звонку, профили печати.</td><td><span class="">Обычный поток - открытые в конце месяца 4 (свежие задачи 30 июня).</span></td></tr><tr><td class="b">БП Заказные позиции</td><td class="c">18</td><td class="c b">25</td><td class="c"><span class="da">▲ +39%</span></td><td>52% - ИП Ахаимов (13). Корректировки размещения заказных позиций, сбои привязки товара к заказу покупателя.</td><td><span class="dg">Отработан - пик в первой декаде, к концу 3 свежие задачи.</span></td></tr><tr><td class="b">БП Заказ выставления универсальный (ЗВУ)</td><td class="c">10</td><td class="c b">17</td><td class="c"><span class="da">▲ +70%</span></td><td>Завершение задач сборки и снятие лишних оповещений по ЗВУ; преимущественно ООО Баусервис.</td><td><span class="">Обычный поток - открытых в конце месяца 3 (свежие).</span></td></tr><tr><td class="b">БП Командировка</td><td class="c">9</td><td class="c b">15</td><td class="c"><span class="da">▲ +67%</span></td><td>Переносы командировок, смена согласующего - сезонный рост; 60% ООО Баусервис.</td><td><span class="dg">Исчерпан - сезонный всплеск, к концу месяца 2 свежие задачи.</span></td></tr><tr><td class="b">БП Предварительные наборы</td><td class="c">38</td><td class="c b">44</td><td class="c"><span class="da">▲ +16%</span></td><td>Переносы дат проведения преднаборов и продление сроков; лидирует ООО Открытие (11).</td><td><span class="">Обычный поток - пик в середине месяца, в конце месяца 2 свежие.</span></td></tr></tbody></table>
-<div class="note">Сохраняющихся системных проблем на конец месяца нет. Рост по <b>БП Комплексная продажа</b> - это рутинные заявки на смену статуса заказов (у авторов нет прав на самостоятельную смену, поэтому её выполняет ТП); вопрос в проработке - рассматривается выдача прав, чтобы снизить нагрузку. Остальные всплески к концу месяца исчерпаны либо являются обычным потоком / плановыми задачами.</div>
+<thead><tr><th>Тип запроса</th><th class="c">Июль</th><th class="c">Август</th><th class="c">Рост</th><th>Причина</th><th>Статус на конец месяца</th></tr></thead>
+<tbody>
+<tr><td class="b">Другая проблема</td><td class="c">70</td><td class="c b">162</td><td class="c"><span class="da">▲ +131%</span></td><td>Универсальный тип без подтипа - в него уходит всё, что оператор не отнёс к каталогу: ЗУП и табели, обмены, разовые просьбы, пересланные письма. 96 из 162 - ООО Баусервис. По сервисам: УТ10 (43), рабочее место (21), сайты и B2B (18), ПО (17), почта (15), Битрикс24 (14).</td><td><span class="da">Учётный рост - требуется доработка каталога услуг: значительная часть «прочего» приходится на позиции, которым не хватает своего типа запроса.</span></td></tr>
+<tr><td class="b">Системные инциденты</td><td class="c">16</td><td class="c b">59</td><td class="c"><span class="da">▲ +269%</span></td><td>Авария сервера 1С: 19 обращений 1 августа (выход из строя диска, откат базы) и вторая волна ошибок 10-12 августа (27 обращений). Подтипы - «Ошибка при использовании 1С» (34) и «База недоступна» (20).</td><td><span class="dg">Решено - база перенесена на другой сервер (ICT-30051), к концу месяца 1 обращение (31.08).</span></td></tr>
+<tr><td class="b">БП Предварительные наборы</td><td class="c">31</td><td class="c b">54</td><td class="c"><span class="da">▲ +74%</span></td><td>Последствия отката базы: «слетели» реализации от 31 июля, преднаборы зависли без ответа WMS, часть отгрузок пришлось проводить вручную. 13 обращений с подтипом «Ошибка».</td><td><span class="dg">Разобрано вручную - зависшие БП закрыты; обращения 25-26 и 31 августа относятся к обычному потоку.</span></td></tr>
+<tr><td class="b">БП Запрос льготной доставки</td><td class="c">8</td><td class="c b">34</td><td class="c"><span class="da">▲ +325%</span></td><td>23 из 34 обращений - 4 августа: после аварии робот бизнес-процесса не отработал, доставки зависли на согласовании.</td><td><span class="dg">Волна исчерпана - после 17 августа обращений по этому типу практически нет.</span></td></tr>
+<tr><td class="b">БП Служебная записка в ФО</td><td class="c">20</td><td class="c b">34</td><td class="c"><span class="da">▲ +70%</span></td><td>Настройка маршрутов и получателей задач, замена головного контрагента, вывод ИП из холдинга. Распределено ровно по месяцу, 30 из 34 - ООО БауВосток (16) и Баусервис (14).</td><td>Обычный поток - учётные заявки по мере изменений в структуре холдинга.</td></tr>
+<tr><td class="b">БП Заказ выставления универсальный (ЗВУ)</td><td class="c">16</td><td class="c b">31</td><td class="c"><span class="da">▲ +94%</span></td><td>12 из 31 - подтип «Ошибка»: не отрабатывает вычерк ЗВУ в заказе, не заполнен реквизит «сектор склада», минуса по этикеткам. 17 обращений - ООО БауЗапад.</td><td><span class="da">В проработке - повторяющийся дефект вычерка ЗВУ, обращения идут ровным потоком весь месяц.</span></td></tr>
+<tr><td class="b">Принтер не печатает</td><td class="c">19</td><td class="c b">27</td><td class="c"><span class="da">▲ +42%</span></td><td>Треть всего потока по корпоративной печати (27 из 80). Вместе с «подключением принтера» (16) и заменой картриджей (13) даёт 56 из 80 обращений направления.</td><td>Обычный поток - разовые заявки по точкам.</td></tr>
+<tr><td class="b">Доступ к общим сетевым папкам</td><td class="c">17</td><td class="c b">26</td><td class="c"><span class="da">▲ +53%</span></td><td>Заявки на доступ к папкам подразделений; вместе с «Предоставление доступа к системам» (18) даёт 44 из 70 обращений по корпоративной учётной записи.</td><td>Обычный поток - закрывается в рабочем порядке.</td></tr>
+<tr><td class="b">Замена / выдача периферии</td><td class="c">6</td><td class="c b">20</td><td class="c"><span class="da">▲ +233%</span></td><td>Мелкие заявки на расходники и периферию: мышки, гарнитуры, батарейки, шнуры, замена ИБП, дополнительный SSD.</td><td>Обычный поток - закрывается в день обращения.</td></tr>
+</tbody></table>
+<div class="note">Главный сюжет августа - авария сервера 1С 31 июля - 4 августа и её последствия (системные инциденты, преднаборы, льготная доставка). К концу месяца все три волны исчерпаны. Сохраняющиеся вопросы - дефект вычерка ЗВУ и разросшийся тип «Другая проблема» (162 обращения), который указывает на нехватку позиций в каталоге услуг. Одновременно уточнение каталога дало и обратный эффект: «Прочие настройки» сократились с 69 до 38, «Работа с документами» - с 49 до 26, «Ошибки входа и доступа к 1С» - с 32 до 18.</div>
 </div>
 <div id="tab-d-monthly" class="panel">
-<h1>Статистика обращений по месяцам - май 2025 … июнь 2026</h1>
-<p>Источник: Jira ICT, 26 842 обращения за 14 месяцев. Рабочие дни по российскому производственному календарю.</p>
+<h1>Статистика обращений по месяцам - май 2025 … август 2026</h1>
+<p>Источник: Jira ICT, 30 568 обращений за 16 месяцев. Рабочие дни по российскому производственному календарю.</p>
+<div class="note">Ряд построен по общему числу заведённых задач - так он сопоставим со всей историей. Служебный поток ИТ выделяется только с июня 2026, когда появилась разметка: колонка «Из них бизнес» показывает счётный поток за эти три месяца.</div>
 
 <div style="position:relative;width:100%;height:300px;margin:12px 0 24px"><canvas id="chartMonthlyBar"></canvas></div>
 <div style="position:relative;width:100%;height:220px;margin:12px 0 24px"><canvas id="chartMonthlyAvg"></canvas></div>
 
 <h2>Данные по месяцам</h2>
 <table>
-  <thead><tr><th>Месяц</th><th class="c">Обращений</th><th class="c">Раб. дней</th><th class="c">Ср/раб.день</th><th>Период</th></tr></thead>
+  <thead><tr><th>Месяц</th><th class="c">Заведено</th><th class="c">Из них бизнес</th><th class="c">Раб. дней</th><th class="c">Ср/раб.день</th><th>Период</th></tr></thead>
   <tbody>
-    <tr><td>Май 2025</td><td class="c b">2 372</td><td class="c">18</td><td class="c">132</td><td>Предыдущий руководитель</td></tr>
-    <tr><td>Июн 2025</td><td class="c b">1 970</td><td class="c">19</td><td class="c">104</td><td>Предыдущий руководитель</td></tr>
-    <tr><td>Июл 2025</td><td class="c b">2 108</td><td class="c">23</td><td class="c">92</td><td>Предыдущий руководитель</td></tr>
-    <tr><td>Авг 2025</td><td class="c b">1 954</td><td class="c">21</td><td class="c">93</td><td>Предыдущий руководитель</td></tr>
-    <tr><td>Сен 2025</td><td class="c b">1 974</td><td class="c">22</td><td class="c">90</td><td>Предыдущий руководитель</td></tr>
-    <tr><td>Окт 2025</td><td class="c b">2 013</td><td class="c">23</td><td class="c">88</td><td>Предыдущий руководитель</td></tr>
-    <tr><td>Ноя 2025</td><td class="c b">1 977</td><td class="c">19</td><td class="c">104</td><td>Переходный период</td></tr>
-    <tr><td>Дек 2025</td><td class="c b">2 156</td><td class="c">22</td><td class="c">98</td><td>Переходный период</td></tr>
-    <tr><td>Янв 2026</td><td class="c b">1 578</td><td class="c">16</td><td class="c">99</td><td>Переходный период</td></tr>
-    <tr class="hi"><td>Фев 2026</td><td class="c b">1 798</td><td class="c">19</td><td class="c">95</td><td>Текущий руководитель</td></tr>
-    <tr class="hi"><td>Мар 2026</td><td class="c b">1 773</td><td class="c">21</td><td class="c">84</td><td>Текущий руководитель</td></tr>
-    <tr class="hi"><td>Апр 2026</td><td class="c b">1 724</td><td class="c">22</td><td class="c">78</td><td>Текущий руководитель</td></tr>
-    <tr class="hi"><td>Май 2026</td><td class="c b">1 640</td><td class="c">18</td><td class="c">91</td><td>Текущий руководитель</td></tr>
-    <tr class="hi"><td>Июн 2026</td><td class="c b">1 765</td><td class="c">20</td><td class="c">88</td><td>Текущий руководитель</td></tr>
-    <tr class="total"><td>Итого</td><td class="c">26 842</td><td class="c">283</td><td class="c">95</td><td>14 месяцев</td></tr>
+    <tr><td>Май 2025</td><td class="c b">2 372</td><td class="c">-</td><td class="c">18</td><td class="c">132</td><td>Предыдущий руководитель</td></tr>
+    <tr><td>Июн 2025</td><td class="c b">1 970</td><td class="c">-</td><td class="c">19</td><td class="c">104</td><td>Предыдущий руководитель</td></tr>
+    <tr><td>Июл 2025</td><td class="c b">2 108</td><td class="c">-</td><td class="c">23</td><td class="c">92</td><td>Предыдущий руководитель</td></tr>
+    <tr><td>Авг 2025</td><td class="c b">1 954</td><td class="c">-</td><td class="c">21</td><td class="c">93</td><td>Предыдущий руководитель</td></tr>
+    <tr><td>Сен 2025</td><td class="c b">1 974</td><td class="c">-</td><td class="c">22</td><td class="c">90</td><td>Предыдущий руководитель</td></tr>
+    <tr><td>Окт 2025</td><td class="c b">2 013</td><td class="c">-</td><td class="c">23</td><td class="c">88</td><td>Предыдущий руководитель</td></tr>
+    <tr><td>Ноя 2025</td><td class="c b">1 977</td><td class="c">-</td><td class="c">19</td><td class="c">104</td><td>Переходный период</td></tr>
+    <tr><td>Дек 2025</td><td class="c b">2 156</td><td class="c">-</td><td class="c">22</td><td class="c">98</td><td>Переходный период</td></tr>
+    <tr><td>Янв 2026</td><td class="c b">1 578</td><td class="c">-</td><td class="c">16</td><td class="c">99</td><td>Переходный период</td></tr>
+    <tr class="hi"><td>Фев 2026</td><td class="c b">1 798</td><td class="c">-</td><td class="c">19</td><td class="c">95</td><td>Текущий руководитель</td></tr>
+    <tr class="hi"><td>Мар 2026</td><td class="c b">1 773</td><td class="c">-</td><td class="c">21</td><td class="c">84</td><td>Текущий руководитель</td></tr>
+    <tr class="hi"><td>Апр 2026</td><td class="c b">1 724</td><td class="c">-</td><td class="c">22</td><td class="c">78</td><td>Текущий руководитель</td></tr>
+    <tr class="hi"><td>Май 2026</td><td class="c b">1 640</td><td class="c">-</td><td class="c">18</td><td class="c">91</td><td>Текущий руководитель</td></tr>
+    <tr class="hi"><td>Июн 2026</td><td class="c b">1 765</td><td class="c b">1 553</td><td class="c">20</td><td class="c">88</td><td>Текущий руководитель</td></tr>
+    <tr class="hi"><td>Июл 2026</td><td class="c b">1 822</td><td class="c b">1 634</td><td class="c">23</td><td class="c">79</td><td>Текущий руководитель</td></tr>
+    <tr class="hi"><td>Авг 2026</td><td class="c b">1 944</td><td class="c b">1 700</td><td class="c">21</td><td class="c">93</td><td>Текущий руководитель</td></tr>
+    <tr class="total"><td>Итого</td><td class="c">30 568</td><td class="c">4 887</td><td class="c">327</td><td class="c">93</td><td>16 месяцев</td></tr>
   </tbody>
 </table>
 
@@ -267,35 +392,41 @@ tr.lo td{background:#FAEEDA}
   <tbody>
     <tr><td>Май-Окт 2025 (предыдущий руководитель)</td><td class="c b">12 391</td><td class="c">6</td><td class="c">2 065</td><td class="c">98</td></tr>
     <tr><td>Ноя 2025-Янв 2026 (переходный период)</td><td class="c b">5 711</td><td class="c">3</td><td class="c">1 903</td><td class="c">100</td></tr>
-    <tr class="hi"><td>Фев-Июн 2026 (текущий руководитель)</td><td class="c b">8 700</td><td class="c">5</td><td class="c">1 740</td><td class="c">87</td></tr>
+    <tr class="hi"><td>Фев-Авг 2026 (текущий руководитель)</td><td class="c b">12 466</td><td class="c">7</td><td class="c">1 781</td><td class="c">87</td></tr>
   </tbody>
 </table>
+<div class="note">Средний месяц при текущем руководителе - 1 781 заведённая задача против 2 065 годом ранее (-14%). Если считать только обращения бизнеса, средний месяц июня-августа - 1 629.</div>
 </div>
 
 <div id="tab-d-systemic" class="panel">
-<h1>Проблематика и системность - июнь 2026</h1>
+<h1>Проблематика и системность - август 2026</h1>
+<p>Всё ниже - по счётному потоку (1 700 обращений бизнеса); служебный поток ИТ, включая авто-алерты ALARM по обмену с WMS и дежурства, из подсчётов исключён.</p>
 
 <h2>Инциденты 1С: УТ10</h2>
 <table>
   <thead><tr><th>Тип инцидента</th><th class="c">Кол-во</th><th>Характер</th></tr></thead>
   <tbody>
-    <tr><td>База недоступна</td><td class="c b">7</td><td>«Не войти в 1С», «не работает база»</td></tr>
-    <tr><td>Ошибки запуска / не открывается 1С</td><td class="c b">3</td><td>«Не запускается», «нет прав на запуск ИБ»</td></tr>
-    <tr><td>Значимые инциденты (авто-RCA)</td><td class="c b">3</td><td>Реальные инциденты (без учёта 7 тестовых срабатываний триггера)</td></tr>
-    <tr><td>Инциденты (тип задачи)</td><td class="c b">24</td><td>Единичные сбои</td></tr>
+    <tr><td>Ошибка при использовании 1С</td><td class="c b">34</td><td>«Ошибка 1С», «виснет», «не открываются заказы» - в основном 10-12 августа</td></tr>
+    <tr><td>База недоступна</td><td class="c b">20</td><td>«Не работает 1С», «нет подключения» - авария сервера 1-4 августа</td></tr>
+    <tr><td>Ошибки запуска / не открывается 1С</td><td class="c b">18</td><td>«Не запускается», «не входит в 1С»</td></tr>
+    <tr><td>Инциденты (тип задачи)</td><td class="c b">32</td><td>Единичные сбои</td></tr>
+    <tr><td>Значимые инциденты (авто-RCA)</td><td class="c b">1</td><td>Содержательный - ICT-30051; ещё 10 задач - пустые автосрабатывания триггера, в статистику не входят</td></tr>
   </tbody>
 </table>
 
-<h2>Повторяющиеся паттерны по БП (доминирующий подтип «Внесение изменений»)</h2>
+<h2>Повторяющиеся паттерны по БП (доминирующий подтип «Внесение изменений» - 569)</h2>
 <table>
   <thead><tr><th>Бизнес-процесс</th><th class="c">Обращений</th><th>Комментарий</th></tr></thead>
   <tbody>
-    <tr><td>БП Комплексная продажа</td><td class="c b">103</td><td>Резкий рост (+94% к маю) - статусы, прикрепление отгрузок</td></tr>
-    <tr><td>Заказ покупателя</td><td class="c b">88</td><td>Внесение изменений, проставление дизайнера</td></tr>
-    <tr><td>БП Доставка</td><td class="c b">75</td><td>Переносы дат, параметры доставки</td></tr>
-    <tr><td>БП Утверждение договора</td><td class="c b">68</td><td>Прикрепление, корректировки, маршруты</td></tr>
-    <tr><td>БП Предварительные наборы</td><td class="c b">44</td><td>Ответственные, отказы</td></tr>
-    <tr><td>БП Утверждение ЗРДС</td><td class="c b">40</td><td>Оплаты, удаление, маршруты (+54% к маю)</td></tr>
+    <tr><td>Заказ покупателя</td><td class="c b">124</td><td>Внесение изменений, проведение / распроведение</td></tr>
+    <tr><td>БП Комплексная продажа</td><td class="c b">76</td><td>Смена статусов КП, прикрепление отгрузок (июнь 102 → август 76)</td></tr>
+    <tr><td>БП Доставка</td><td class="c b">66</td><td>Переносы дат, параметры доставки</td></tr>
+    <tr><td>БП Утверждение договора</td><td class="c b">55</td><td>Подписанты, маршруты, прикрепление</td></tr>
+    <tr><td>БП Утверждение бюджетной заявки (ЗРДС)</td><td class="c b">55</td><td>Оплаты, маршруты; рост третий месяц подряд (40 → 51 → 55)</td></tr>
+    <tr><td>БП Предварительные наборы</td><td class="c b">54</td><td>Последствия отката базы, зависшие БП без ответа WMS</td></tr>
+    <tr><td>БП Претензия</td><td class="c b">37</td><td>Ровный поток с июля (36 → 37)</td></tr>
+    <tr><td>БП Запрос льготной доставки</td><td class="c b">34</td><td>23 из 34 - один день, 4 августа</td></tr>
+    <tr><td>БП ЗВУ</td><td class="c b">31</td><td>Дефект вычерка, незаполненный сектор склада</td></tr>
   </tbody>
 </table>
 
@@ -303,56 +434,72 @@ tr.lo td{background:#FAEEDA}
 <table>
   <thead><tr><th>Направление</th><th class="c">Обращений</th><th>Основные типы</th></tr></thead>
   <tbody>
-    <tr><td>Сеть и интернет</td><td class="c b">105</td><td>Удалённое подключение / RDP (37), мониторинг интернет-соединения (23), проблемы сети (16), нет интернета (13)</td></tr>
-    <tr><td>Корпоративная печать</td><td class="c b">93</td><td>Настройка профилей печати (21), принтер не печатает (20), замена картриджей (14), подключение принтера (12)</td></tr>
-    <tr><td>Корп. учётная запись</td><td class="c b">85</td><td>Предоставление доступа к системам (24), восстановление доступа (21), доступ к сетевым папкам (19)</td></tr>
-    <tr><td>Рабочее место</td><td class="c b">73</td><td>Настройка нового РМ (12), замена/ремонт ПК (8), установка ПО (4)</td></tr>
-    <tr><td>ПО (общее)</td><td class="c b">69</td><td>Настройка и диагностика (22), установка ПО (20), обновление (6)</td></tr>
-    <tr><td>Электронная почта</td><td class="c b">53</td><td>Почта не работает (16), настройка Outlook (8), архивация (7)</td></tr>
-    <tr><td>Касса и фискальные</td><td class="c b">32</td><td>Чек не пробивается (9), касса не работает (6), перерегистрация ФН (3)</td></tr>
-    <tr><td>Битрикс24</td><td class="c b">28</td><td>Предоставление доступа (16), недоступен/ошибка входа (7)</td></tr>
+    <tr><td>Рабочее место</td><td class="c b">102</td><td>Прочее (21), замена / выдача периферии (20), заказ нового ПК (14), установка ПО (12)</td></tr>
+    <tr><td>Корпоративная печать</td><td class="c b">80</td><td>Принтер не печатает (27), подключение принтера (16), замена картриджей (13), профили печати (11)</td></tr>
+    <tr><td>Электронная почта</td><td class="c b">71</td><td>Почта не работает (17), прочее (15), архивация писем (13), настройка Outlook (12)</td></tr>
+    <tr><td>Корп. учётная запись</td><td class="c b">70</td><td>Доступ к сетевым папкам (26), доступ к системам (18), восстановление доступа (9)</td></tr>
+    <tr><td>ПО (общее)</td><td class="c b">67</td><td>Установка ПО (26), настройка и диагностика (20), прочее (17)</td></tr>
+    <tr><td>Сеть и интернет</td><td class="c b">61</td><td>Нет интернета (14), RDP (14), проблемы сети (14), VPN (14) - ровно по четырём типам</td></tr>
+    <tr><td>Сайты и B2B портал</td><td class="c b">28</td><td>Прочее (18), обновить контент сайта (6); ещё 23 заявки «[B2B] Другое» от 27-28 августа отменены и в счётный поток не вошли</td></tr>
+    <tr><td>Касса и фискальные</td><td class="c b">43</td><td>Чек не пробивается (11), смена не открывается / закрывается (9), касса не работает (7)</td></tr>
+    <tr><td>ЭДО</td><td class="c b">29</td><td>Доступ и ошибки ЭДО (7), ошибка отправки документов (5), нет доступа к Диадок (5)</td></tr>
+    <tr><td>Битрикс24</td><td class="c b">25</td><td>Прочее (14), предоставление доступа (6), недоступен / ошибка входа (5)</td></tr>
+    <tr><td>Серверы и ИБ</td><td class="c b">13</td><td>Прочее (8), плановое обслуживание серверов (3)</td></tr>
   </tbody>
 </table>
 
 <h1>Массовые и системные инциденты - статус на конец месяца</h1>
 
-<h2>Массовый сбой 1С - 13 июня</h2>
-<p>За один день зафиксировано 6 обращений «не могу войти / не работает 1С» (ICT-27086…27091, подтип «База недоступна») - массовая недоступность базы. <span class="dg">Все закрыты 15 июня.</span> Единичный отголосок 22 июня (ICT-27515) также закрыт. Новых обращений по этой волне после 22 июня нет - проблема устранена.</p>
+<h2>Авария сервера 1С - 31 июля … 4 августа</h2>
+<p>Вечером 31 июля вышел из строя диск на сервере базы 1С. Базу восстановили из резервной копии, из-за чего часть документов, созданных после точки восстановления, была утрачена и восстанавливалась вручную. В субботу 1 августа поступило 45 обращений бизнеса при обычных для выходного 10 - из них 19 «Системные инциденты» (плюс 12 авто-писем ALARM по обмену с WMS, которые в статистику не входят). Утром 4 августа сбой повторился («нет входа в 1С с 3:38»), после чего службы 1С были полностью перенесены на другой сервер (<b>ICT-30051</b>) - 4 августа стало пиком месяца (119 обращений). <span class="dg">Инцидент закрыт, повторов после 4 августа нет.</span></p>
+<p>Последствия разбирались до середины месяца: зависшие преднаборы без ответа WMS, «слетевшие» реализации от 31 июля, зависшие БП льготной доставки (23 обращения 4 августа), непроведённые перемещения. <span class="dg">К 17 августа все три волны исчерпаны.</span></p>
+
+<h2>Вторая волна ошибок 1С - 10-12 августа</h2>
+<p>27 обращений за три дня по типу «Системные инциденты» (13 + 8 + 6): «не открываются заказы», «не формируются документы для доставки», «виснет 1С». <span class="dg">Устранено, к 13 августа поток вернулся к 1-2 обращениям в день.</span></p>
+
+<h2>Простой обмена с WMS - 11 и 31 августа</h2>
+<p>Обмен 1С - WMS отслеживается служебными записями мониторинга (в статистику обращений они не входят): 11 августа - 11 записей, 31 августа - повторный простой выгрузки заказов, зафиксированный уже обращением склада (<b>ICT-32217</b>). <span class="da">Причина на стороне обмена: при простое 1С сама закрывает старые пакеты по тайм-ауту и помечает их как обработанные, из-за чего заказы не доходят до склада без явной ошибки.</span></p>
+
+<h2>ЭДО - ошибки подписания с 29 августа</h2>
+<p>С 29 августа выгрузка УПД перестала уходить у всех организаций: <b>ICT-31745</b> «Ошибка при подписании УПД в ЭДО», <b>ICT-32231</b>, <b>ICT-32234</b>, <b>ICT-32265</b> «Сертификат ЭДО». <span class="da">Причина - истёкший сертификат подписанта, а не сбой контрагента или роуминга. На конец месяца в работе.</span></p>
+
+<h2>Контур.Логистика - запуск и доступы</h2>
+<p>31 августа - 10 обращений «Права доступа. Контур.Логистика» и «нет прав доступа в Контур.Логистике»: подключение нового сервиса и раздача прав диспетчерам. <span class="">Плановая волна запуска, не инцидент.</span></p>
 
 <h2>Значимые инциденты (авто-RCA)</h2>
-<p>Значимые инциденты создаются автоматически при накоплении 3+ обращений с меткой RCA за 30 дней. За июнь зарегистрировано 3 значимых инцидента - все решены и закрыты.</p>
+<p>Значимые инциденты создаются автоматически при накоплении 3+ обращений с меткой RCA за 30 дней. За август создано 11 задач, но содержательное наполнение есть только у одной - остальные 10 являются пустыми автосрабатываниями триггера («Автоматически создано. Зафиксировано 3+ обращений за 30 дней»). Как авто-задачи они исключены из счётного потока, но правило всё равно требует настройки: в таком виде оно не даёт разбора.</p>
 <table>
   <thead><tr><th>Задача</th><th>Описание</th><th>Решение</th><th class="c">Создано</th><th class="c">Статус</th></tr></thead>
   <tbody>
-    <tr class="hi"><td>ICT-27894</td><td>RCA-1C-UT - зависание робота в БП «Льготная доставка»</td><td>Найдено и внедрено решение по устранению зависания робота в бизнес-процессе «Льготная доставка».</td><td class="c">29 июня</td><td class="c"><span class="dg">Готово</span></td></tr>
-    <tr class="hi"><td>ICT-27821</td><td>RCA-1C-UT - общий сбой на стороне сервиса Контур</td><td>Сбой на стороне Контура, устранён силами сотрудников Контура.</td><td class="c">26 июня</td><td class="c"><span class="dg">Готово</span></td></tr>
-    <tr class="hi"><td>ICT-27319</td><td>RCA-NET - отсутствует доступ к сетевому диску Y у отдельных пользователей</td><td>Решено на стороне инфраструктуры: групповые политики не долетали до точечных пользователей.</td><td class="c">17 июня</td><td class="c"><span class="dg">Готово</span></td></tr>
+    <tr class="hi"><td>ICT-30051</td><td>Сбой физического сервера 1С - полный перенос на другой сервер</td><td>Службы 1С перенесены на резервный сервер по плану работ; база восстановлена из резервной копии, утраченные документы переоформлены вручную.</td><td class="c">4 августа</td><td class="c"><span class="dg">Готово</span></td></tr>
+    <tr><td>10 задач RCA-1C-UT</td><td>[RCA] Повторяющаяся проблема - автосрабатывания триггера без наполнения</td><td>Закрыты без разбора: у задач нет ни описания проблемы, ни привязки к обращениям.</td><td class="c">3-31 августа</td><td class="c"><span class="da">Требует настройки правила</span></td></tr>
   </tbody>
 </table>
-<p>Все значимые инциденты июня решены и закрыты; открытых системных инцидентов на конец месяца нет.</p>
 
 <h2>Что осталось незакрытым на конец месяца</h2>
 <table style="max-width:640px">
   <thead><tr><th>Показатель</th><th class="c">Значение</th></tr></thead>
   <tbody>
-    <tr><td>Не закрыто (не «Готово»/«Отменено»)</td><td class="c b">332</td></tr>
-    <tr class="hi"><td>Из них создано 29-30 июня</td><td class="c b">157 (47%)</td></tr>
-    <tr><td>Из них - «На проверке» / «В работе»</td><td class="c">176 / 95</td></tr>
+    <tr><td>Не закрыто (не «Готово»/«Отменено»)</td><td class="c b">179</td></tr>
+    <tr class="hi"><td>Из них создано 30-31 августа</td><td class="c b">66 (37%)</td></tr>
+    <tr><td>Из них - «На проверке» / «В работе»</td><td class="c">80 / 72</td></tr>
+    <tr><td>Ожидает информации от заявителя</td><td class="c">8</td></tr>
     <tr><td>Открытых массовых сбоев</td><td class="c b"><span class="dg">нет</span></td></tr>
-    <tr><td>Открытых системных инцидентов</td><td class="c b"><span class="dg">нет</span></td></tr>
+    <tr><td>Открытых системных инцидентов</td><td class="c b"><span class="da">1 - ЭДО, сертификат подписанта</span></td></tr>
   </tbody>
 </table>
-<div class="note">Почти половина незакрытых задач - обычный поток последних двух дней месяца, который физически не успели принять до выгрузки экспорта (начало июля). Отдельных «зависших» системных проблем среди открытых нет; показатель закрытия июня вырастет по мере приёмки этих задач.</div>
+<div class="note">В дашборде «Мониторинга проблем» за август стоит 1 701 - на одну задачу больше: там ещё числится ICT-30943 «Тест уведомлений Notamedia Jira ↔ B24 Support», удалённая из Jira. В отчёте её нет.</div>
+<div class="note">Больше трети незакрытых задач - обычный поток последних двух дней месяца, который не успели принять до выгрузки. Показатель выполнения августа вырастет по мере приёмки - так же, как июньский вырос с 88,1% до 95,7%. Единственный незакрытый системный вопрос на конец месяца - ошибки подписания в ЭДО с 29 августа.</div>
 
 </div>
 
 <div class="footer">
-  Подготовлено: июль 2026 &nbsp;|&nbsp; Источник: Jira Service Management, проект ICT (экспорты Jira 16/17/18) &nbsp;|&nbsp; Июнь: 1 765 &middot; Май: 1 679 &middot; Апрель: 1 724 обращения
+  Подготовлено: сентябрь 2026 &nbsp;|&nbsp; Источник: Jira Service Management, проект ICT (REST API, выборка 3 сентября 2026); счётный поток по правилу продукта «Мониторинг проблем» &nbsp;|&nbsp; Обращения бизнеса - август: 1 700 &middot; июль: 1 634 &middot; июнь: 1 553
 </div>
 <script>
 const gc='rgba(0,0,0,0.07)',tc='#888';
 const built={};
-const builders={'m-apr':build_apr,'m-may':build_may,'m-jun':build_jun,'d-compare':build_dcompare,'d-monthly':build_dmonthly};
+const builders={'m-apr':build_apr,'m-may':build_may,'m-jun':build_jun,'m-jul':build_jul,'m-aug':build_aug,'d-compare':build_dcompare,'d-monthly':build_dmonthly};
 function showTab(n,el){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -401,74 +548,130 @@ function build_may(){
 }
 function build_jun(){
   if(built['jun'])return;built['jun']=true;
-  
+
   new Chart(document.getElementById('org_jun'),{type:'bar',
-    data:{labels:["ООО Баусервис", "ИП Ахаимов", "ООО БауВосток", "ООО БауЗапад", "ООО Открытие", "ООО БауСофт", "ИП Волчков В.Л.", "ООО Урбанист", "Прочие / не указана"],datasets:[{data:[715, 242, 205, 188, 175, 73, 51, 46, 70],backgroundColor:'#2E5C99',borderRadius:2}]},
+    data:{labels:["ООО Баусервис", "ИП Ахаимов", "ООО БауВосток", "ООО БауЗапад", "ООО Открытие", "ИП Волчков В.Л.", "ООО Урбанист", "ООО БауСофт", "Прочие / не указана"],datasets:[{data:[632, 238, 201, 184, 138, 50, 45, 19, 46],backgroundColor:'#2E5C99',borderRadius:2}]},
     options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw+' обращений'}}},scales:{x:{ticks:{font:{size:10},color:tc},grid:{color:gc}},y:{ticks:{font:{size:11},color:tc},grid:{display:false}}}}});
   new Chart(document.getElementById('day_jun'),{type:'bar',
-    data:{labels:["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"],datasets:[{data:[136, 82, 91, 78, 69, 9, 5, 96, 78, 55, 93, 10, 14, 13, 98, 86, 74, 50, 58, 6, 4, 83, 75, 85, 67, 57, 7, 5, 82, 99],backgroundColor:['#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#C4B573','#C4B573','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#C4B573','#C4B573','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#C4B573','#C4B573','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#C4B573','#C4B573','#2E5C99','#2E5C99'],borderRadius:2}]},
+    data:{labels:["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"],datasets:[{data:[127, 63, 83, 67, 59, 8, 4, 80, 68, 49, 84, 7, 13, 12, 91, 81, 61, 41, 49, 5, 3, 70, 69, 75, 57, 49, 6, 3, 76, 93],backgroundColor:['#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#C4B573','#C4B573','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#C4B573','#C4B573','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#C4B573','#C4B573','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#C4B573','#C4B573','#2E5C99','#2E5C99'],borderRadius:2}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>items[0].label+' число',label:c=>' '+c.raw+' обращений'}}},scales:{x:{ticks:{font:{size:9},color:tc},grid:{display:false}},y:{ticks:{font:{size:10},color:tc},grid:{color:gc}}}}});
   new Chart(document.getElementById('cat_jun'),{type:'doughnut',
-  data:{labels:["1С и бизнес-процессы", "Инфраструктура и РМ", "Коммуникации и связь", "Доступы и уч. записи", "Бизнес-приложения", "Не классифицировано"],datasets:[{data:[1060, 380, 115, 86, 66, 57],backgroundColor:['#2E5C99','#D85A30','#BA7517','#7f77dd','#1d9e75','#888780'],borderWidth:2,borderColor:'#fff'}]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:11},boxWidth:12,padding:8}},tooltip:{callbacks:{label:c=>' '+c.label+': '+c.raw+' ('+Math.round(c.raw/1765*100)+'%)'}}}}});
+  data:{labels:["1С и бизнес-процессы", "Инфраструктура и РМ", "Коммуникации и связь", "Доступы и уч. записи", "Бизнес-приложения", "Не классифицировано", "Логистика и склад"],datasets:[{data:[1023, 285, 85, 79, 52, 28, 1],backgroundColor:["#2E5C99", "#D85A30", "#BA7517", "#7f77dd", "#1d9e75", "#888780", "#C4B573"],borderWidth:2,borderColor:'#fff'}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:11},boxWidth:12,padding:8}},tooltip:{callbacks:{label:c=>' '+c.label+': '+c.raw+' ('+Math.round(c.raw/1553*100)+'%)'}}}}});
   new Chart(document.getElementById('svc_jun'),{type:'bar',
-  data:{labels:["1С: УТ10", "Сеть", "Корп. печать", "Корп. уч. зап.", "Рабочее место", "ПО (общее)", "Электр. почта", "Телефония", "Сайты/B2B", "Касса", "Битрикс24", "ЭДО", "Прочие"],datasets:[{data:[1021, 105, 93, 85, 73, 69, 53, 41, 37, 32, 28, 19, 42],backgroundColor:'#2E5C99',borderRadius:2}]},
+  data:{labels:["1С: УТ10", "Корп. уч. зап.", "Корп. печать", "Сеть", "ПО (общее)", "Электр. почта", "Рабочее место", "Телефония", "Касса", "Не классифицировано", "Сайты/B2B", "Битрикс24", "ЭДО", "BI", "Прочие"],datasets:[{data:[993, 79, 78, 68, 56, 49, 49, 34, 31, 29, 26, 25, 18, 8, 10],backgroundColor:'#2E5C99',borderRadius:2}]},
   options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw+' обращений'}}},scales:{x:{ticks:{font:{size:10},color:tc},grid:{color:gc}},y:{ticks:{font:{size:10},color:tc},grid:{display:false}}}}});
   new Chart(document.getElementById('rt_jun'),{type:'bar',
-  data:{labels:["БП Компл. продажа", "Заказ покупателя", "Другая проблема", "БП Доставка", "БП Утв. договора", "Прочие настройки", "БП Преднаборы", "Работа с документами", "БП ЗРДС", "Контрагент", "Внутренний заказ", "БП Заказные поз.", "БП Претензия", "БП Возврат", "Настр. печати"],datasets:[{data:[103, 88, 77, 75, 68, 47, 44, 40, 40, 38, 32, 25, 24, 23, 21],backgroundColor:['#D85A30','#D85A30','#D85A30','#D85A30','#D85A30','#D85A30','#D85A30','#D85A30','#D85A30','#D85A30','#D85A30','#D85A30','#D85A30','#D85A30','#D85A30'],borderRadius:2}]},
+  data:{labels:["Другая проблема", "БП Компл. продажа", "Заказ покупателя", "БП Доставка", "БП Утв. договора", "Прочие настройки", "БП Преднаборы", "БП ЗРДС", "RDP / удалёнка", "Контрагент", "Работа с документами", "Внутренний заказ", "БП Заказные поз.", "БП Премии, штрафы", "БП Претензия"],datasets:[{data:[187, 102, 85, 74, 68, 46, 41, 40, 36, 35, 33, 32, 25, 24, 24],backgroundColor:['#D85A30','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#D85A30','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99'],borderRadius:2}]},
   options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw+' обращений'}}},scales:{x:{ticks:{font:{size:10},color:tc},grid:{color:gc}},y:{ticks:{font:{size:10},color:tc},grid:{display:false}}}}});
   new Chart(document.getElementById('sub_jun'),{type:'bar',
-  data:{labels:["Внесение изменений", "Ошибка", "Настройка", "Предостав. доступа 1С", "Провести документ", "Пров./распров.", "Изм. карточки контр.", "Проставл. дизайнера"],datasets:[{data:[593, 58, 54, 38, 33, 29, 27, 22],backgroundColor:'#2E5C99',borderRadius:2}]},
+  data:{labels:["Внесение изменений", "Ошибка", "Настройка", "Предостав. доступа 1С", "Пров./распров.", "Провести документ", "Изм. карточки контр.", "Проставл. дизайнера", "Пр./снятие резерва"],datasets:[{data:[588, 57, 50, 38, 29, 28, 25, 21, 12],backgroundColor:'#2E5C99',borderRadius:2}]},
   options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw}}},scales:{x:{ticks:{font:{size:10},color:tc},grid:{color:gc}},y:{ticks:{font:{size:10},color:tc},grid:{display:false}}}}});
   new Chart(document.getElementById('team_jun'),{type:'bar',
-  data:{labels:["Андреева О.", "Макарова И.", "Стрыгина М.", "Степанов А.", "Халявкин А.", "Крюков А.", "Головчук Р.", "Старовойтов В.", "Петровский В.", "Якуйтис М.", "Хайлапов Р.", "Соловей С.", "Лукьяненко С.", "Водопьянов И.", "Черныш Д.", "Прочие"],datasets:[{data:[338, 398, 254, 63, 220, 167, 112, 41, 26, 26, 15, 13, 16, 27, 12, 26],backgroundColor:'#2E5C99',borderRadius:2}]},
+  data:{labels:["Андреева О.", "Макарова И.", "Стрыгина М.", "Тощёва М.", "Степанов А.", "Халявкин А.", "Крюков А.", "Головчук Р.", "Старовойтов В.", "Петровский В.", "Якуйтис М.", "Хайралапов Р.", "Соловей С.", "Блинов Р.", "Лукьяненко С.", "Водопьянов И.", "Черныш Д.", "Прочие"],datasets:[{data:[316, 396, 249, 2, 48, 188, 110, 106, 36, 19, 23, 9, 1, 2, 11, 15, 12, 10],backgroundColor:'#2E5C99',borderRadius:2}]},
+  options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw+' обращений'}}},scales:{x:{ticks:{font:{size:10},color:tc},grid:{color:gc}},y:{ticks:{font:{size:10},color:tc},grid:{display:false}}}}});
+}
+function build_jul(){
+  if(built['jul'])return;built['jul']=true;
+
+  new Chart(document.getElementById('org_jul'),{type:'bar',
+    data:{labels:["ООО Баусервис", "ООО БауЗапад", "ИП Ахаимов", "ООО БауВосток", "ООО Открытие", "ООО Урбанист", "ИП Волчков В.Л.", "ООО БауСофт", "Прочие / не указана"],datasets:[{data:[682, 221, 199, 173, 167, 95, 37, 18, 42],backgroundColor:'#2E5C99',borderRadius:2}]},
+    options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw+' обращений'}}},scales:{x:{ticks:{font:{size:10},color:tc},grid:{color:gc}},y:{ticks:{font:{size:11},color:tc},grid:{display:false}}}}});
+  new Chart(document.getElementById('day_jul'),{type:'bar',
+    data:{labels:["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"],datasets:[{data:[83, 60, 86, 17, 9, 73, 72, 74, 46, 63, 4, 4, 82, 69, 80, 63, 52, 5, 14, 56, 69, 63, 58, 61, 9, 2, 73, 88, 65, 63, 71],backgroundColor:['#2E5C99','#2E5C99','#2E5C99','#C4B573','#C4B573','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#C4B573','#C4B573','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#C4B573','#C4B573','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#C4B573','#C4B573','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99'],borderRadius:2}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>items[0].label+' число',label:c=>' '+c.raw+' обращений'}}},scales:{x:{ticks:{font:{size:9},color:tc},grid:{display:false}},y:{ticks:{font:{size:10},color:tc},grid:{color:gc}}}}});
+  new Chart(document.getElementById('cat_jul'),{type:'doughnut',
+  data:{labels:["1С и бизнес-процессы", "Инфраструктура и РМ", "Коммуникации и связь", "Бизнес-приложения", "Доступы и уч. записи", "Не классифицировано", "Логистика и склад"],datasets:[{data:[1052, 365, 80, 56, 53, 25, 3],backgroundColor:["#2E5C99", "#D85A30", "#BA7517", "#1d9e75", "#7f77dd", "#888780", "#C4B573"],borderWidth:2,borderColor:'#fff'}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:11},boxWidth:12,padding:8}},tooltip:{callbacks:{label:c=>' '+c.label+': '+c.raw+' ('+Math.round(c.raw/1634*100)+'%)'}}}}});
+  new Chart(document.getElementById('svc_jul'),{type:'bar',
+  data:{labels:["1С: УТ10", "Рабочее место", "Корп. печать", "ПО (общее)", "Электр. почта", "Касса", "Корп. уч. зап.", "Сеть", "ЭДО", "Сайты/B2B", "Не классифицировано", "Битрикс24", "Телефония", "BI", "Прочие"],datasets:[{data:[1009, 116, 76, 73, 55, 54, 53, 40, 32, 31, 26, 24, 24, 9, 12],backgroundColor:'#2E5C99',borderRadius:2}]},
+  options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw+' обращений'}}},scales:{x:{ticks:{font:{size:10},color:tc},grid:{color:gc}},y:{ticks:{font:{size:10},color:tc},grid:{display:false}}}}});
+  new Chart(document.getElementById('rt_jul'),{type:'bar',
+  data:{labels:["Заказ покупателя", "БП Компл. продажа", "БП Доставка", "Другая проблема", "Прочие настройки", "БП Утв. договора", "БП ЗРДС", "Внутренний заказ", "Работа с документами", "Установка ПО", "БП Претензия", "Контрагент", "Ошибки входа в 1С", "БП Преднаборы", "Настр. печати"],datasets:[{data:[114, 71, 70, 70, 69, 63, 51, 50, 49, 36, 36, 36, 32, 31, 22],backgroundColor:['#2E5C99','#2E5C99','#2E5C99','#D85A30','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#D85A30','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#D85A30'],borderRadius:2}]},
+  options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw+' обращений'}}},scales:{x:{ticks:{font:{size:10},color:tc},grid:{color:gc}},y:{ticks:{font:{size:10},color:tc},grid:{display:false}}}}});
+  new Chart(document.getElementById('sub_jul'),{type:'bar',
+  data:{labels:["Внесение изменений", "Предостав. доступа 1С", "Пров./распров.", "Ошибка", "Не открывается 1С", "Провести документ", "Изм. карточки контр.", "Настройка", "Проставл. дизайнера"],datasets:[{data:[588, 54, 53, 40, 31, 27, 26, 25, 22],backgroundColor:'#2E5C99',borderRadius:2}]},
+  options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw}}},scales:{x:{ticks:{font:{size:10},color:tc},grid:{color:gc}},y:{ticks:{font:{size:10},color:tc},grid:{display:false}}}}});
+  new Chart(document.getElementById('team_jul'),{type:'bar',
+  data:{labels:["Андреева О.", "Макарова И.", "Стрыгина М.", "Тощёва М.", "Степанов А.", "Халявкин А.", "Крюков А.", "Головчук Р.", "Старовойтов В.", "Петровский В.", "Якуйтис М.", "Хайралапов Р.", "Соловей С.", "Блинов Р.", "Лукьяненко С.", "Водопьянов И.", "Черныш Д.", "Прочие"],datasets:[{data:[214, 322, 458, 3, 27, 168, 54, 183, 26, 64, 41, 7, 14, 5, 21, 12, 3, 12],backgroundColor:'#BA7517',borderRadius:2}]},
+  options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw+' обращений'}}},scales:{x:{ticks:{font:{size:10},color:tc},grid:{color:gc}},y:{ticks:{font:{size:10},color:tc},grid:{display:false}}}}});
+}
+function build_aug(){
+  if(built['aug'])return;built['aug']=true;
+
+  new Chart(document.getElementById('org_aug'),{type:'bar',
+    data:{labels:["ООО Баусервис", "ИП Ахаимов", "ООО БауВосток", "ООО БауЗапад", "ООО Открытие", "ООО Урбанист", "ООО БауСофт", "ИП Волчков В.Л.", "Прочие / не указана"],datasets:[{data:[763, 221, 220, 206, 156, 49, 24, 20, 41],backgroundColor:'#2E5C99',borderRadius:2}]},
+    options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw+' обращений'}}},scales:{x:{ticks:{font:{size:10},color:tc},grid:{color:gc}},y:{ticks:{font:{size:11},color:tc},grid:{display:false}}}}});
+  new Chart(document.getElementById('day_aug'),{type:'bar',
+    data:{labels:["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"],datasets:[{data:[45, 3, 83, 119, 80, 61, 49, 9, 9, 92, 88, 88, 57, 77, 8, 2, 65, 89, 74, 47, 64, 3, 4, 75, 91, 68, 85, 54, 14, 4, 93],backgroundColor:['#C4B573','#C4B573','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#C4B573','#C4B573','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#C4B573','#C4B573','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#C4B573','#C4B573','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#C4B573','#C4B573','#2E5C99'],borderRadius:2}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{title:items=>items[0].label+' число',label:c=>' '+c.raw+' обращений'}}},scales:{x:{ticks:{font:{size:9},color:tc},grid:{display:false}},y:{ticks:{font:{size:10},color:tc},grid:{color:gc}}}}});
+  new Chart(document.getElementById('cat_aug'),{type:'doughnut',
+  data:{labels:["1С и бизнес-процессы", "Инфраструктура и РМ", "Коммуникации и связь", "Доступы и уч. записи", "Бизнес-приложения", "Не классифицировано", "Логистика и склад"],datasets:[{data:[1100, 366, 79, 70, 55, 26, 4],backgroundColor:["#2E5C99", "#D85A30", "#BA7517", "#7f77dd", "#1d9e75", "#888780", "#C4B573"],borderWidth:2,borderColor:'#fff'}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:11},boxWidth:12,padding:8}},tooltip:{callbacks:{label:c=>' '+c.label+': '+c.raw+' ('+Math.round(c.raw/1700*100)+'%)'}}}}});
+  new Chart(document.getElementById('svc_aug'),{type:'bar',
+  data:{labels:["1С: УТ10", "Рабочее место", "Корп. печать", "Электр. почта", "Корп. уч. зап.", "ПО (общее)", "Сеть", "Касса", "ЭДО", "Сайты/B2B", "Не классифицировано", "Битрикс24", "BI", "Серверы и ИБ", "Прочие"],datasets:[{data:[1049, 102, 80, 71, 70, 67, 61, 43, 29, 28, 27, 25, 13, 13, 22],backgroundColor:'#2E5C99',borderRadius:2}]},
+  options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw+' обращений'}}},scales:{x:{ticks:{font:{size:10},color:tc},grid:{color:gc}},y:{ticks:{font:{size:10},color:tc},grid:{display:false}}}}});
+  new Chart(document.getElementById('rt_aug'),{type:'bar',
+  data:{labels:["Другая проблема", "Заказ покупателя", "БП Компл. продажа", "БП Доставка", "Системные инциденты", "БП Утв. договора", "БП ЗРДС", "БП Преднаборы", "Внутренний заказ", "Прочие настройки", "БП Претензия", "БП Льготная доставка", "БП СЗ в ФО", "БП ЗВУ", "Контрагент"],datasets:[{data:[162, 124, 76, 66, 59, 55, 55, 54, 44, 38, 37, 34, 34, 31, 29],backgroundColor:['#D85A30','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99'],borderRadius:2}]},
+  options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw+' обращений'}}},scales:{x:{ticks:{font:{size:10},color:tc},grid:{color:gc}},y:{ticks:{font:{size:10},color:tc},grid:{display:false}}}}});
+  new Chart(document.getElementById('sub_aug'),{type:'bar',
+  data:{labels:["Внесение изменений", "Ошибка", "Настройка", "Пров./распров.", "Ошибка в работе 1С", "Провести документ", "Изм. карточки контр.", "Изм. маршрута", "База недоступна"],datasets:[{data:[569, 88, 47, 40, 34, 23, 21, 21, 20],backgroundColor:'#2E5C99',borderRadius:2}]},
+  options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw}}},scales:{x:{ticks:{font:{size:10},color:tc},grid:{color:gc}},y:{ticks:{font:{size:10},color:tc},grid:{display:false}}}}});
+  new Chart(document.getElementById('team_aug'),{type:'bar',
+  data:{labels:["Андреева О.", "Макарова И.", "Стрыгина М.", "Тощёва М.", "Степанов А.", "Халявкин А.", "Крюков А.", "Головчук Р.", "Старовойтов В.", "Петровский В.", "Якуйтис М.", "Хайралапов Р.", "Соловей С.", "Блинов Р.", "Лукьяненко С.", "Водопьянов И.", "Черныш Д.", "Прочие"],datasets:[{data:[446, 257, 72, 235, 25, 265, 76, 113, 32, 43, 44, 25, 17, 8, 22, 2, 3, 15],backgroundColor:'#1d9e75',borderRadius:2}]},
   options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw+' обращений'}}},scales:{x:{ticks:{font:{size:10},color:tc},grid:{color:gc}},y:{ticks:{font:{size:10},color:tc},grid:{display:false}}}}});
 }
 
 function build_dcompare(){
   if(built['d-compare'])return;built['d-compare']=true;
+  const ML=['Апрель','Май','Июнь','Июль','Август'];
   new Chart(document.getElementById('cmpVolume'),{type:'bar',
-    data:{labels:['Апрель','Май','Июнь'],datasets:[{data:[1724,1679,1765],backgroundColor:['#3266AD','#1d9e75','#2E5C99'],borderRadius:4}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw.toLocaleString('ru')+' обращений'}}},scales:{x:{ticks:{font:{size:12},color:tc},grid:{display:false}},y:{ticks:{font:{size:11},color:tc},grid:{color:gc},min:1500}}}});
+    data:{labels:ML,datasets:[
+      {label:'Всего заведено',data:[1724,1679,1765,1822,1944],backgroundColor:'#C9C7BF',borderRadius:4},
+      {label:'Обращения бизнеса',data:[null,null,1553,1634,1700],backgroundColor:'#2E5C99',borderRadius:4}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:c=>' '+c.dataset.label+': '+c.raw.toLocaleString('ru')}}},scales:{x:{ticks:{font:{size:12},color:tc},grid:{display:false}},y:{ticks:{font:{size:11},color:tc},grid:{color:gc},min:1500}}}});
   new Chart(document.getElementById('cmpClass'),{type:'bar',
-    data:{labels:['Апрель','Май','Июнь'],datasets:[{data:[23.3,97.9,96.8],backgroundColor:['#D85A30','#1d9e75','#2E5C99'],borderRadius:4}]},
+    data:{labels:ML,datasets:[{data:[23.3,97.9,98.2,98.5,98.5],backgroundColor:['#D85A30','#C9C7BF','#3266AD','#BA7517','#1d9e75'],borderRadius:4}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw+'% классифицировано'}}},scales:{x:{ticks:{font:{size:12},color:tc},grid:{display:false}},y:{ticks:{font:{size:11},color:tc,callback:v=>v+'%'},grid:{color:gc},min:0,max:100}}}});
   new Chart(document.getElementById('cmpCats'),{type:'bar',
-    data:{labels:['1С и бизнес-проц.','Инфраструктура','Коммуникации','Доступы','Бизнес-прил.'],datasets:[
-      {label:'Май',data:[936,415,133,87,70],backgroundColor:'#1d9e7588',borderColor:'#1d9e75',borderWidth:1,borderRadius:2},
-      {label:'Июнь',data:[1060,380,115,86,66],backgroundColor:'#2E5C9988',borderColor:'#2E5C99',borderWidth:1,borderRadius:2}]},
+    data:{labels:['1С и бизнес-проц.','Инфраструктура','Коммуникации','Доступы','Бизнес-прил.','Логистика'],datasets:[
+      {label:'Июнь',data:[1023,285,85,79,52,1],backgroundColor:'#3266AD88',borderColor:'#3266AD',borderWidth:1,borderRadius:2},
+      {label:'Июль',data:[1052,365,80,53,56,3],backgroundColor:'#BA751788',borderColor:'#BA7517',borderWidth:1,borderRadius:2},
+      {label:'Август',data:[1100,366,79,70,55,4],backgroundColor:'#1d9e7588',borderColor:'#1d9e75',borderWidth:1,borderRadius:2}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:c=>' '+c.dataset.label+': '+c.raw}}},scales:{x:{ticks:{font:{size:10},color:tc},grid:{display:false}},y:{ticks:{font:{size:11},color:tc},grid:{color:gc}}}}});
   new Chart(document.getElementById('cmpOrg'),{type:'bar',
-    data:{labels:['ООО Баусервис','ИП Ахаимов','ООО БауВосток','ООО БауЗапад','ООО Открытие','ООО БауСофт','ИП Волчков','ООО Урбанист'],datasets:[
-      {label:'Апрель',data:[740,166,253,195,115,81,66,59],backgroundColor:'#3266AD99',borderColor:'#3266AD',borderWidth:1,borderRadius:2},
-      {label:'Май',data:[809,173,181,161,117,85,52,47],backgroundColor:'#1d9e7599',borderColor:'#1d9e75',borderWidth:1,borderRadius:2},
-      {label:'Июнь',data:[715,242,205,188,175,73,51,46],backgroundColor:'#2E5C9999',borderColor:'#2E5C99',borderWidth:1,borderRadius:2}]},
+    data:{labels:['ООО Баусервис','ИП Ахаимов','ООО БауВосток','ООО БауЗапад','ООО Открытие','ООО Урбанист','ООО БауСофт','ИП Волчков'],datasets:[
+      {label:'Июнь',data:[632,238,201,184,138,45,19,50],backgroundColor:'#3266AD99',borderColor:'#3266AD',borderWidth:1,borderRadius:2},
+      {label:'Июль',data:[682,199,173,221,167,95,18,37],backgroundColor:'#BA751799',borderColor:'#BA7517',borderWidth:1,borderRadius:2},
+      {label:'Август',data:[763,221,220,206,156,49,24,20],backgroundColor:'#1d9e7599',borderColor:'#1d9e75',borderWidth:1,borderRadius:2}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:c=>' '+c.dataset.label+': '+c.raw}}},scales:{x:{ticks:{font:{size:10},color:tc},grid:{display:false}},y:{ticks:{font:{size:11},color:tc},grid:{color:gc}}}}});
 }
 
 function build_dmonthly(){
   if(built['d-monthly'])return;built['d-monthly']=true;
-  const labels=['Май 25','Июн 25','Июл 25','Авг 25','Сен 25','Окт 25','Ноя 25','Дек 25','Янв 26','Фев 26','Мар 26','Апр 26','Май 26','Июн 26'];
-  const vals=[2372,1970,2108,1954,1974,2013,1977,2156,1578,1798,1773,1724,1679,1765];
-  const avgVals=[132,104,92,93,90,88,104,98,99,95,84,78,93,88];
-  const colors=['#888780','#888780','#888780','#888780','#888780','#888780','#C4B573','#C4B573','#C4B573','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99'];
+  const labels=['Май 25','Июн 25','Июл 25','Авг 25','Сен 25','Окт 25','Ноя 25','Дек 25','Янв 26','Фев 26','Мар 26','Апр 26','Май 26','Июн 26','Июл 26','Авг 26'];
+  const vals=[2372,1970,2108,1954,1974,2013,1977,2156,1578,1798,1773,1724,1640,1765,1822,1944];
+  const biz=[null,null,null,null,null,null,null,null,null,null,null,null,null,1553,1634,1700];
+  const avgVals=[132,104,92,93,90,88,104,98,99,95,84,78,91,88,79,93];
+  const colors=['#888780','#888780','#888780','#888780','#888780','#888780','#C4B573','#C4B573','#C4B573','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99','#2E5C99'];
   new Chart(document.getElementById('chartMonthlyBar'),{type:'bar',
     data:{labels,datasets:[
-      {data:vals,backgroundColor:colors,borderRadius:3,label:'Обращений'},
-      {type:'line',data:[2065,2065,2065,2065,2065,2065,null,null,null,null,null,null,null,null],borderColor:'#88878066',borderDash:[5,4],borderWidth:1.5,pointRadius:0,fill:false},
-      {type:'line',data:[null,null,null,null,null,null,null,null,null,1748,1748,1748,1748,1748],borderColor:'#2E5C9966',borderDash:[5,4],borderWidth:1.5,pointRadius:0,fill:false}
+      {data:vals,backgroundColor:colors,borderRadius:3,label:'Заведено'},
+      {data:biz,type:'line',label:'Обращения бизнеса',borderColor:'#1d9e75',backgroundColor:'#1d9e75',borderWidth:2,pointRadius:4,fill:false,spanGaps:false},
+      {type:'line',data:[2065,2065,2065,2065,2065,2065,null,null,null,null,null,null,null,null,null,null],borderColor:'#88878066',borderDash:[5,4],borderWidth:1.5,pointRadius:0,fill:false},
+      {type:'line',data:[null,null,null,null,null,null,null,null,null,1781,1781,1781,1781,1781,1781,1781],borderColor:'#2E5C9966',borderDash:[5,4],borderWidth:1.5,pointRadius:0,fill:false}
     ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.datasetIndex===0?' '+c.raw.toLocaleString('ru')+' обращений':c.datasetIndex===1?' среднее предыд.: 2 065':' среднее текущий: 1 748'}}},scales:{x:{ticks:{font:{size:11},color:tc},grid:{display:false}},y:{ticks:{font:{size:11},color:tc},grid:{color:gc},min:1300,max:2500}}}});
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.datasetIndex===0?' заведено: '+c.raw.toLocaleString('ru'):c.datasetIndex===1?' обращения бизнеса: '+c.raw.toLocaleString('ru'):c.datasetIndex===2?' среднее предыд.: 2 065':' среднее текущий: 1 781'}}},scales:{x:{ticks:{font:{size:11},color:tc},grid:{display:false}},y:{ticks:{font:{size:11},color:tc},grid:{color:gc},min:1300,max:2500}}}});
   const legEl=document.createElement('div');
   legEl.style.cssText='display:flex;gap:16px;font-size:12px;color:#888;margin-bottom:10px;flex-wrap:wrap';
-  legEl.innerHTML='<span style="display:flex;align-items:center;gap:5px"><span style="width:11px;height:11px;border-radius:2px;background:#888780;display:inline-block"></span>Предыдущий руководитель</span><span style="display:flex;align-items:center;gap:5px"><span style="width:11px;height:11px;border-radius:2px;background:#C4B573;display:inline-block"></span>Переходный период</span><span style="display:flex;align-items:center;gap:5px"><span style="width:11px;height:11px;border-radius:2px;background:#2E5C99;display:inline-block"></span>Текущий руководитель</span>';
+  legEl.innerHTML='<span style="display:flex;align-items:center;gap:5px"><span style="width:11px;height:11px;border-radius:2px;background:#888780;display:inline-block"></span>Предыдущий руководитель</span><span style="display:flex;align-items:center;gap:5px"><span style="width:11px;height:11px;border-radius:2px;background:#C4B573;display:inline-block"></span>Переходный период</span><span style="display:flex;align-items:center;gap:5px"><span style="width:11px;height:11px;border-radius:2px;background:#2E5C99;display:inline-block"></span>Текущий руководитель</span><span style="display:flex;align-items:center;gap:5px"><span style="width:16px;height:3px;background:#1d9e75;display:inline-block"></span>Обращения бизнеса (без служебных)</span>';
   const barCanvas=document.getElementById('chartMonthlyBar');
   barCanvas.parentNode.insertBefore(legEl,barCanvas);
   new Chart(document.getElementById('chartMonthlyAvg'),{type:'line',
     data:{labels,datasets:[{data:avgVals,borderColor:colors,backgroundColor:'transparent',tension:0.3,pointRadius:5,pointBackgroundColor:colors,borderWidth:2,segment:{borderColor:ctx=>colors[ctx.p1DataIndex]}}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw+' обр/раб.день'}},title:{display:true,text:'Среднее обращений в рабочий день',font:{size:13},color:'#2E5C99',padding:{bottom:8}}},scales:{x:{ticks:{font:{size:11},color:tc},grid:{display:false}},y:{ticks:{font:{size:11},color:tc},grid:{color:gc},min:60,max:145}}}});
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.raw+' обр/раб.день'}},title:{display:true,text:'Среднее заведённых задач в рабочий день',font:{size:13},color:'#2E5C99',padding:{bottom:8}}},scales:{x:{ticks:{font:{size:11},color:tc},grid:{display:false}},y:{ticks:{font:{size:11},color:tc},grid:{color:gc},min:60,max:145}}}});
 }
-build_jun();
+build_aug();
 </script>
 </body>
 </html>
